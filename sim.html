@@ -1,6 +1,21 @@
 <html>
   <!-- texter https://unixpapa.com/js/testkey.html -->
   <head>
+<style>
+
+.cursor {
+    animation: blinking 0.3s infinite;
+    font-weight: bold;
+    font-size: 10;
+}
+@keyframes blinking{
+      0%{color: lightgreen;}
+     50%{color: transparent;}
+    100%{color: lightgreen;}
+}
+
+</style>
+
     <title>SevenPercent Keyboard Simulator</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0">
   </head>
@@ -10,7 +25,7 @@
 
     <b>Only use keys: A S D F G   and    SPACE</b><br/>
     Output: <button onclick="window.out.innerHTML='';">clear</button><br/>
-    <pre id=out style='white-space:pre-wrap;background-color:black;color:lightgreen;'></pre>
+    <pre id=out style='white-space:pre-wrap;word-wrap:break-word;background-color:black;color:lightgreen;'></pre>
     <b>Word:</b> <tt id=word></tt><br/>
     <pre id=dbg></pre>
 
@@ -268,7 +283,8 @@
   
   let str = '';
   //let cursor = '◆'; // diamond
-  let cursor = '◼'; // block 
+  //let cursor = '◼'; // lower block
+  let cursor = '\u2588'; // full block
   function putc(c) {
       let last = str[str.length-1];
 
@@ -310,11 +326,17 @@
 
       let w = shorts[word];
       if (w) {
-	  str = str.substring(0, str.length-word.length-1) + w + str[str.length-1];
+	  str = str.substring(0, str.length
+-word.length-1) + w + str[str.length-1];
       }
 
       // TODO: quoting?
-      window.out.innerText = str + cursor +'\n\n';
+      window.out.innerText = str;
+      window.out.insertAdjacentHTML(
+	  'beforeEnd',
+	  '<span style="position:absolute"><span class="cursor" style="position:relative;color:green;height:0.8em;">'+cursor+'</span></span>');
+      window.out.append('0123456789');
+      //window.out.append(+ cursor +'\n\n';
       window.word.innerText = ''+word + ' ('+word.length+') ==> ' + w;
   }
   
