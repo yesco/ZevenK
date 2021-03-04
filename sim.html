@@ -1,0 +1,684 @@
+<html>
+  <!-- texter https://unixpapa.com/js/testkey.html -->
+  <head>
+    <title>SevenPercent Keyboard Simulator</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0">
+  </head>
+  <body onkeydown="down(event);" onkeyup="up(event);">
+
+    <h1>SevenPercent Keyboard Simulator</h1>
+
+    <b>Only use keys: A S D F G   and    SPACE</b><br/>
+    Output: <button onclick="window.out.innerHTML='';">clear</button><br/>
+    <pre id=out style='white-space:pre-wrap;background-color:black;color:lightgreen;'></pre>
+    <b>Word:</b> <tt id=word></tt><br/>
+    <pre id=dbg></pre>
+
+<script>
+
+  let shorts = {
+      'aa': 'an',
+      //'aaa': ???
+      's': 'so',
+      'ss': 'so', // ss=so
+      'sss': 'some',
+      'd': 'do',
+      'dd': 'the', // D' ??? d_
+      'ddd': 'did',
+      'f': 'from',
+      'ff': 'to',
+      'fff': 'too',
+      'g': 'go',
+      'gg': 'by', // (gg)braille=where
+      'ggg': 'where',
+
+      'q': 'quite',
+      'qq': 'quick',
+      'qqq': 'question',
+      'w': 'with', // will?
+      'e': 'every',
+      //'ee': 'ever',
+      'r': 'are', // rather?
+      't': 'that',
+      //tt=by
+      'ttt': 'this',
+      'tttt': 'there', // ??
+
+      'z': 'is', // braille: as
+      'x': 'it',
+      'xx': 'thanks',
+      'xxx': 'kiss',
+      'c': 'can',
+      'cc': 'con-',
+      'v': 'very',
+      // 'vv': 'vv',
+      'b': 'but',
+      'bb': 'be',
+      'bbb': 'before',
+      
+      'y': 'you',
+      'yy': 'your',
+      'yyy': 'year', // hmmm
+      'yyyy': 'yes', // hmmm?
+      'yyyyy': 'young', // conflict?
+      'u': 'us',
+      //'uu': 'uu',
+      'i': 'I',
+      'o': 'or',
+      'oo': 'one',
+      'p': 'people',
+      //'pp': 'pp',
+      
+      'h': 'here', 'hh': 'have', // ?? braille!
+      'j': 'just',
+      'k': 'knowledge', // ?
+      'l': 'like',
+      'll': 'later',
+
+      'n': 'not',
+      'nn': 'no',
+      'nnn': 'name',
+      'm': 'more',
+      'mm': 'many',
+      'mmm': 'man', // ?
+
+      'afn': 'afternoon', // braille!
+      '.5m': 'mother',
+
+      'ab': 'about',
+      'abv': 'above', // ??? also alcohol
+      'af': 'after', // not AF
+      'ag': 'again',
+      'agst': 'against',
+      'al': 'also',
+      'alm': 'almost', // buddhist mean?
+      'alr': 'already',
+      'alt': 'alltogether',
+      'alth': 'although',
+      'alw': 'always',
+      'bec': 'because', // bq?
+      'bef': 'before',
+      'beh': 'behind',
+      'bel': 'below',
+      'bes': 'beside',
+      'bet': 'between',
+      'bey': 'beyond',
+      'bl': 'blind',
+      'brl': 'Braille',
+      'cd': 'could',
+      'cv': 'ceive', // ??
+      'cvg': 'ceiving', // ??
+      'chn': 'children',
+      'dcl': 'declare',
+      'dclg': 'declaring',
+      'ei': 'either',
+      'fst': 'first',
+      'fr': 'friend',
+      'gd': 'good',
+      'grt': 'great',
+      'herf': 'herself',
+      'hm': 'him',
+      'imm': 'immediate',
+      'll': 'little',
+      'lr': 'letter',
+      'mch': 'much',
+      'mst': 'must',
+      'myf': 'myself',
+      'nec': 'neccessary',
+      'nei': 'neither',
+      'o\'c': 'o\'clock',
+      'ourvs': 'ourselves',
+      'pd': 'paid',
+      'perh': 'perhaps',
+      'qk': 'quick',
+      'rjc': 'rejoice',
+      'rjcg': 'rejoicing',
+      'sch': 'such',
+      'sd': 'said',
+      'shd': 'should',
+      'td': 'today',
+      'tgr': 'together',
+      'tm': 'tomorrow',
+      'tn': 'tonight',
+      'themvs': 'themselves',
+      'wd': 'would',
+      'xs': 'its',
+      'xf': 'itself',
+      'yr': 'your',
+      'yrf': 'yourself',
+      'yrvs': 'yourselves',
+      
+      'st': 'still',
+      'ch': 'child',
+      'sh': 'shall',
+      'th': 'this',
+      'wh': 'which',
+      'ou': 'out',
+      'en': 'enough',
+      
+      // jsk, TODO: how to code?
+      // :1sg 1st
+      // :2gd 2nd
+      // :3fd 3rd
+      // :4gg 4th
+      // :5gg 5th
+      // :6gg 6th
+      // :7gg 7th
+      // :8gg 8th
+      // :9gg 9th
+      // :0gg 0th
+      
+      // here
+      // there
+      // where
+
+      // ever
+      // ought
+      // 'ft': 'father'
+      // 'mtr': 'mother'
+      // name
+      // character
+      // question (qq)
+      // know
+      // lord
+      // one
+      // day
+      // some
+      // part
+      // time
+      // right
+      // through
+      // under
+      // work
+      // young
+      // these
+      // those
+      // upon
+      // whose
+      // word
+      // cannot
+      // many
+      // had
+      // their
+      // spirit
+      // world
+
+      // === at beginning of word
+      // a_  'and '
+      // a__ 
+      // s_  'said '
+      // s__ 'she '
+      // d_  'said '
+      // f_  'from '
+      // f__ ???
+      // g_  'the ' (right finger)
+      // g__ 'there '
+      // g___ 'than'
+
+      // === at ending of word
+      // (hold key and tap space)
+      // a_  -able (or b_? jsk)
+      // a__ -ance
+
+      // s_  -sion
+      // s__ -ness
+      // s___ -ally (y_ Y in braille)
+
+      // d_  -ound
+      // d__ -day
+
+      // f_  -ful
+      // f__ -ough
+
+      // g_  -ing
+      // g__ -tion (t_)
+
+      // = left hand
+      // e_  -ence
+      // t_  -ount
+
+      // = right hand
+      // o_  -ong
+      // l_  -less
+      // m_  -ment
+      // n_  -action (N in braille)
+      
+      //     -ity
+
+      // === start-end (jsk)
+      'yw': 'yellow',
+      'gn': 'green',
+      'pk': 'pink',
+      'bl': 'blue', // not 'be'!
+      'bk': 'black',
+      'oe': 'orange',
+      'bn': 'brown',
+
+      'fk': 'fuck',
+      'ddff': 'fuck', // kcuf (backwards)
+
+      // === TODO: this is one-hand matching
+      'afd': 'are',
+      
+  };
+      
+
+  let keys = '';
+  let keysdown = 0;
+  
+  let str = '';
+  //let cursor = '◆'; // diamond
+  let cursor = '◼'; // block 
+  function putc(c) {
+      let last = str[str.length-1];
+
+      // str, paragraph, newline
+      if (c==='_') {
+	  if (str.endsWith('\n  ')) {
+	      // newline
+	      str = str.replace(/\n  $/, '');
+	      c = '\n';
+	  } else if (str.endsWith(' ')) {
+	      // paragraph
+	      str = str.replace(/ $/, '');
+	      c = '\n  ';
+	  } else if (str.endsWith('\n')) {
+	      c = '\n';
+	  } else {
+	      c = ' ';
+	  }
+      }
+
+      // first, edits
+      
+      if (c==='BS' || c==='BACKSPACE')
+	  str = str.substring(0, str.length-1);
+      // TODO: cursor position?
+      else if (c==='DEL')
+	  ;
+
+      else {
+	  // second, characters
+	  if (c==='SPC') c = ' ';
+	  else if (c==='RETURN') c = '\n';
+
+	  str += c;
+      }
+
+      // dictonary replacement
+      let word = (str.match(/\b(\w+)\W$/i) || ['', ''])[1];
+
+      let w = shorts[word];
+      if (w) {
+	  str = str.substring(0, str.length-word.length-1) + w + str[str.length-1];
+      }
+
+      // TODO: quoting?
+      window.out.innerText = str + cursor +'\n\n';
+      window.word.innerText = ''+word + ' ('+word.length+') ==> ' + w;
+  }
+  
+  let keytimes = '';
+  let firstkeytime = 0;
+  function up(e) {
+      e.preventDefault();
+      if (e.repeat) return;
+
+      let k = e.key.toUpperCase();
+      if (k==='B') k = 'G';
+      if (k===' ') k = '^';
+      if (!'ASDFG^'.includes(k)) return;
+      if (keys[keys.length-1]===k) return;
+
+      keysdown--;
+      keys += k;
+      keytimes += (Date.now()-firstkeytime) + k + ' ';
+      firstkeytime = Date.now();
+      //window.dbg.append(k);
+
+      if (!keysdown) {
+	  try {
+	      let key = seven(keys);
+	      window.dbg.prepend('\n');
+	      // TODO:add timing
+	      window.dbg.prepend(' -- '+keytimes);
+	      window.dbg.prepend('==>  ' + key + ' (' + key.charCodeAt(0) + ')');
+	      putc(key);
+	      keys = '';
+	      keytimes = '';
+	      firstkeytime = -1;
+	      //window.dbg.append('\n');
+	  } catch (err) {
+	      alert(''+err);
+	  }
+      }
+  }
+
+  function down(e) {
+      e.preventDefault();
+      if (e.repeat) return;
+
+      let k = e.key.toLowerCase();
+      if (k==='b') k = 'g';
+      if (k===' ') k = '_';
+      if (!'asdfg_'.includes(k)) return;
+      if (keys[keys.length-1]===k) return;
+
+      keysdown++;
+      keys += k;
+
+      if (keytimes==='')
+	  firstkeytime = Date.now();
+      keytimes += (Date.now()-firstkeytime) + k + ' ';
+      firstkeytime = Date.now();
+      
+      //window.dbg.append(k);
+  }
+  
+  let mirrorKeys = {
+      'q':'p', 'w':'o', 'e':'i', 'r':'u', 't':'y',
+      //'a':';', 's':'l', 'd':'k', 'f':'j', 'g':'h',
+      'a':'BACKSPACE', 's':'l', 'd':'k', 'f':'j', 'g':'h',
+      'z':'/', 'x':'.', 'c':',', 'v':'m', 'b':'n',
+      '.':':', ',':';', '!':'=', '?':'~',
+  };
+
+  function seven(keys) {
+      let r = sevenk(keys);
+      // TODO: make distinction between typed and interpreation
+      switch(r) {
+      case 's-a': return 'ALT-';
+      case 's-d': return 'CTRL-';
+      case 's-f': return 'FUNCTION-';
+      case 's-g': return 'NUMLOCK';
+      }
+      return r;
+  }
+  
+  function sevenk(keys) {
+      let have = {};
+      have.a = 0;
+      have.s = 0;
+      have.d = 0;
+      have.f = 0;
+      have.g = 0;
+      have.space = 0;
+      keys.split('').forEach(
+	  function(k) {
+	      have[k]=1;
+	      if (k=='_') have.space=1;
+	  });
+
+      let shift = '';
+      let mirror = false;
+      
+      function unmirrored() {
+	  // 0123456789 binary
+	  // TODO: hex
+	  if (shift==='g-' && !keys.match(/g/)) {
+	      if (have.space) return '0';
+	      // order doesn't matter!
+	      return String.fromCharCode(
+		  '0'.charCodeAt(0) +
+		      8*have.a + 4*have.s +
+		      2*have.d + have.f);
+	  }
+
+	  if (keys==='' && have.space) return 'SPC';
+
+	  // 4 keys
+	  if (have.a && have.s && have.d &&have.f) {
+	      // not number
+	      if (!have.g) {
+		  if (mirror)
+		      return 'DEL';
+		  
+		  switch(keys[0]) {
+		  case 'a': // asdf
+		      return '>>>>';
+		  case 'f': // fdas
+		      return '<<<<';
+		  }
+	      }
+	      
+	      // 5 keys
+	      if (keys.length===10) {
+		  // 5 different keys
+		  // ... and not number
+		  if (have.g &&
+		      !keys.startsWith('g')) {
+		      // not care order
+		      return 'MENU';
+		  }
+	      }
+	  
+	  }
+
+	  // shift-dots
+	  if (shift==='d-') {
+	      switch(keys) {
+	      case 'a': return '.';
+	      case 's': return ',';
+	      case 'f': return '!';
+	      case 'g': return '?';
+	      }
+	  }
+
+	  if (shift==='a-') {
+	      // CTRL-ASDF
+	      switch(keys) {
+	      case 's': return 'CTRL-A';
+	      case 'd': return 'CTRL-S';
+	      case 'f': return 'CTRL-D';
+	      case 'g': return 'CTRL-F';
+	      }
+	  }
+	  
+	  // 4 keys (don't block numbers)
+	  if (keys.length===8) {
+	  }
+	  
+	  // asdfg
+	  // TODO: hjkl;'
+	  if (keys.length===2) { // updn
+	      return keys[0];
+	  }
+
+	  // qwert
+	  // TODO: yuiop
+	  if (keys.length===4) {
+	      // upperrow: roll right 2 keys
+	      switch(keys) {
+	      case '_a^A':
+	      case 'aAsS':
+	      case 'asAS': return 'q';
+	      case '_s^S':
+	      case 'sSdD':
+	      case 'sdSD': return 'w';
+	      case '_d^D':
+	      case 'dDfF':
+	      case 'dfDF': return 'e';
+	      case '_f^F':
+	      case 'fFgG':
+	      case 'fgFG': return 'r';
+	      case '_g^G':
+	      case 'gGaA':
+	      case 'gaGA': return 't';
+	      case 'gGaA':
+		  // bug in some keyboard
+		  if (mirror) return 't';
+		  break;
+	      case 'fFgG':
+		  // bug in some keyboard
+		  if (mirror) return 'r';
+		  break;
+	      }
+	      // lowerrow: roll left 2 keys
+	      switch(keys) {
+	      case 'a_A^':
+	      case 'aAgG':
+	      case 'agAG': return 'z';
+	      case 's_S^':
+	      case 'sSaA':
+	      case 'saSA': return 'x';
+	      case 'd_D^':
+	      case 'dDsS':
+	      case 'dsDS': return 'c';
+	      case 'f_F^':
+	      case 'fFdD':
+	      case 'fdFD': return 'v';
+	      case 'g_G^':
+	      case 'gfGF': return 'b';
+	      case 'aAgG':
+		  // bug in some keyboard
+		  if (mirror) return 'z';
+		  break
+	      case 'gGfF':
+		  // bug in some keyboard
+		  if (mirror) return 'b';
+		  break;
+	      }
+
+	      // curly rolls parens
+	      switch(keys) {
+	      case 'adAD': return '(';
+	      case 'daDA': return ')';
+
+	      case 'sfSF': return '[';
+	      case 'fsFS': return ']';
+
+	      case 'dgDG': return '{';
+	      case 'gdGD': return '}';
+
+	      case 'sgSG': return '<';
+	      case 'gsGS': return '>';
+
+	      case 'afAF': return '"';
+	      case 'faFA': return "'";
+	      }
+	  }
+
+	  // ?? quirky CTRL-ER
+	  if (keys.startsWith('adf'))
+	      return 'CTRL-E';
+	  if (keys.startsWith('afg'))
+	      return 'CTRL-R';
+
+	  /// roll 3 keys: asd sdf dfg
+	  if (keys.length===6) {
+	      // roll, not care rest
+	      if (keys.startsWith('adg'))
+		  return 'HAMBURGER';
+	      if (keys.startsWith('gda'))
+		  return 'SYSTEM';
+	      
+	      switch(keys[0]) {
+	      case 'a': // asd
+		  if (have.s && have.d)
+		      return 'UNDO';
+
+		  // ctrl-a + 2 keys?
+		  break;
+
+		  // === CURSOR ===
+	      case 's': // sdf forward
+		  if (have.d && have.f)
+		      return 'RIGTH';
+		  // sfg
+		  // sdg
+		  break;
+	      case 'f': // fds backward
+		  if (have.d && have.s)
+		      return 'LEFT';
+		  // fda
+		  // fsa
+		  break;
+
+	      case 'd':
+		  // dsa <--
+		  if (have.s && have.a)
+		      return 'BACKSPACE';
+
+		  // dfg ==>
+		  if (have.f && have.g)
+		      return 'DOWN';
+
+		  break;
+	      case 'g':
+		  // gfd <==
+		  if (have.f && have.g)
+		      return 'UP';
+		  break;
+	      }
+	  }
+
+	  // right side X>Y>X (roll)
+	  if (keys.length===4) {
+	      if (mirror) {
+		  // lower
+		  switch(keys) {
+		  case 'a^_A': return 'p';
+		  case 's^_S': return 'o';
+		  case 'd^_D': return 'i';
+		  case 'f^_F': return 'u';
+		  case 'g^_G': return 'y';
+		  }
+	      } else {
+		  // a(_Aa^)A
+		  switch(keys) {
+		  case '_Aa^': return '/';
+		  case '_Ss^': return '.';
+		  case '_Dd^': return ',';
+		  case '_Ff^': return 'm';
+		  case '_Gg^': return 'n';
+		  }
+	      }
+	      
+	  }
+	  
+	  // not mapped/recognized
+	  return '(?) '+keys;
+      }
+      
+      // mirror?
+      let first = keys[0];
+      let last = keys[keys.length-1];
+      if (keys.length > 2) {
+	  if (first == '_' && last == '^') {
+	      have.space = 0;
+	      keys = keys.substr(1, keys.length-2);
+	      mirror = true;
+	  } else if (first == last.toLowerCase()){
+	      shift = first + '-';
+	      keys = keys.substr(1, keys.length-2);
+	      //return shift + '-' + keys;
+	  }
+      }
+
+      let k = unmirrored();
+      if (shift==='g-') return k;
+      
+      // fix left side
+      if (shift==='g-' && k==='n')
+	  return 'n';
+      if (shift==='f-' && k==='m')
+	  return 'm';
+      if (shift==='d-' && k===',')
+	  return ',';
+      if (shift==='s-' && k==='.')
+	  return '.';
+      if (shift==='a-' && k==='/')
+	  return '/';
+      
+      // left side
+      if (mirror) {
+	  return shift + (mirrorKeys[k] || k);
+      }
+      
+      return shift + k;
+  }
+
+</script>
+
+  </body>
+</html>
