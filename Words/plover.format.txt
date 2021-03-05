@@ -1,0 +1,63 @@
+XYZ {^ish} # attach ish to end of previous word
+XYZ {^}ish # attach without grammar
+XYZ {^-to-^} # infix
+XYZ {in^} # prefix
+EMDS {^—^} # emdash
+
+X {&0} # type next digit of number keep w group
+X {&a} # group with other & group
+TH {&th} # add th
+# number key
+
+"KPA": "{-|}" # uppercase next word
+"KPA*": "{^}{-|}" # no spc, an uc nw (camelCase)
+KA*PD {*-|} # capitalize last word
+
+# carrying uppercase to next letter
+{
+  "KW-GS": "{~|\"^}", # carry: "Foo." Bar
+  "KR-GS": "{^~|\"}",
+  "KA*US": "{~|'^}cause",
+  "PREPB": "{~|(^}",
+  "PR*EPB": "{^~|)}",
+  "NEWLINE": "{^~|\n^}",
+}
+
+"KA*PS": "{MODE:CAPS}" # caps all
+{<} # upper case next word
+"KPA*L": "{<}cat" # out next stroke in CAPS
+"UPD": "{*<}" # rewrite last word
+"HRO*ERD": "{>}" # lowercase next word
+{} # cancel formatting of next word
+
+ABC/DEF # sequence of key strokes
+THR/-R/#H/#A/KATS # to get "there are 45 cats" and only #H (4) and #A (5) are "glued" to each other.
+
+100{*($c CAD)} # format currency: $100 CAD
+
+{PLOVER:LOOKUP}
+{.} # stop
+{,} # comma
+{#a b c d} # will send "abcd" and will not affect Plover's text formatting or asterisk undo-buffer
+
+"TKAO*UP": "{#control(c v v v)}" — copy, then paste 3 times
+
+{#control(z shift(z)) is the same as "{#CONTROL_L(Z SHIFT(Z))}"
+{#} # null stroke
+{MODE:CAPS} # HOW ARE YOU
+{MODE:TITLE} # How Are You
+{MODE:LOWER}
+{MODE:CAMEL} # howAreYou
+{MODE:SNAKE} # How_are_you
+{MODE:SET-SPACE:} # Howareyou
+{MODE:SET-SPACE:=} # How-are-you
+{MODE:RESET}
+{MODE:RESET_CASE}
+{MODE:RESET_SPACE}
+
+"#": "{*+}" # repeat last stroke
+"#*": "{*}", # toggle asterix on last stroke you wrote: when you write KAT/#* it will behave as if you wrote KA*T.  ???
+
+{*?} # Add Space between 2 last strokes
+{*!} # Remove space of last 2 chords
+
