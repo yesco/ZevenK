@@ -130,30 +130,26 @@ sub matches {
     
 print 'x' x 35, "\n";
 
-#my $word = '  one  she  ';
-my $typed = 'sgd'; 
+test('sgd');
 
-# require it is complete word
-# (i.e. match all typed, "including space")
-#my $isword=0;
-my $isword=1;
 
-my @rr = asdfg($typed);
 
-print "typed= $typed\n";
-print "rr = @rr\n";
 
-push(@rr, ' ', ' ', ' ');
-if ($isword) {
-    push(@rr, ' ');
+sub test {
+    my ($typed, $fullword) = @_;
+
+    my @rr = asdfg($typed);
+
+    print "typed= $typed\n";
+    print "rr = @rr\n";
+
+    push(@rr, ' ', ' ', ' ');
+    if ($isword) {
+	push(@rr, ' ');
+    }
+
+    my @r = enumerate('', ' ', ' ',
+		  @rr);
+    print "WORDS: @r\n";
 }
 
-my @r = enumerate('', ' ', ' ',
-		  @rr);
-# 3 empty strings at end
-#$isword ? ' ' : undefined);
-		 
-# if one ' ' after last => match so far!
-#
-
-print "WORDS: @r\n";
