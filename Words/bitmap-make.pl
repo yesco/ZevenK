@@ -1,36 +1,51 @@
 # builds a 3-letter "bitmap"
 
 # tripplets, change may not work
-my $len = 3;
+my $CHARLEN = 3;
 
 my %freq;
-$freq{'zzz'} = 99;
 
-$_ = join('', <>);
-s/[\n\s\W]+/  /g;
-$_ = lc("  $_  ");
 
-for $i (0..length($_)-$len) {
-    my $seq = substr($_, $i, $len);
-    print "$i:$seq ";
-    $freq{$seq}++;
+for $f (@ARGV) {
+    print STDERR "%% Reading file: $f\n";
+    readfile($f);
 }
 
-print "\n\n";
-
+# print bitsummary not using $CHARLEN
 for $a (' ','a'..'z') {
     for $b (' ', 'a'..'z') {
 	for $c (' ', 'a'..'z') {
-	    my $n = $freq{"$a$b$c"};
-	    next if !$n;
-	    print "$a$b$c $n\n";
+	    for $c (' ', 'a'..'z') {
+		my $n = $freq{"$a$b$c$d"};
+		next if !$n;
+		print "$a$b$c$d $n\n";
+	    }
 	}
     }
 }
 
+sub readfile {
+    my ($f) = @_;
+    open(IN, $f) or die "No file: $f\n";
+
+    my $txt = join('', <>);
+    $txt =~ s/[\n\s\W]+/  /g;
+    $txt = lc("  $txt  ");
+
+    # for all seq of length $CHARLEN inc count
+    for $i (0..length($txt)-$CHARLEN) {
+	my $seq = substr($txt, $i, $CHARLEN);
+	print "$i:$seq ";
+	$freq{$seq}++;
+    }
+    print "\n\n";
+    close(IN);
+}
+
+
 sub find {
-    for $i (0..length($_)-$len) {
-	my $seq = substr($_, $i, $len);
+    for $i (0..length($_)-$CHARLEN) {
+	my $seq = substr($_, $i, $CHARLEN);
 	print "$i:$seq ";
 	$freq{$seq}++;
     }
@@ -57,9 +72,9 @@ sub enumerate {
     my ($s, $a, $b, @xx) = @_;
 
     my @matches = nextchar($a, $b, shift(@xx));
-    print "\t\t\t=>$s$a$b","[", join('', @matches), "]\n";
+    #print "\t\t\t=>$s$a$b","[", join('', @matches), "]\n";
 
-    if ($#xx < $len-1) {
+    if ($#xx < $CHARLEN-1) {
 	print "-------------$s$a$b---\n";
 	return;
     }
@@ -67,12 +82,12 @@ sub enumerate {
     my @res;
     for $c (@matches) {
 	my $w = $s.$a.$b.$c;
-	print ">$w<\n";
+	#print ">$w<\n";
 	my @d = enumerate($s.$a, $b, $c, @xx);
 	# flatten
 	push(@res, @d);
     }
-    print "\n\n";
+    #print "\n\n";
     
     return @res;
 }
@@ -82,12 +97,12 @@ sub nextchar {
     
     my @res;
     for $c (split('', $cc)) {
-	print "$a$b$c\n";
+	#print "$a$b$c\n";
 	my $w = "$a$b$c";
 	my $n = $freq{$w} + 0;;
 	next if !$n;
 	# found one more valid char
-	print "====$a$b$c====\n";
+	#print "====$a$b$c====\n";
 	push(@res, $c);
     }
     return @res;
@@ -141,9 +156,4 @@ my @r = enumerate('', ' ', ' ',
 # if one ' ' after last => match so far!
 #
 
-print @r;
-
-
-
-
-
+print "WORDS: @r\n";
