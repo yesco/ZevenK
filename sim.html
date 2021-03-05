@@ -282,6 +282,8 @@
 
       'fk': 'fuck',
       'ddff': 'fuck', // kcuf (backwards)
+      'atoz': 'abcdefghijklmnopqrstuvwxyz',
+      'agsa': 'abcdefghijklmnopqrstuvwxyz',
 
       // === TODO: this is one-hand matching
       'afd': 'are',
@@ -353,6 +355,7 @@
   
   let keytimes = '';
   let firstkeytime = 0;
+  let badhackdel = 0;
   function up(e) {
       e.preventDefault();
       if (e.repeat) return;
@@ -362,6 +365,25 @@
       if (k===' ') k = '^';
       if (!'ASDFG^'.includes(k)) return;
       if (keys[keys.length-1]===k) return;
+
+      // special hack for repeat BACKSPACE
+      // TODO:generalize
+      if (k==='A' && keys==='_a') {
+	  putc('BACKSPACE');
+	  keys = '_'; // make it continuable
+	  firstkeytime = Date.now();
+	  keytimes += (Date.now()-firstkeytime) + k + ' ';
+	  keysdown = 1;
+	  badhackdel = 1;
+	  return;
+      } else if (badhackdel) {
+	  badhackdel = 0;
+	  keysdown = 0
+	  firstkeytime = 0;
+	  keytimes = '';
+	  keys = '';
+	  return;
+      }
 
       keysdown--;
       keys += k;
