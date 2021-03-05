@@ -317,6 +317,7 @@
 	      c = ' ';
 	  }
       }
+      if (c==='HARDSPACE') c = ' ';
 
       // first, edits
       
@@ -367,7 +368,8 @@
       if (keys[keys.length-1]===k) return;
 
       // special hack for repeat BACKSPACE
-      // TODO:generalize
+      // TODO: generalize
+      // TODO: make for s-_ = HARDSPACE
       if (k==='A' && keys==='_a') {
 	  putc('BACKSPACE');
 	  keys = '_'; // make it continuable
@@ -711,7 +713,12 @@
       }
 
       let k = unmirrored();
+      // numbers are special
       if (shift==='g-') return k;
+
+      // "hard" space
+      if (shift==='s-' && k==='_')
+	  return 'HARDSPACE';
       
       // fix left side
       if (shift==='g-' && k==='n')
