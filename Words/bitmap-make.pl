@@ -132,8 +132,10 @@ print 'x' x 35, "\n";
 
 test('sgd');
 
-
-
+while(<>) {
+    chop();
+    test($_);
+}
 
 sub test {
     my ($typed, $fullword) = @_;
