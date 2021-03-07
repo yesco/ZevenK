@@ -19,18 +19,21 @@ my %have;
 
 # <> will read stdin and files given
 while(<>) {
+    # skip commented out
+    next if /^#/;
+    
     if (/\((\w+)\).*?--(.*)/) {
 	my ($t,$rest) = ($1, $2);
 	my @words = ($rest =~ m/(?<![\(a-z])([a-z]+)/g);
-	print "$t => $w @words -- $_";
+	#print "$t\t@words -- $_";
 	if ($have{$t}) {
-	    print STDERR "%% duplicate: $_";
+	    print STDERR "%% conflict for '%t} in $ARGV: $_";
 	    next;
 	}
 
 	$have{$t} = 1;
 	# TODO: find and list alternatives
-	print "$t\t$w\n";
+	print "$t\t@words\n";
     } else {
 	print STDERR "%% not parsed: $_\n";
     }
