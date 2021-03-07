@@ -19,9 +19,10 @@ my %have;
 
 # <> will read stdin and files given
 while(<>) {
-    if (/\((\w+)\).*?(?<![\(a-z])([a-z]+)/) {
-	my ($t, $w) = ($1, $2);
-	#print "$t => $w -- $_";
+    if (/\((\w+)\).*?--(.*)/) {
+	my ($t,$rest) = ($1, $2);
+	my @words = ($rest =~ m/(?<![\(a-z])([a-z]+)/g);
+	print "$t => $w @words -- $_";
 	if ($have{$t}) {
 	    print STDERR "%% duplicate: $_";
 	    next;

@@ -1,0 +1,68 @@
+## CTRL-a..f
+# (move hand inwards one step)
+# ^asdf
+
+a-s	C-A	# beginning of line?
+a-d	C-S	# search
+a-f	C-D	# DELETE (char forward)
+a-g	C-F	# file
+
+C-D	DELETE
+C-S	SEARCH
+C-F	FILE
+
+## Shift prefix keys
+# to say next char is ALT,CTRL,FUNC
+
+s-a	ALT-
+s-d	CTRL-	# c finger1
+s-f	FUNCTION- # followed by 1-12
+s-g	NUMLOCK
+
+ALT-ALT-	ESC	# hmmm?
+FUNCTION-1	HELP
+FUNCTION-3	SEARCH
+FUNCTION-5	RELOAD
+ALT-FUNCTION-4	CLOSE
+ALT-FUNCTION-
+
+## cursor mode
+a>s>d>f	[CURSOR]
+a	LEFT
+s	UP
+d	DOWN
+f	RIGHT
+#g
+_	[NORMAL]
+
+{as}	WORD-LEFT
+{sd}	HOME
+{df}	WORD-RIGHT
+#{fg}
+
+{asd}	PAGE-UP
+{sdf}	PAGE-DOWN
+#{dfg}
+
+# awkward combinations
+#{asf}
+#{asg}
+#{adf}
+#{adg}
+#{afg}
+#{sdg}
+#{sfg}
+
+## Cancel input
+# TODO: this is like a catch all?
+# (not to conflict with a>s>d>f
+# and g-[asdfg] for numbers???
+
+(ASDF)	CANCEL	# no matter what order
+(SDFG)	REDO
+#(ASFG) # awkward
+#(ADFG} # awkward
+
+##
+#
+

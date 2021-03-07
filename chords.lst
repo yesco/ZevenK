@@ -1,0 +1,57 @@
+# shift a key with space
+# (hold down then tap space)
+a-_	'and '
+s-_	' ' # hardspace
+d-_	'the ' # also assigned to dd
+f-_	'first ' # ??? not so useful?
+g-_	0 # numbers
+
+# it ??? conflicts with in
+
+# is z
+z	'it'
+
+# proper chords (press exactly same time)
+# mayby reserve for user?
+
+# or use forcommands/editing? (dangeruous as they may modify the document)
+
+# two in a row
+{as}
+{sd}	'is '
+{df}
+{fg}
+
+# two with one gap
+{ad}
+{af}
+{ag}
+
+{sf}
+{sg}
+
+{dg}
+
+# three in a row
+{asd}
+{sdf}
+{dfg}
+
+# three with grap
+{asg}
+{adf}
+{adg}
+{afg}
+
+# three
+{sdg}
+{sfg}
+
+# four in a row
+{asdf}	BACKSPACE # /UNDO ?
+{sdfg}	REDO # ?
+
+# four with a grap
+{asdg}  # ? difficult
+{adfg}	# ? difficult
+

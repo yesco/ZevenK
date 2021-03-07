@@ -1,0 +1,417 @@
+## Braille short words
+#
+# jsk: notic this is compiled by hand
+# mostly from https://www.teachingvisuallyimpaired.com/uploads/1/4/1/2/14122361/ueb_braille_chart.pdf
+
+# % means non letter
+#%a_
+%b_	but_
+%c_	can_
+%d_	do_
+%e_	every_
+%f_	from_
+%g_	go_
+%h_	have_
+#%i
+%j_	just_
+%k_	knowledge_
+%l_	like_
+%m_	more_
+%n_	not_
+%o_	or_	# jsk (sf=of=or)
+%p_	people_
+%q_	quite_
+%r_	rather_	# jsk prefer are?
+%s_	so_
+%t_	that_
+%u_	us_
+#%v_	?
+%w_	will_ # jsk: I'd prefer with!
+%x_	it_
+%y_	you_
+%z	as_	# jsk:is?
+
+# strong contractions
+# (part and whole word)
+# (use key as shift then tap space)
+a-_	and_
+#s-_ taken by hardspace
+d-_	the_ # D' lol
+f-_	for_
+#g-_ taken by
+#	of	# jsk: 
+#	with	# jsk: I'd prefer it at %w_
+
+# strong contractions
+# TODO: cannot fit in?
+# jsk: just type them out they unique
+#    'ch': 'child',
+#    'sh': 'shall',
+#    'th': 'this',
+#    'wh': 'which',
+#    'ou': 'out',
+#    'en': 'enough',
+
+# child
+# shall
+# this
+# which
+# out
+# still
+
+# initial letter contractions
+# prefixed by '.' (contraction letter)
+.c	character_ # special
+.d	day_
+.e	ever_
+.f	father_
+.h	here_
+.k	know_
+.l	lord_
+.m	mother_
+.n	one_
+.o	ought_ # special
+.p	part_
+.q	question_
+.r	right_
+.s	some_
+.t	time_
+.t	through_ # special - conflict!
+.t	there_ # special
+.u	under_
+#v
+.w	work_
+.w	where_	#special - conflict!
+#x
+.y	young_
+#z	
+
+# contraction-2 char ? .. ':' or ','
+# (single letter assigned by me)
+,h	those_ # hmmm 'h'
+,t	these_ #
+,u	upon_
+,w	word_
+,z	whose_ # hmmm 'z'
+# why doesn't .. have more?
+
+# contraction-3 char ? ... '.:' '!'?
+# (single letter assigned by me)
+
+!c	cannot_
+!h	had_
+!m	many_
+!s	spirit_
+!w	world_
+!t	their_
+
+## lower group signs
+# ea
+# bb
+# cc
+# ff
+# gg
+# be
+# con
+# dis
+# en
+# in
+
+## lower wordsings
+# be
+# enough
+# were
+# his
+# in
+# was
+
+# final letter group signs
+# (single letter assigned by me)
+# contaction-4 (some two, lol) using '?'
+?a	ance_
+,e	ence_
+,f	ful_
+?i	ity_
+?l	less_
+?m	ment_
+,n	ong_
+?o	ount_
+?o	sound_
+,s	ness_
+?s	sion_
+,t	tion_
+
+# shortform words
+%ab_	about_
+%agv_	above_
+%ac_	according_		
+%acr_	across_
+%af_	after_
+%afn_	afternoon_
+%afw_	afterward_
+%ag_	again_
+%agst_	against_
+%alm_	almost_
+%alr_	already_
+%al_	also_
+%alth_	although_
+%alt_	altogether_
+%alw_	always_
+%bec_	because_
+%bef_	before_
+%beh_	behind_
+%bel_	below_
+%ben_	beneath_
+%bes_	beside_
+%bet_	between_
+%bey_	beoynd_
+%bl_	blind_
+%brl_	braille_
+%chn_	children_
+%concv_	conceive_
+%concvg_ conceiving_
+%cd_	could_
+%dev_	decieve_
+%devg_	decieving_
+%dcl_	declare_
+%dclg_	declaring_
+%ei_	either_
+%fst_	first_
+%fr_	friend_
+%gd_	good_ # gd=be
+%grt_	great_
+%herf_	herself_
+%hm_	him_
+%hmf_	himself_
+%imm_	immediate_
+%xs_	its_
+%xf_	itself_
+%lr_	letter_
+%ll_	little_
+%mch_	much_
+%mst_	must_
+%myf_	myself_
+%nec_	necessary_
+%nei_	neither_
+%onef_	oneself_
+%1f_	oneself_ # jsk
+%ourvs_	ourselves_
+%pd_	paid_
+%percv_	perceive_
+%percvg_	perceiving_
+%perh_	perhaps_
+%qk_	quick_
+%rcv_	recieve_
+%rcvg_	recieving_
+%rjc_	rejoice_
+%rjcg_	rejoicing_
+%sd_	said_
+%shd_	should_
+%sch_	such_
+%themvs_	themselves_
+%thyf_	thyself_
+%td_	today_
+%tgr_	together_
+%tm_	tomorrow_
+%tn_	tonight_
+%wd_	would_
+%yr_	your_
+%yrf_	yourself_
+%yrvs_	yourselves_
+
+# retired contractions (not UEB)
+# ation
+# ally
+# dd
+# ble # maps to god
+# com
+# to
+# into
+# by 
+%oc_	"o'clock_" # ok!
+
+# currency and measurement
+#cent
+#dollar
+#euro
+#Brittish Pound
+#feet
+#inches
+
+## special symbols
+# percent %
+# degree
+# angle
+# hashtag #
+# amperand &
+# copyright (c)
+# trademark (TM)
+# superscript ^
+# subscript _
+# bullet *
+# at-sign @
+# asterix *
+# :!! dot locator for mention???
+
+## indicators
+# (mode)
+# .! numeric 
+# . capital letter
+# .. capital word
+# ... capital passage
+# ., capital terminator
+# : symbol
+# :: word
+# ::: passage
+# :. terminator
+
+## Typeform
+# (formatting)
+# italic symbol
+# italic word
+# italic passage
+# italic terminator
+# bold symbol
+# bold word
+# bold passage
+# bold terminator
+# underline symbol
+# underline word
+# underline passage
+# underline terminator
+# script symbol
+# script word
+# script passage
+# script terminator
+
+## punctuation
+# ,
+# .
+# '
+# :
+# -
+# hyphen -
+# emdash --
+# !
+# ?
+# ;
+# ...
+# /
+# \
+# " open and close (different)
+# ' open and close (different)
+
+
+## doubles, triples
+# jsk additions
+%aa_	an_ # conflict on ag=at
+#%aaa_
+%
+%ss_	so_ # anyway!
+#%dd_   the_ # D'
+%ff_	to_ # i think it's from braille
+%fff_	too_ # this too
+#%gg_	by_ // gg=by (gg)braille=where
+%ggg_	where_ ( ggg=thy, lol)
+%whr_	where_ # maybe? or str/obj?
+
+# don't like braille having q as question?
+#    'q': 'quite',
+#    'qq': 'quick',
+#    'qqq': 'question',
+
+%w_	with_ # override w=will
+%ee_	ever_
+%r_	are_ # override r=rather
+#%tt_   # tt=by 
+
+# z no matter, is, as are unique
+# 'x': 'it',
+%xx_	thanks_
+%xxx_	kiss_
+#    'c': 'can',
+%cc_	con
+%v_	very_ # bad word?
+
+# vv = mr ??? wtf?
+# //'bb': 'be', // too many chars
+%gff_	before_ # gff=bfr or gggg
+#    'y': 'you',
+#    'yyyy': 'yes', // hmmm?
+#    'yyyyy': 'young', // conflict?
+%ggg_	yes_
+%dd_	I_
+
+#    'oo': 'one',
+    
+%hh_	have_
+%kk_	Okay_
+%ll_	later_
+%nn_	no_
+%nnn_	name_
+#%mm_	many_ # fagg=many=math
+%mm_	Mr_
+%mmm_   man_
+%hh_	here # gdfd=time=here=give
+#    // there
+#    // where
+#    // ought = sunny
+#    // question (qq) braille q
+#    // know
+#    // lord
+dag_	day_ # TODO: safe for ending?
+
+# === at beginning of word
+# TODO: jsk not clear how to implement
+# a_  'and '
+# a__ 
+# s_  'said '
+# s__ 'she '
+# d_  'said '
+# f_  'from '
+# f__ ???
+# g_  'the ' (right finger)
+# g__ 'there '
+# g___ 'than'
+
+# === at ending of word
+# TODO: jsk not clear how to implement
+# (hold key and tap space)
+# a_  -able (or b_? jsk)
+#     -ant (jsk)
+# a__ -ance
+
+# s_  -sion
+# s__ -ness
+# s___ -ally (y_ Y in braille)
+
+# d_  -ound
+# d__ -day
+
+# f_  -ful
+# f__ -ough
+
+# g_  -ing
+# g__ -tion (t_)
+
+# = left hand
+# e_  -ence
+#     -ed (jsk)
+# t_  -ount
+#     -tory (jsk)
+
+# = right hand
+# y_
+# u_
+# i_  -ish (jsk)
+#     -ist (jsk)
+#     -ism (jsk)
+#     -ization (jsk)
+# o_  -ong
+# l_  -less
+# m_  -ment
+# n_  -action (N in braille)
+#      -ity
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# TODO: jsk not clear how to implement
+

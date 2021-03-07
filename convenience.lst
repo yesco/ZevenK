@@ -1,0 +1,31 @@
+# actually just make it part of dictionary?
+# wednesday Wednesday ????
+
+## start-end (jsk)
+%yw_	yellow_
+%gn_	green_
+%pk_	pink_
+%bl_	blue_ # not 'be'!
+%bk_	black_
+%oe_	orange_
+%bn_	brown_
+
+%fk_	fuck_
+%ddff_	fuck_', // kcuf (backwards)
+%atoz	abcdefghijklmnopqrstuvwxyz
+%agsa	abcdefghijklmnopqrstuvwxyz
+
+## numbers st,nd etc
+1sg_	1st_
+2gd_	2nd_
+3fd_	3rd_
+4gg_	4th_
+5gg_	5th_
+6gg_	6th_
+7gg_	7th_
+8gg_	8th_
+9gg_	9th_
+0gg_	0th_
+# hundredth, thousnt... etc? write out?
+
+

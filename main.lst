@@ -1,0 +1,152 @@
+## the normal keys
+
+# these are themselves
+#a
+#s
+#d
+#f
+#g
+
+# qwert - roll up
+a>s	q
+s>d	w
+d>f	e
+f>g	f
+g>a	g
+
+# zxcvb = roll down
+g>f	b
+f>d	v
+d>s	c
+s>a	x
+a>g	z
+
+# mirror to other half
+# (hold space tap key, release space)
+_-a	BACKSPACE
+_-s	l
+_-d	k
+_-f	j
+_-g	h
+
+# mirror left
+# TODO: how to interpret q?
+_-q	p
+_-w	o
+_-e	i
+_-f	u
+_-g	y
+
+_-z	/
+_-x	.
+_-c	,
+_-v	m
+_-b	n
+
+# qwert - roll up
+_-a>s	q
+_-s>d	w
+_-d>f	e
+_-f>g	f
+_-g>a	g
+
+# zxcvb = roll down
+_-g>f	b
+_-f>d	v
+_-d>s	c
+_-s>a	x
+_-a>g	z
+
+## alternative roll-up-down
+# maybe easier?
+_>a	q
+_>s	w
+_>d	e
+_>f	r
+_>g	t
+
+a>_	z
+s>_	x
+d>_	c
+f>_	v
+g>_	b
+
+# mirror
+# (this may be icky?)
+# think: roll up/down & roll right side
+# poiuy is upper row SPC-KEY is up
+# /.,mn is lower row KEY-SPACE is down
+
+# Basically type 'c', by using mirrored
+# finger 'a', then push down space
+# (to go lower row), then relase 'a',
+# and slap it to the side with bounce
+# back to a. (haha!)
+
+_>a>_	p
+_>s>_	o
+_>d>_	i
+_>f>_	u
+_>g>_	y
+
+a>_>a	z
+s>_>s	x
+d>_>d	c
+f>_>f	v
+g>_>g	b
+
+## numbers
+# (using g as numshift key)
+g-_	0
+g-f	1
+g-d	2
+g-s	4
+g-a	8
+
+g-(df)	3
+
+g-(sf)	5
+g-(sd}	6
+g-(sdf)	7
+
+# hex extention
+g-(af)	9
+g-(ad)	A
+g-(adf)	B
+g-(as)	C
+g-(asf)	D
+g-(asdf)	E
+
+g-(a_)	+
+g-(s_)	-
+g-(d_)	*
+g-(f_)	/
+g-(as_)	= # calculate
+g-(sd_)	.
+g-(df_)	%
+
+# x,,, s, = universal def
+#
+# ,=not touched
+# -=not care
+# s=shift
+# x=down
+
+# 1=first
+# 2=second
+# 4=third
+# 8=fourth
+
+# 5=1+4=firt+third
+# 9=1+8=first+4th
+# A=10=2+8=second+forth
+
+# Examples
+# x,,, sx == g-_-a == g-a_
+# x,,, sx == g-_-a == g-a_
+# 1234 ,, == a>s>d>f
+# 2,,, ,1 == _>a == q
+# 2,,, ,5 == _>a>_ == p (mirror q)
+
+
+
