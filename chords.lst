@@ -1,16 +1,3 @@
-# shift a key with space
-# (hold down then tap space)
-a-_	'and '
-s-_	' ' # hardspace
-d-_	'the ' # also assigned to dd
-f-_	'first ' # ??? not so useful?
-g-_	0 # numbers
-
-# it ??? conflicts with in
-
-# is z
-z	'it'
-
 # proper chords (press exactly same time)
 # mayby reserve for user?
 

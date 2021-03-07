@@ -11,6 +11,12 @@ C-D	DELETE
 C-S	SEARCH
 C-F	FILE
 
+#a-ss	REVERSE-SEARCH FREE
+##a-dd	FREE
+##a-ff	FREE
+##a-gg	FREE
+
+
 ## Shift prefix keys
 # to say next char is ALT,CTRL,FUNC
 
@@ -18,40 +24,45 @@ s-a	ALT-
 s-d	CTRL-	# c finger1
 s-f	FUNCTION- # followed by 1-12
 s-g	NUMLOCK
+s-_	HARDSPACE # jsk: mmmhmmm
 
-ALT-ALT-	ESC	# hmmm?
+s-aa	ESC
+#s-dd	# FREE
+#s-ff	# FREE
+#s-gg	# FREE
+
 FUNCTION-1	HELP
 FUNCTION-3	SEARCH
 FUNCTION-5	RELOAD
 ALT-FUNCTION-4	CLOSE
-ALT-FUNCTION-
 
 ## cursor mode
+# TODO: implement modes
 a>s>d>f	[CURSOR]
-a	LEFT
-s	UP
-d	DOWN
-f	RIGHT
+#a	LEFT
+#s	UP
+#d	DOWN
+#f	RIGHT
 #g
 _	[NORMAL]
 
-{as}	WORD-LEFT
-{sd}	HOME
-{df}	WORD-RIGHT
-#{fg}
+[CURSOR]{as}	WORD-LEFT
+[CURSOR]{sd}	HOME
+[CURSOR]{df}	WORD-RIGHT
+[CURSOR]#{fg}	# FREE
 
-{asd}	PAGE-UP
-{sdf}	PAGE-DOWN
-#{dfg}
+[CURSOR]{asd}	PAGE-UP
+[CURSOR]{sdf}	PAGE-DOWN
+#[CURSOR]{dfg}	# FREE
 
 # awkward combinations
-#{asf}
-#{asg}
-#{adf}
-#{adg}
-#{afg}
-#{sdg}
-#{sfg}
+#[CURSOR]{asf} # awkward FREE
+#[CURSOR]{asg} # awkward FREE
+#[CURSOR]{adf} # awkward FREE
+#[CURSOR]adg} # awkward FREE
+#[CURSOR]{afg} # awkward FREE
+#[CURSOR]{sdg} # awkward FREE
+#[CURSOR]{sfg} # awkward FREE
 
 ## Cancel input
 # TODO: this is like a catch all?
@@ -60,9 +71,28 @@ _	[NORMAL]
 
 (ASDF)	CANCEL	# no matter what order
 (SDFG)	REDO
-#(ASFG) # awkward
-#(ADFG} # awkward
+#(ASFG) # awkward FREE
+#(ADFG} # awkward FREE
 
-##
-#
+## editing
+_-a	BACKSPACE # can steal from ';"
+
+_-ss	DELETE-WORD # back 'CTRL-BACKSPACE'
+#_-sf # FREE
+#_-sg # FREE
+
+# space-delete
+_-dd	DELETE-LINE # forw 'CTRL-K'
+#_-da # FREE
+#_-dg # FREE
+
+# space-format-
+_-ff	JOIN-WORD # f=j
+_-fa	CAMELIFY # (cameli fy => CameliFy)
+_-fs	UNDERSCORE # underScore a b -> a_b
+
+# space-go-
+_-gg	CAPITALIZE # (gogo) Capitalize
+_-gs	LOWERCASE # "(S=l)ower case"
+_-gd	UPPERCASE # omg GoD
 

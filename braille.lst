@@ -4,7 +4,7 @@
 # mostly from https://www.teachingvisuallyimpaired.com/uploads/1/4/1/2/14122361/ueb_braille_chart.pdf
 
 # % means non letter
-#%a_
+#%a_	# is already 'a '
 %b_	but_
 %c_	can_
 %d_	do_
@@ -12,7 +12,7 @@
 %f_	from_
 %g_	go_
 %h_	have_
-#%i
+#%i	# is already 'I '
 %j_	just_
 %k_	knowledge_
 %l_	like_
@@ -25,22 +25,22 @@
 %s_	so_
 %t_	that_
 %u_	us_
-#%v_	?
+#%v_	# FREE
 %w_	will_ # jsk: I'd prefer with!
 %x_	it_
 %y_	you_
-%z	as_	# jsk:is?
+%z_	as_	# jsk:is?
 
 # strong contractions
 # (part and whole word)
 # (use key as shift then tap space)
 a-_	and_
-#s-_ taken by hardspace
+#s-_	HARDSPACE # jsk: mmmhmmm
 d-_	the_ # D' lol
 f-_	for_
-#g-_ taken by
-#	of	# jsk: 
-#	with	# jsk: I'd prefer it at %w_
+#g-_ taken by numbers: 0
+#	of	# jsk: spell by itself
+#	with	# jsk: I'd prefer for 'w'
 
 # strong contractions
 # TODO: cannot fit in?
@@ -61,11 +61,14 @@ f-_	for_
 
 # initial letter contractions
 # prefixed by '.' (contraction letter)
+#.a	# FREE
 .c	character_ # special
 .d	day_
 .e	ever_
 .f	father_
+#.g	# FREE
 .h	here_
+#.i	# FREE
 .k	know_
 .l	lord_
 .m	mother_
@@ -79,18 +82,38 @@ f-_	for_
 .t	through_ # special - conflict!
 .t	there_ # special
 .u	under_
-#v
+#v	# FREE
 .w	work_
 .w	where_	#special - conflict!
-#x
+#x	# FREE
 .y	young_
-#z	
+#z	# FREE
 
 # contraction-2 char ? .. ':' or ','
 # (single letter assigned by me)
+#,a	# FREE
+#,b	# FREE
+#,c	# FREE
+#,d	# FREE
+#,e	# ence_ below
+#,f	# ful_ below
+#,g	# FREE
 ,h	those_ # hmmm 'h'
-,t	these_ #
+#,i	# FREE
+#,j	# FREE
+#,k	# FREE
+#,l	# FREE
+#,k	# FREE
+#,m	# FREE
+#,n	# ong_ below
+#,o	# FREE
+#,p	# FREE
+#,q	# FREE
+#,r	# FREE
+#,s	# FREE
+,t	these_ # also tion_ below
 ,u	upon_
+#,v	# FREE
 ,w	word_
 ,z	whose_ # hmmm 'z'
 # why doesn't .. have more?
@@ -98,12 +121,30 @@ f-_	for_
 # contraction-3 char ? ... '.:' '!'?
 # (single letter assigned by me)
 
+#!a	# FREE
+#!b	# FREE
 !c	cannot_
+#!d	# FREE
+#!e	# FREE
+#!f	# FREE
+#!g	# FREE
 !h	had_
+#!i	# FREE
+#!j	# FREE
+#!k	# FREE
+#!l	# FREE
 !m	many_
+#!n	# FREE
+#!o	# FREE
+#!p	# FREE
+#!q	# FREE
+#!r	# FREE
 !s	spirit_
-!w	world_
 !t	their_
+#!u	# FREE
+#!v	# FREE
+!w	world_
+#!x	# FREE
 
 ## lower group signs
 # ea
@@ -141,7 +182,8 @@ f-_	for_
 ?s	sion_
 ,t	tion_
 
-# shortform words
+## shortform words
+# ' ab ' => ' about '
 %ab_	about_
 %agv_	above_
 %ac_	according_		
@@ -306,13 +348,14 @@ f-_	for_
 # jsk additions
 %aa_	an_ # conflict on ag=at
 #%aaa_
-%
 %ss_	so_ # anyway!
 #%dd_   the_ # D'
 %ff_	to_ # i think it's from braille
 %fff_	too_ # this too
 #%gg_	by_ // gg=by (gg)braille=where
-%ggg_	where_ ( ggg=thy, lol)
+%ggg_	yes_ (ggg=thy)
+%gggg_	where_
+
 %whr_	where_ # maybe? or str/obj?
 
 # don't like braille having q as question?
@@ -339,19 +382,19 @@ f-_	for_
 #    'y': 'you',
 #    'yyyy': 'yes', // hmmm?
 #    'yyyyy': 'young', // conflict?
-%ggg_	yes_
 %dd_	I_
-
 #    'oo': 'one',
     
 %hh_	have_
 %kk_	Okay_
 %ll_	later_
 %nn_	no_
-%nnn_	name_
+%nnn_	now_
+%nnnn_	name_
 #%mm_	many_ # fagg=many=math
 %mm_	Mr_
 %mmm_   man_
+%mmmm_	made_ # ffff=mmmm 4 l made (confl make)
 %hh_	here # gdfd=time=here=give
 #    // there
 #    // where

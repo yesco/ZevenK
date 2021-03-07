@@ -23,7 +23,7 @@ a>g	z
 
 # mirror to other half
 # (hold space tap key, release space)
-_-a	BACKSPACE
+_-a	BACKSPACE # stolen!
 _-s	l
 _-d	k
 _-f	j
@@ -89,11 +89,11 @@ _>d>_	i
 _>f>_	u
 _>g>_	y
 
-a>_>a	z
-s>_>s	x
-d>_>d	c
-f>_>f	v
-g>_>g	b
+a>_>a	"'"
+s>_>s	;
+d>_>d	k
+f>_>f	j
+g>_>g	h
 
 ## numbers
 # (using g as numshift key)
@@ -121,9 +121,52 @@ g-(a_)	+
 g-(s_)	-
 g-(d_)	*
 g-(f_)	/
-g-(as_)	= # calculate
+g-(as_)	= # calculate?
 g-(sd_)	.
 g-(df_)	%
+# missing multiply big dot
+
+## parenthesis
+a>d	(
+d<a	)
+s>f	[
+f>s	]
+d>g	{
+g>d	}
+a>f	" # convenient but / ???
+f>a	' # convenient but \ ???
+s>g	<
+g>s	>
+
+## Dots-
+d-a	. # and with space => :
+d-s	, #                   ;
+d-f	? #                   /
+d-g	! #                   \
+
+d-a_	:
+d-s_	;
+d-f_	/ hmmm, or under (
+d-g_	\                ) pairing?
+
+## Symbol-
+s-a_	@
+s-d_	$
+s-f_	# 
+s-g_	TM
+
+## Fuglies-
+f-a_	& # Ampersand
+f-s_	% # perSent :-(
+f-d_	^ # d=c(eiling)
+f-g_	` # g=b(acktick)
+
+## Alternatives-
+a-s_	~ # Scuiggly
+a-d_	_ # unDerline
+#a-f_	  #
+a-g_	| # g=b(ar)
+
 
 # x,,, s, = universal def
 #
