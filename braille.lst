@@ -51,13 +51,13 @@ f-_	for_
 #    'wh': 'which',
 #    'ou': 'out',
 #    'en': 'enough',
-
+# (these are ok just type!)
 # child
 # shall
 # this
-# which
-# out
-# still
+# which # sgddg=which=sheet
+# out # out=sun=sub=org
+# still # still=shell=lycos
 
 # initial letter contractions
 # prefixed by '.' (contraction letter)
@@ -70,9 +70,9 @@ f-_	for_
 .h	here_
 #.i	# FREE
 .k	know_
-.l	lord_
+.l	lord_ # hmmm, no like
 .m	mother_
-.n	one_
+.n	one_ # hmmm ???
 .o	ought_ # special
 .p	part_
 .q	question_
@@ -169,6 +169,8 @@ f-_	for_
 # final letter group signs
 # (single letter assigned by me)
 # contaction-4 (some two, lol) using '?'
+# ask?a => askance_
+# TODO: invent glue (^ or &)
 ?a	ance_
 ,e	ence_
 ,f	ful_
@@ -183,83 +185,126 @@ f-_	for_
 ,t	tion_
 
 ## shortform words
-# ' ab ' => ' about '
-%ab_	about_
-%agv_	above_
-%ac_	according_		
-%acr_	across_
-%af_	after_
-%afn_	afternoon_
-%afw_	afterward_
-%ag_	again_
-%agst_	against_
-%alm_	almost_
-%alr_	already_
-%al_	also_
-%alth_	although_
-%alt_	altogether_
-%alw_	always_
-%bec_	because_
-%bef_	before_
-%beh_	behind_
-%bel_	below_
-%ben_	beneath_
-%bes_	beside_
-%bet_	between_
-%bey_	beoynd_
-%bl_	blind_
-%brl_	braille_
-%chn_	children_
-%concv_	conceive_
-%concvg_ conceiving_
-%cd_	could_
-%dev_	decieve_
-%devg_	decieving_
-%dcl_	declare_
-%dclg_	declaring_
-%ei_	either_
-%fst_	first_
-%fr_	friend_
-%gd_	good_ # gd=be
-%grt_	great_
-%herf_	herself_
-%hm_	him_
-%hmf_	himself_
-%imm_	immediate_
-%xs_	its_
-%xf_	itself_
-%lr_	letter_
-%ll_	little_
-%mch_	much_
-%mst_	must_
-%myf_	myself_
-%nec_	necessary_
-%nei_	neither_
-%onef_	oneself_
-%1f_	oneself_ # jsk
-%ourvs_	ourselves_
-%pd_	paid_
-%percv_	perceive_
-%percvg_	perceiving_
-%perh_	perhaps_
-%qk_	quick_
-%rcv_	recieve_
-%rcvg_	recieving_
-%rjc_	rejoice_
-%rjcg_	rejoicing_
-%sd_	said_
-%shd_	should_
-%sch_	such_
-%themvs_	themselves_
-%thyf_	thyself_
-%td_	today_
-%tgr_	together_
-%tm_	tomorrow_
-%tn_	tonight_
-%wd_	would_
-%yr_	your_
-%yrf_	yourself_
-%yrvs_	yourselves_
+# '?ab ' => ' about '
+# %? asdfg (no shift case)
+# %=new word ?=prefix char (d-g)
+
+%?ab	about_ # ag=ab=at=an
+#%ag	again_ # ag=ag=at=an ???
+
+%?agv	above_ # agf=atm
+
+# ac=pd=qk
+#%ac	according_ # ad=pc=ad	
+#%pd	paid_ # ad=pc=pi
+#%qk	quick_ # ad=qk
+
+%?acr	across_ # adf=per=air=pdf=aim=acm
+
+%?af	after_ # af=pm=am=av=af
+%?afn	afternoon_ # afg=art=put=aug=avg=pub=amy=arg
+
+#%afs	afterward_ # !!!
+%?afw	afterward_ # !!!
+
+%?agst	against_ # !!!
+%?%alm	almost_ # asf=por
+%?%alr	already_ # asf=por
+%?%al	also_ # as=al
+%?%alth	although_ # !!!
+%?%alt	altogether_ # asg=pst=pot=alt=ash
+%?%alw	always_ # 
+
+# gdd=
+#%bec	because_ # gdd=bid=bed=gcc=tie=tee=ted
+#%nec	necessary_ # !!!
+#%bq	because # jsk
+#%nei	neither_ # gdd=bid=bed...
+
+%?bef	before_ 
+
+# gdg=
+#%beh	behind_ # gdg=get=big=yet=net=bit=bin=hit=ten=hey=ben
+#%ben	beneath_ # gdg=get...
+#%bet	between_ # gdg=get=big
+#%bey	beoynd_ #
+
+# gds=
+#%bel	below_ # gds=new=his=yes=tel=bio=gel=geo
+#%bes	beside_ # gds=new=his=yes=tel=bio
+
+%?bl	blind_ # BL
+%?brl	braille_ 
+%?chn	children_
+%?concv	conceive_ # !!!
+%?concvg conceiving_ # !!!
+
+# dd=
+%?cd	could_
+#%ei	either_
+
+%?dev	decieve_
+%?devg	decieving_ # ddfg=dirt
+%?dcl	declare_ # dds=del=cds=ceo=eco-dis
+%?dclg	declaring_ #ddsg=icon=dish=dist
+
+#%fst	first_ # fsg=job=mon=usb=msn=fly=von=rob...
+#%mst	must_ # fsg
+
+%?fr	friend_ # ff=mr
+
+# gd=
+%?gd	good_ # gd=be
+#%td	today_ # gd=be=he=hi
+
+%?grt	great_
+%?herf	herself_ # == himself!!!
+
+# gf=
+#%hm	him_ # gf=hm=tv... ???
+#%tm	tomorrow_ # gf=tv (many)
+#%yr	your_
+
+# gff=
+#%hmf	himself_p # gff=buf !!!
+#%yrf	yourself_ # gff=buf seen before???
+
+%?imm	immediate_ # dff=eur=cum
+
+# sf=or=
+%?lr	letter_
+#%xf	itself_ # just type it
+
+
+# ll=so=os
+%?ll	little_ # later ???
+#%xs	its_ # just type
+
+%?mch	much_ # fdg=men
+%?myf	myself_ # fgf=mtv # !!!
+%?onef	oneself_
+%?1f	oneself_ # jsk ??? not in dict!
+%?ourvs	ourselves_ # !!!
+%?percv	perceive_ # ??? not in dict
+%?percvg	perceiving_ # ??? not in dict
+%?perh	perhaps_ # !!!
+%?rcv	recieve_ # fdf=jim=ref=rev=mem
+%?rcvg	recieving_
+%?rjc	rejoice_ # ffd=fri=mud !!!
+%?rjcg	rejoicing_ # ffdg=much=judy
+
+# sd=we=ok=le
+#%sd	said_ # just type it
+#%wd	would_ # just type it
+
+%?shd	should_
+%?sch	such_
+%?themvs	themselves_ # !!!
+%?thyf	thyself_ # !!!
+%?tgr	together_ # ggf=thu=gnu !!!
+%?tn	tonight_ gg=by=ny
+%?yrvs	yourselves_
+
 
 # retired contractions (not UEB)
 # ation
@@ -457,4 +502,3 @@ dag_	day_ # TODO: safe for ending?
 #      -ity
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 # TODO: jsk not clear how to implement
-

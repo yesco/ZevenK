@@ -141,9 +141,10 @@ g>s	>
 ## Dots-
 d-a	. # and with space => :
 d-s	, #                   ;
-d-f	? #                   /
-d-g	! #                   \
+d-f	! #                   /
+d-g	? #                   \
 
+# w space
 d-a_	:
 d-s_	;
 d-f_	/ hmmm, or under (
