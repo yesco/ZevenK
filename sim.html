@@ -27,6 +27,8 @@
     Output: <button onclick="window.out.innerHTML='';">clear</button><br/>
     <pre id=out style='white-space:pre-wrap;word-wrap:break-word;background-color:black;color:#4af626;'></pre>
     <b>Word:</b> <tt id=word></tt><br/>
+    <pre id=ks></pre>
+    <pre id=knew></pre>
     <pre id=dbg></pre>
 
 <script src='asdfg.json.js'></script>
@@ -162,15 +164,155 @@
   let keytimes = '';
   let firstkeytime = 0;
   let badhackdel = 0;
+
+  // new keyboard handling
+  let knew = '';
+  let ktm = 0;
+  let kdown = 0;
+  let kall = '';
+  
+  // output letters in order asdfg
+  // (only key downs, no ups)
+  // (one letter => 'x'
+  //  proper chord => {abc}  )
+  function ksort(s) {
+      let r = '';
+      s.replace(/a/g, x=>{ r+= x; });
+      s.replace(/s/g, x=>{ r+= x; });
+      s.replace(/d/g, x=>{ r+= x; });
+      s.replace(/f/g, x=>{ r+= x; });
+      s.replace(/g/g, x=>{ r+= x; });
+      s.replace(/z/g, x=>{ r+= x; });
+      return r.length>1 ? '{'+r+'}' : r;
+  }
+  
+  let ks = '';
+  let klastkey = '';
+  function processKey(k, up) {
+      ks = ' ' + ks;
+      
+      // ignore repeating keys for now
+      if (!up && k===klastkey) return;
+      klastkey = k;
+      
+      // measure and update time
+      let now = Date.now();
+      if (!ktm) ktm = now;
+      let tm = now-ktm;
+      ktm = now;
+      ks = k + tm + ks;
+//      window.ks.innerText = ks;
+
+      // time of press
+      if (tm >= 3000) knew += ' 4 ' + k;
+      else if (tm >= 2000) knew += ' 3 '+k;
+      else if (tm >= 1000) knew += ' 2 '+k;
+      else if (tm >= 500)  knew += ' 1 '+k;
+      else if (tm >= 40)   knew += ' 0 '+k;
+      else knew += k;
+
+      // new sequence
+      kdown += up ? -1 : +1;
+      if (!kdown) {
+	  let r = knew;
+	  let rprefix = '';
+
+	  let s = ''
+
+	  // shift: a ... A => a-...
+	  if (r.match(/^\w \d /)) {
+	      r = r.replace(
+		  /^(\w)(.*)(\1)$/i,
+		  (_,s,m,e)=>{
+		      // parse rest better
+		      rprefix = s+'-';
+		      return m;
+		  });
+	      s += ' shift: ' + r + '\n';
+	  } else {
+	      s += ' noshift: no delay\n';
+	  }
+	      
+	  // roll: abcABC => a>b>c
+	  // TOOD: correct but too strict!
+	  if (r.match(/^[a-z0-9 ]+[A-Z0-9 ]+$/)) {
+	      r = r.replace(/[0-9 ]+/g, '')
+		  .replace(
+		      /^(\w\w+)(\1)$/i,
+		      (_,s,e)=>s.replace(
+			  /\B/g, '>'));
+	  }
+	      
+	  // chords: fds => {sdf}
+	  r = r.replace(
+	      /^[a-z]{2,}[A-Z]+$/g, ksort)
+	  s += ' chords: ' + r + '\n';
+	  
+	  // remove timing
+	  r = r.replace(/\s*\d\s*/g, '');
+	  s += ' timing: ' + r + '\n';
+	  
+	  // cleanup: xX => x
+	  r = r.replace(
+	      /([a-z])\s*\d?\s*([A-Z])/g,
+	      (_,x,y)=>
+	      (x===y.toLowerCase())
+		  ?x:x+y);
+	  s += ' cleanup: ' + r + '\n';
+
+	  // sequences: a 0 b 0 c => abc
+	  //r = r.replace(
+	  ///\w\w+/,
+	  //x=>x.replace(/[ 0]/g, ''));
+
+	  // remove up
+	  r = r.replace(/[A-Z]/g, '');
+	  s += ' noup: ' + r + '\n';
+
+	  r = rprefix + r;
+	  // change zZ -> _^
+	  r = r.replace(/z/g, '_');
+	  r = r.replace(/Z/g, '^');
+	  s += ' zZ: ' + r + '\n';
+	  
+	  kall = s + kall;
+	  
+	  // display
+	  kall = r + ' -- ' + knew +
+	      '\n' + kall;
+
+	  knew = '';
+	  ktm = 0;
+
+	  // display
+	  window.knew.innerText = kall;
+
+	  window.ks.innerText = ks;
+	  ks = '';
+
+	  // all keys up so can decide
+	  return r;
+      }
+
+      // display
+//      window.knew.innerText = '#' + kdown + '  ' + knew + '\n' + kall;
+
+      // new sequence
+      // not finshed
+      return '';
+  }
+
   function up(e) {
       e.preventDefault();
       if (e.repeat) return;
 
       let k = e.key.toUpperCase();
       if (k==='B') k = 'G';
-      if (k===' ') k = '^';
-      if (!'ASDFG^'.includes(k)) return;
-      if (keys[keys.length-1]===k) return;
+      if (k===' ') k = 'Z';
+      if (!'ASDFGZ'.includes(k)) return;
+
+      processKey(k, 1);
+      return;
 
       // special hack for repeat BACKSPACE
       // TODO: generalize
@@ -222,15 +364,17 @@
 
       let k = e.key.toLowerCase();
       if (k==='b') k = 'g';
-      if (k===' ') k = '_';
-      if (!'asdfg_'.includes(k)) return;
-      if (keys[keys.length-1]===k) return;
+      if (k===' ') k = 'z';
+      if (!'asdfgz'.includes(k)) return;
+
+      processKey(k, 0);
+      return;
 
       keysdown++;
       keys += k;
-
       if (keytimes==='')
 	  firstkeytime = Date.now();
+
       keytimes += (Date.now()-firstkeytime) + k + ' ';
       firstkeytime = Date.now();
       
@@ -556,7 +700,7 @@
       
       // left side
       if (mirror) {
-	  return shift + (mirrorKeys[k] || k);
+	  return shift + (mirrorKeys[k] || '_-' + k);
       }
       
       return shift + k;
