@@ -56,6 +56,15 @@ print "// at $iso local\n";
 
 print "\nlet keybm = {\n";
 
+sub qt {
+    my ($s) = @_;
+    #print STDERR "s=$s<\n";
+    $s =~ s/([\'\"\\])/\\$1/g;
+    $s = '"'. $s.'"';
+    #print STDERR "s=$s<\n";
+    return $s;
+}
+
 my $lastfile;
 while(<>) {
     # print file name as delimiter
@@ -70,10 +79,14 @@ while(<>) {
 	next;
     }
 
+    # remove comments at end of line
+    # (TODO: .hash	"#"    ....
+    s/#+.*$//;
+
     # keycombo line
     if (s/^(\S+)[\t\s]+//) {
 	my $keyb = $1;
-	my @words = m/(\w+)/g;
+	my @words = m/(\S+)/g;
 
 	if ($seen{$keyb}) {
 	    print STDERR "%% $ARGV: '$keyb' conflicts def:$_";
@@ -84,7 +97,7 @@ while(<>) {
 	    
 	print "  \"$keyb\": [" .
 	    join(", ",
-		 map { "\"$_\"" } @words),
+		 map {qt($_)} @words),
 	    "],\n";
 	next;
     }
@@ -108,7 +121,7 @@ while(<>) {
 	}
 	$seen{$keyb} = 1;
 	    
-	print "  \"$keyb\": \"$word\",\n";
+	print "  \"$keyb\": ".qt($word),",\n";
 	next;
     }
 
@@ -119,5 +132,4 @@ while(<>) {
     print STDERR "%% File $ARGV - unparsed line $_";
 }
 
-print "};\n";
-
+print "\n};\n";
