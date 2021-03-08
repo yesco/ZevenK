@@ -43,7 +43,7 @@
 
 ## d
 # weekdays
-%0d	day
+%0d	day_
 %1d	Monday_
 %2d	Tuesday_
 %3d	Wednesday_

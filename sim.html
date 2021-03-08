@@ -27,6 +27,7 @@
     Output: <button onclick="window.out.innerHTML='';">clear</button><br/>
     <pre id=out style='white-space:pre-wrap;word-wrap:break-word;background-color:black;color:#4af626;'></pre>
     <b>Word:</b> <tt id=word></tt><br/>
+    <pre id=pc></pre>
     <pre id=ks></pre>
     <pre id=knew></pre>
     <pre id=dbg></pre>
@@ -44,14 +45,15 @@
   // can be invoked with no argument,
   // in which case it's
   function putc(c) {
-      let cursor = '\u2588'; // full block
-      let last = screen[screen.length-1];
+      if (c===undefined) return;
+      
+      const cursor = '\u2588'; // full block
 
       // interpretation of SPACE
       // (=>' ', paragraph, newline)
       if (c==='_') {
-	  if (screen.endsWith('\n  ')) {
-	      // paragraph to newline
+          if (screen.endsWith('\n  ')) {
+              // paragraph to newline
 	      screen = screen.replace(/\n  $/, '');
 	      c = '\n';
 	  } else if (screen.match(/(?![\.\?\:\;\! ]) $/)) {
@@ -71,20 +73,20 @@
 	      c = ' ';
 	  }
       }
-      if (c==='HARDSPACE') c = ' ';
+  
+      if (c===':HARDSPACE') c = ' ';
 
       // first, edits
-      if (c==='BS' || c==='BACKSPACE')
-	  screen = screen.substring(0, screen.length-1);
+      if (c===':BS' || c===':BACKSPACE') {
+          screen = screen.substring(
+	      0, screen.length-1);
           // TODO: cursor position?
-      else if (c==='DEL' || c==='DELETE')
+      } else if (c===':DEL' || c===':DELETE') {
 	  // TODO: no have buffer forward
-	  ;
-
-      else if (c && c != '') {
+      } else if (c && c != '') {
 	  // second add characters
-	  if (c==='SPC') c = ' ';
-	  else if (c==='RETURN') c = '\n';
+	  if (c===':SPC') c = ' ';
+	  else if (c===':RETURN') c = '\n';
 
 	  if (capslock)
 	      c = c.toUpperCase();
@@ -95,43 +97,76 @@
       // all functions called need to
       // return a string ('' or whatever)
       screen = screen.replace(
-	  /(\S+PICK-([\w\d])) ?$/,
+	  /(:S+PICK-([\w\d])) ?$/,
 	  (_,s,p)=>{
 	      return (s.match(
 		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+'BEEP'])[1]+' ';
 	  });
       
-      screen = screen.replace(/BEEP ?$/, beep);
-      screen = screen.replace(/BEEPF ?$/, beepf);
+      screen = screen.replace(/:BEEP ?$/, beep);
+      screen = screen.replace(/:BEEPF ?$/, beepf);
       screen = screen.replace(
-	  /(\S+\s*)UPPERCASE ?$/,
+	  /(\S+\s*):UPPERCASE ?$/,
 	  (_,x)=>x.toUpperCase());
       screen = screen.replace(
-	  /(\S+\s*)LOWERCASE ?$/,
+	  /(\S+\s*):LOWERCASE ?$/,
 	  (_,x)=>x.toUpperCase());
       screen = screen.replace(
-	  /(\S)(\S+\s*)CAPITALIZE ?$/,
+	  /(\S)(\S+\s*):CAPITALIZE ?$/,
 	  (_,x,y)=>x.toUpperCase()+y);
       screen = screen.replace(
-	  /(\S+)\s+(\S+\s*)JOIN ?$/,
+	  /(\S+)\s+(\S+\s*):JOIN ?$/,
 	  (_,x,y)=>x+y);
       screen = screen.replace(
-	  /(\S+)\s+(\S+\s*)CAPSLOCK ?$/,
+	  /(\S+)\s+(\S+\s*):CAPSLOCK ?$/,
 	  ()=>capslock=!capslock);
+
+      screen = screen.replace(
+	  /.:BACKSPACE ?$/, '');
+      
+
       // dangerous!
       screen = screen.replace(
-	  /^[\s\S]*CLEAR ?$/, '');
+	  /^[\s\S]*:CLEAR ?$/, '');
+
+      // --- matching dictionary
+      // - try :FOO - command [\w->{}]
+      let oldScreen = screen;
+
+      screen = screen.replace(
+	  /:(\S+?)\s*$/,
+	  (_,w)=>subst(_, w));
+
+      // - try %foo - full word
+      screen = screen.replace(
+	  /\b(\w+)\s*$/,
+	  (_,w)=>subst(_, w, '%'));
+
+      // - try foo - partial/end
+      // TODO: we don't know length
+      //screen = screen.replace(
+      ///(\w+)\s*$/, subst);
+
+      // - try .foo - shorts w prefixch
+      screen = screen.replace(
+	  /(\W\b\w+)\s*$/,
+	  (_,w)=>subst(_, w));
+	  
+      // invoke it recursively
+      if (screen !== oldScreen)
+	  return putc('');
       
-      // matching
-      let word = (screen.match(/\b([,\.\:\;\?\!]?[\w_\-\>\{\}]+\s?)\W$/i) || ['', ''])[1];
-      // encoding of space
-      word = word.replace(/ /g, '_');
-      // match WORD first, second ending
-      // TODO: second form maybe needs to be treated differently?
-      let m =
-	  keybm['%'+word] || keybm[word];
-      // have match(es)
-      if (m) {
+      // work horse
+      function subst(all, word, prefix) {
+	  word = word.replace(/ /g, '_');
+	  let w = (prefix || '') + word;
+	  let m = keybm[w];
+	      
+ 	  window.pc.innerText = word+'=>'+m+'<\n' + window.pc.innerText;
+	  
+	  if (!m) return all;
+	  
+	  // have match(es)
 	  if (Array.isArray(m) && m.length>1) {
 	      // TODO: find shortcuts
 	      m = word+'='+m.map((x,i)=>{
@@ -139,33 +174,27 @@
 	      }, m).join('/') +
 		  '/PICK-'+'BEEP';
 	  } else {
-	      // dictionary ?
+	      // simgle entry/dict
 	      if (c==='_' || c===' ')
 		  m += ' ';
 	  }
-	      
-	  // replace the match
-	  screen = screen.substring(
-	      0, screen.length-word.length-1)
-	      + m;
-	  // invoce it (BEEP)
-	  putc();
+	  
+	  // display mapping found
+	  window.word.innerText = ''+word + ' ('+word.length+') ==> ' + m;
+	  
+	  return m;
       }
-      // TODO: %a_
-      // TODO: .a_ ,a_  !a_ ?a_
 
-      
-      
-
-
+      // show screen (before cursor)
       // TODO: quoting?
       window.out.innerText = screen;
+      // insert cursor
       window.out.insertAdjacentHTML(
 	  'beforeEnd',
 	  '<span style="position:absolute"><span class="cursor" style="position:relative;color:lightgreen;height:0.8em;">'+cursor+'</span></span>');
+      // screen after cursor
+      // TODO:lol
       window.out.append('\n  And here is more written.');
-      //window.out.append(+ cursor +'\n\n';
-      window.word.innerText = ''+word + ' ('+word.length+') ==> ' + m;
   }
   
   // === keyboard reader for asdfg+space
@@ -174,12 +203,12 @@
   //
   // returns:
   // - asdf = fast overlapping sequence
-  // - a-f  = a held down first+last
-  // - a-fg = plus g pressed after f
-  // - a>s  = a roll (down)as(up)AS
-  // - a>s>d ...
-  // - _-s>d = a-shift + roll s->d
-  // - {asd} = chord, all keys down/up
+  // - :A-F  = a held down first+last
+  // - :A-FG = plus g pressed after f
+  // - :A>S  = a roll (down)as(up)AS
+  // - A>S>D ...
+  // - _-S>D = a-shift + roll s->d
+  // - {ASD} = chord, all keys down/up
   
   // new keyboard handling
   let knew = '';
@@ -309,6 +338,10 @@
 	  //window.ks.innerText = ks;
 	  ks = '';
 
+	  // all commands :UPPER
+	  if (r.match(/[\-\{\}\>]/))
+	      r = ':' + r.toUpperCase();
+	  
 	  // all keys up so can decide
 	  return r;
       }

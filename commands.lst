@@ -2,60 +2,60 @@
 # (move hand inwards one step)
 # ^asdf
 
-a-s	C-A	# beginning of line?
-a-d	C-S	# search
-a-f	C-D	# DELETE (char forward)
-a-g	C-F	# file
+A-S	C-A	# beginning of line?
+A-D	C-S	# search
+A-F	C-D	# DELETE (char forward)
+A-G	C-F	# file
 
-C-D	DELETE
-C-S	SEARCH
-C-F	FILE
+C-D	:DELETE
+C-S	:SEARCH
+C-F	:FILE
 
 # dictionary searches
 # (this is thge priority of dictionary
 #  searches, first pref/try show 10)
-a-ss	BEGIN-MATCHES
-a-dd	END-MATCHES
-a-ff	MIDDLE-MATCHES
-a-gg	ANY-MATCHES (.*a.*b.*c.*)
+A-SS	:BEGIN-MATCHES
+A-DD	:END-MATCHES
+A-FF	:MIDDLE-MATCHES
+A-GG	:ANY-MATCHES (.*a.*b.*c.*)
 
 
 ## Shift prefix keys
 # to say next char is ALT,CTRL,FUNC
 
-s-a	ALT-
-s-d	CTRL-	# c finger1
-s-f	FUNCTION- # followed by 1-12
-s-g	NUMLOCK
-s-_	HARDSPACE # jsk: mmmhmmm
+S-A	:ALT-
+S-D	:C-	# c finger1
+S-F	:FUNCTION- # followed by 1-12
+S-G	:NUMLOCK
+S-_	:HARDSPACE # jsk: mmmhmmm
 
-s-aa	ESC
-#s-dd	# FREE
-#s-ff	# FREE
-#s-gg	# FREE
+S-AA	:ESC
+#S-DD	# FREE
+#S-FF	# FREE
+#S-GG	# FREE
 
-FUNCTION-1	HELP
-FUNCTION-3	SEARCH
-FUNCTION-5	RELOAD
-ALT-FUNCTION-4	CLOSE
+FUNCTION-1	:HELP
+FUNCTION-3	:SEARCH
+FUNCTION-5	:RELOAD
+ALT-FUNCTION-4	:CLOSE
 
 ## cursor mode
 # TODO: implement modes
-a>s>d>f	[CURSOR]
+a>s>d>f	:MODE-CURSOR
 #a	LEFT
 #s	UP
 #d	DOWN
 #f	RIGHT
 #g
-_	[NORMAL]
+[CURSOR]_	:MODE-NORMAL
 
-[CURSOR]{as}	WORD-LEFT
-[CURSOR]{sd}	HOME
-[CURSOR]{df}	WORD-RIGHT
-[CURSOR]#{fg}	# FREE
+[CURSOR]{AS}	:WORD-LEFT
+[CURSOR]{SD}	:HOME
+[CURSOR]{DF}	:WORD-RIGHT
+[CURSOR]#{FG}	# FREE
 
-[CURSOR]{asd}	PAGE-UP
-[CURSOR]{sdf}	PAGE-DOWN
+[CURSOR]{ASD}	:PAGE-UP
+[CURSOR]{SDF}	:PAGE-DOWN
 #[CURSOR]{dfg}	# FREE
 
 # awkward combinations
@@ -72,33 +72,33 @@ _	[NORMAL]
 # (not to conflict with a>s>d>f
 # and g-[asdfg] for numbers???
 
-(ASDF)	CANCEL	# no matter what order
-(SDFG)	REDO
+(ASDF)	:CANCEL	# no matter what order
+(SDFG)	:REDO
 #(ASFG) # awkward FREE
 #(ADFG} # awkward FREE
 
 ### editing
-_-a	BACKSPACE # can steal from ';"
+_-A	:BACKSPACE # can steal from ';"
 
 ## the combos below are choosen not to
 # conflict with normal keys, thus they
 # have no adjecent keys
-_-ss	DELETE-WORD # back 'CTRL-BACKSPACE'
-_-sf	REPEAT
-_-sg	YANK # (g=y) paste
+_-SS	:DELETE-WORD # back 'CTRL-BACKSPACE'
+_-SF	:REPEAT
+_-SG	:YANK # (g=y) paste
 
 # space- (delete?)
-#_-dd	DELETE-LINE # forw 'CTRL-K'
-_-da   DELETE-EXTRACT- # followed by choice
-_-dg   DELETE-NUMS # (g=num) split on on character in last word abc3def5foo => abc def foo
+#_-DD	DELETE-LINE # forw 'CTRL-K'
+_-DA   :DELETE-EXTRACT- # followed by choice
+_-DG   :DELETE-NUMS # (g=num) split on on character in last word abc3def5foo => abc def foo
 
 # space-format-
-_-ff	JOIN-WORD # f=j
-_-fa	CAMELIFY # (cameli fy => CameliFy)
-_-fs	UNDERSCORE # underScore a b -> a_b
+_-FF	:JOIN-WORD # f=j
+_-FA	:CAMELIFY # (cameli fy => CameliFy)
+_-FS	:UNDERSCORE # underScore a b -> a_b
 
 # space-go-
-_-gg	CAPITALIZE # (gogo) Capitalize
-_-ggg	CAPSLOCK
-_-gs	LOWERCASE # "(S=l)ower case"
-_-gd	UPPERCASE # omg GooD
+_-GG	:CAPITALIZE # (gogo) Capitalize
+_-GGG	:CAPSLOCK
+_-GS	:LOWERCASE # "(S=l)ower case"
+_-GD	:UPPERCASE # omg GooD

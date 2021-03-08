@@ -8,34 +8,34 @@
 #g
 
 # qwert - roll up
-a>s	q
-s>d	w
-d>f	e
-f>g	f
-g>a	g
+A>S	q
+S>D	w
+D>F	e
+F>G	r
+G>A	t
 
 # zxcvb = roll down
-g>f	b
-f>d	v
-d>s	c
-s>a	x
-a>g	z
+G>F	b
+F>D	v
+D>S	c
+S>A	x
+A>G	z
 
 # mirror to other half
 # (hold space tap key, release space)
-_-a	BACKSPACE # stolen!
-_-s	l
-_-d	k
-_-f	j
-_-g	h
+_-A	:BACKSPACE # stolen!
+_-S	l
+_-D	k
+_-F	j
+_-G	h
 
 # mirror left
 # TODO: how to interpret q?
 _-q	p
 _-w	o
 _-e	i
-_-f	u
-_-g	y
+_-r	u
+_-tg	y
 
 _-z	/
 _-x	.
@@ -44,32 +44,32 @@ _-v	m
 _-b	n
 
 # qwert - roll up
-_-a>s	q
-_-s>d	w
-_-d>f	e
-_-f>g	f
-_-g>a	g
+_-A>S	q
+_-S>D	w
+_-D>F	e
+_-F>G	r
+_-G>A	t
 
 # zxcvb = roll down
-_-g>f	b
-_-f>d	v
-_-d>s	c
-_-s>a	x
-_-a>g	z
+_-G>F	b
+_-F>D	v
+_-D>S	c
+_-S>A	x
+_-A>G	z
 
 ## alternative roll-up-down
 # maybe easier?
-_>a	q
-_>s	w
-_>d	e
-_>f	r
-_>g	t
+_>A	q
+_>S	w
+_>D	e
+_>F	r
+_>G	t
 
-a>_	z
-s>_	x
-d>_	c
-f>_	v
-g>_	b
+A>_	z
+S>_	x
+D>_	c
+F>_	v
+G>_	b
 
 # mirror
 # (this may be icky?)
@@ -83,90 +83,180 @@ g>_	b
 # and slap it to the side with bounce
 # back to a. (haha!)
 
-_>a>_	p
-_>s>_	o
-_>d>_	i
-_>f>_	u
-_>g>_	y
+_>A>_	p
+_>S>_	o
+_>D>_	i
+_>F>_	u
+_>G>_	y
 
-a>_>a	"'"
-s>_>s	;
-d>_>d	k
-f>_>f	j
-g>_>g	h
+A>_>A	'
+S>_>S	;
+D>_>D	k
+F>_>F	j
+G>_>G	h
 
 ## numbers
 # (using g as numshift key)
-g-_	0
-g-f	1
-g-d	2
-g-s	4
-g-a	8
+G-_	0
+G-F	1
+G-D	2
+G-S	4
+G-A	8
 
-g-(df)	3
+G-{DF}	3
 
-g-(sf)	5
-g-(sd}	6
-g-(sdf)	7
+# (this is stupid, but it'll work...)
+G-DF	3
+G-FD	3
+
+G-{SF}	5
+G-SF	5
+G-FS	5
+
+G-{SD}	6
+G-SD	6
+G-DSs	6
+
+G-{SDF}	7
+G-SDF	7
+G-DSF	7
+G-DFSs	7
+G-FSDd	7
+G-FDS	7
 
 # hex extention
-g-(af)	9
-g-(ad)	A
-g-(adf)	B
-g-(as)	C
-g-(asf)	D
-g-(asdf)	E
+G-{AF}	9
+G-AF	9
+G-FA	9
 
-g-(a_)	+
-g-(s_)	-
-g-(d_)	*
-g-(f_)	/
-g-(as_)	= # calculate?
-g-(sd_)	.
-g-(df_)	%
+G-{AD}	A
+G-ADd	A
+G-DA	A
+
+G-{ADF}	B
+G-ADF	B
+G-AFD	B
+G-DAF	B
+G-DFA	B
+G-FAD	B
+G-FDA	B
+
+G-{AS}	C
+G-AS	C
+G-SA	C
+
+G-{ASF}	D
+G-ASF	D
+G-AFS	D
+G-SAF	D
+G-SFA	D
+G-FAS	D
+G-FSA	D
+
+G-{ASD}	E
+G-ASD	E
+G-ADS	E
+G-SADd	E
+G-SDA	E
+G-DAS	E
+G-DSA	E
+
+# LOL
+G-{ASDF}	F
+G-ASDF	F
+G-ASFD	F
+G-ADSF	F
+G-ADFS	F
+G-AFSD	F
+G-AFDS	F
+
+G-SADF	F
+G-SAFD	F
+G-SDAF	F
+G-SDFA	F
+G-SFAD	F
+G-SFDA	F
+
+G-DASF	F
+G-DAFS	F
+G-DSAF	F
+G-DSFA	F
+G-DFAS	F
+G-DFSAF	F
+
+G-FASD	F
+G-FADS	F
+G-FSAD	F
+G-FSDA	F
+G-FDAS	F
+G-FDSA	F
+
+# calculator!
+
+G-{A_}	+
+G-A_	+
+
+G-{S_}	-
+G-S_	-
+
+G-{D_}	*
+G-D_	*
+
+G-{F_}	/
+G-F_	/
+
+G-{AS_}	= # calculate?
+G-AS_	=
+
+G-(SD_)	.
+G-SD_	.
+
+G-{DF_}	%
+G-DF_	%
+
 # missing multiply big dot
 
 ## parenthesis
-a>d	(
-d<a	)
-s>f	[
-f>s	]
-d>g	{
-g>d	}
-a>f	" # convenient but / ???
-f>a	' # convenient but \ ???
-s>g	<
-g>s	>
+A>D	(
+D<A	)
+S>F	[
+F>S	]
+D>G	{
+G>D	}
+A>F	" # convenient but / ???
+F>A	' # convenient but \ ???
+S>G	<
+G>S	>
 
 ## Dots-
-d-a	. # and with space => :
-d-s	, #                   ;
-d-f	! #                   /
-d-g	? #                   \
+D-A	. # and with space => :
+D-S	, #                   ;
+D-F	! #                   /
+D-G	? #                   \
 
 # w space
-d-a_	:
-d-s_	;
-d-f_	/ hmmm, or under (
-d-g_	\                ) pairing?
+D-A_	:
+D-S_	;
+D-F_	/ hmmm, or under (
+D-G_	\                ) pairing?
 
 ## Symbol-
-s-a_	@
-s-d_	$
-s-f_	# 
-s-g_	TM
+S-A_	@
+S-D_	$
+S-F_	# 
+S-G_	TM
 
 ## Fuglies-
-f-a_	& # Ampersand
-f-s_	% # perSent :-(
-f-d_	^ # d=c(eiling)
-f-g_	` # g=b(acktick)
+F-Aa_	& # Ampersand
+F-S_	% # perSent :-(
+F-D_	^ # d=c(eiling)
+F-G_	` # g=b(acktick)
 
 ## Alternatives-
-a-s_	~ # Scuiggly
-a-d_	_ # unDerline
-#a-f_	  #
-a-g_	| # g=b(ar)
+A-S_	~ # Scuiggly
+A-D_	_ # unDerline
+#A-F_	  #
+A-G_	| # g=b(ar)
 
 
 # x,,, s, = universal def
