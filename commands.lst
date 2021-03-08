@@ -84,8 +84,8 @@ _-a	BACKSPACE # can steal from ';"
 # conflict with normal keys, thus they
 # have no adjecent keys
 _-ss	DELETE-WORD # back 'CTRL-BACKSPACE'
-#_-sf # FREE
-#_-sg # FREE
+_-sf	REPEAT
+_-sg	YANK # (g=y) paste
 
 # space- (delete?)
 #_-dd	DELETE-LINE # forw 'CTRL-K'
@@ -99,5 +99,6 @@ _-fs	UNDERSCORE # underScore a b -> a_b
 
 # space-go-
 _-gg	CAPITALIZE # (gogo) Capitalize
+_-ggg	CAPSLOCK
 _-gs	LOWERCASE # "(S=l)ower case"
 _-gd	UPPERCASE # omg GooD

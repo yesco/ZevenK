@@ -35,6 +35,7 @@
 
   let keys = '';
   let keysdown = 0;
+  let capslock = 0;
   
   let str = '';
   //let cursor = '◆'; // diamond
@@ -75,10 +76,14 @@
 	  if (c==='SPC') c = ' ';
 	  else if (c==='RETURN') c = '\n';
 
+	  if (capslock)
+	      c = c.toUpperCase();
 	  str += c;
       }
 
-      // special commands
+      //// special commands
+      // all functions called need to
+      // return a string ('' or whatever)
       str = str.replace(
 	  /(\S+PICK-([\w\d])) ?$/,
 	  (_,s,p)=>{
@@ -87,6 +92,24 @@
 	  });
       
       str = str.replace(/BEEP ?$/, beep);
+      str = str.replace(/BEEPF ?$/, beepf);
+      str = str.replace(
+	  /(\S+\s*)UPPERCASE ?$/,
+	  (_,x)=>x.toUpperCase());
+      str = str.replace(
+	  /(\S+\s*)LOWERCASE ?$/,
+	  (_,x)=>x.toUpperCase());
+      str = str.replace(
+	  /(\S)(\S+\s*)CAPITALIZE ?$/,
+	  (_,x,y)=>x.toUpperCase()+y);
+      str = str.replace(
+	  /(\S+)\s+(\S+\s*)JOIN ?$/,
+	  (_,x,y)=>x+y);
+      str = str.replace(
+	  /(\S+)\s+(\S+\s*)CAPSLOCK ?$/,
+	  ()=>capslock=!capslock);
+      // dangerous!
+      str = str.replace(/^[\s\S]*CLEAR ?$/, '');
       
       // matching was assumed to be
       // performed on space
@@ -475,8 +498,20 @@
 	      
 	  }
 	  
+	  // cleanup
+
+	  // xX => x
+	  keys = keys.replace(
+	      /([a-z])([A-Z])/g,
+	      (_,x,y)=>{
+		  if (x === y.toLowerCase())
+		      return x;
+		  else
+		      return x+y;
+	      });
+			
 	  // not mapped/recognized
-	  return '(?) '+keys;
+	  return keys;
       }
       
       // mirror?
@@ -502,6 +537,11 @@
       if (shift==='s-' && k==='_')
 	  return 'HARDSPACE';
       
+      // uppercase
+      if (mirror && k==='gg') {
+	  return 'UPPERCASE';
+      }
+
       // fix left side
       if (shift==='g-' && k==='n')
 	  return 'n';
@@ -523,16 +563,16 @@
   }
 
   // https://stackoverflow.com/questions/879152/how-do-i-make-javascript-beep
-//if you have another AudioContext class use that one, as some browsers have a limit
-var audioCtx = new (window.AudioContext || window.webkitAudioContext || window.audioContext);
+  // if you have another AudioContext class use that one, as some browsers have a limit
+  var audioCtx = new (window.AudioContext || window.webkitAudioContext || window.audioContext);
 
-//All arguments are optional:
+  // All arguments are optional:
 
-//duration of the tone in milliseconds. Default is 500
-//frequency of the tone in hertz. default is 440
-//volume of the tone. Default is 1, off is 0.
-//type of tone. Possible values are sine, square, sawtooth, triangle, and custom. Default is sine.
-//callback to use on end of tone
+  // duration of the tone in milliseconds. Default is 500
+  // frequency of the tone in hertz. default is 440
+  // volume of the tone. Default is 1, off is 0.
+  // type of tone. Possible values are sine, square, sawtooth, triangle, and custom. Default is sine.
+  // callback to use on end of tone
   function beepf(duration, frequency, volume, type, callback) {
       var oscillator = audioCtx.createOscillator();
       var gainNode = audioCtx.createGain();
@@ -547,6 +587,7 @@ var audioCtx = new (window.AudioContext || window.webkitAudioContext || window.a
 
       oscillator.start(audioCtx.currentTime);
       oscillator.stop(audioCtx.currentTime + ((duration || 500) / 1000));
+      return '';
   }
   
   function beep() {
