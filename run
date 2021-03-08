@@ -1,0 +1,11 @@
+# make keymap from .lst files and open browser (on termux)
+
+perl mk-json.pl *.lst Words/asdfg.lst > asdfg.json.js
+
+(echo "<script>" ; \
+ cat asdfg.json.js; \
+ echo "</script>"; \
+ cat sim.html \
+) > run.html
+
+termux-open run.html

@@ -77,17 +77,20 @@ _	[NORMAL]
 #(ASFG) # awkward FREE
 #(ADFG} # awkward FREE
 
-## editing
+### editing
 _-a	BACKSPACE # can steal from ';"
 
+## the combos below are choosen not to
+# conflict with normal keys, thus they
+# have no adjecent keys
 _-ss	DELETE-WORD # back 'CTRL-BACKSPACE'
 #_-sf # FREE
 #_-sg # FREE
 
-# space-delete
-_-dd	DELETE-LINE # forw 'CTRL-K'
-#_-da # FREE
-#_-dg # FREE
+# space- (delete?)
+#_-dd	DELETE-LINE # forw 'CTRL-K'
+_-da   DELETE-EXTRACT- # followed by choice
+_-dg   DELETE-NUMS # (g=num) split on on character in last word abc3def5foo => abc def foo
 
 # space-format-
 _-ff	JOIN-WORD # f=j
@@ -97,5 +100,4 @@ _-fs	UNDERSCORE # underScore a b -> a_b
 # space-go-
 _-gg	CAPITALIZE # (gogo) Capitalize
 _-gs	LOWERCASE # "(S=l)ower case"
-_-gd	UPPERCASE # omg GoD
-
+_-gd	UPPERCASE # omg GooD

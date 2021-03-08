@@ -29,7 +29,7 @@
     <b>Word:</b> <tt id=word></tt><br/>
     <pre id=dbg></pre>
 
-<script src='braille.dict.js'></script>
+<script src='asdfg.json.js'></script>
 
 <script>
 
@@ -80,7 +80,7 @@
       // dictonary replacement
       let word = (str.match(/\b(\w+)\W$/i) || ['', ''])[1];
 
-      let w = shorts[word];
+      let w = keybm[word];
       if (w) {
 	  str = str.substring(0, str.length
 -word.length-1) + w + str[str.length-1];
