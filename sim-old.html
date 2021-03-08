@@ -35,39 +35,31 @@
 
 <script>
 
+  let keys = '';
+  let keysdown = 0;
   let capslock = 0;
-
-  // A simple simulated terminal screen
-  // (cheat: update on each call!)
-  let screen = '';
-
-  // can be invoked with no argument,
-  // in which case it's
+  
+  let str = '';
+  //let cursor = '◆'; // diamond
+  //let cursor = '◼'; // lower block
+  let cursor = '\u2588'; // full block
   function putc(c) {
-      let cursor = '\u2588'; // full block
-      let last = screen[screen.length-1];
+      let last = str[str.length-1];
 
       // interpretation of SPACE
       // (=>' ', paragraph, newline)
       if (c==='_') {
-	  if (screen.endsWith('\n  ')) {
-	      // paragraph to newline
-	      screen = screen.replace(/\n  $/, '');
+	  if (str.endsWith('\n  ')) {
+	      // newline
+	      str = str.replace(/\n  $/, '');
 	      c = '\n';
-	  } else if (screen.match(/(?![\.\?\:\;\! ]) $/)) {
-	      // add dot if no special mark
-	      screen = screen.replace(
-		  / $/, '. ');
-	      // TODO: set forward Capitaliz?
-	  } else if (screen.endsWith(' ')) {
-	      // new paragraph
-	      screen = screen.replace(/ $/, '');
+	  } else if (str.endsWith(' ')) {
+	      // paragraph
+	      str = str.replace(/ $/, '');
 	      c = '\n  ';
-	  } else if (screen.endsWith('\n')) {
-	      // add newline
+	  } else if (str.endsWith('\n')) {
 	      c = '\n';
 	  } else {
-	      // yeah, just a space!
 	      c = ' ';
 	  }
       }
@@ -75,7 +67,7 @@
 
       // first, edits
       if (c==='BS' || c==='BACKSPACE')
-	  screen = screen.substring(0, screen.length-1);
+	  str = str.substring(0, str.length-1);
           // TODO: cursor position?
       else if (c==='DEL' || c==='DELETE')
 	  // TODO: no have buffer forward
@@ -88,44 +80,45 @@
 
 	  if (capslock)
 	      c = c.toUpperCase();
-	  screen += c;
+	  str += c;
       }
 
       //// special commands
       // all functions called need to
       // return a string ('' or whatever)
-      screen = screen.replace(
+      str = str.replace(
 	  /(\S+PICK-([\w\d])) ?$/,
 	  (_,s,p)=>{
 	      return (s.match(
 		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+'BEEP'])[1]+' ';
 	  });
       
-      screen = screen.replace(/BEEP ?$/, beep);
-      screen = screen.replace(/BEEPF ?$/, beepf);
-      screen = screen.replace(
+      str = str.replace(/BEEP ?$/, beep);
+      str = str.replace(/BEEPF ?$/, beepf);
+      str = str.replace(
 	  /(\S+\s*)UPPERCASE ?$/,
 	  (_,x)=>x.toUpperCase());
-      screen = screen.replace(
+      str = str.replace(
 	  /(\S+\s*)LOWERCASE ?$/,
 	  (_,x)=>x.toUpperCase());
-      screen = screen.replace(
+      str = str.replace(
 	  /(\S)(\S+\s*)CAPITALIZE ?$/,
 	  (_,x,y)=>x.toUpperCase()+y);
-      screen = screen.replace(
+      str = str.replace(
 	  /(\S+)\s+(\S+\s*)JOIN ?$/,
 	  (_,x,y)=>x+y);
-      screen = screen.replace(
+      str = str.replace(
 	  /(\S+)\s+(\S+\s*)CAPSLOCK ?$/,
 	  ()=>capslock=!capslock);
       // dangerous!
-      screen = screen.replace(
-	  /^[\s\S]*CLEAR ?$/, '');
+      str = str.replace(/^[\s\S]*CLEAR ?$/, '');
       
-      // matching
-      let word = (screen.match(/\b([,\.\:\;\?\!]?[\w_\-\>\{\}]+\s?)\W$/i) || ['', ''])[1];
+      // matching was assumed to be
+      // performed on space
+      // dictonary replacement
+      let word = (str.match(/\b([,\.\:\;\?\!]?[\w_\-]+\s?)\W$/i) || ['', ''])[1];
       // encoding of space
-      word = word.replace(/ /g, '_');
+      word = word.replace(' ', '_');
       // match WORD first, second ending
       // TODO: second form maybe needs to be treated differently?
       let m =
@@ -145,8 +138,8 @@
 	  }
 	      
 	  // replace the match
-	  screen = screen.substring(
-	      0, screen.length-word.length-1)
+	  str = str.substring(
+	      0, str.length-word.length-1)
 	      + m;
 	  // invoce it (BEEP)
 	  putc();
@@ -159,7 +152,7 @@
 
 
       // TODO: quoting?
-      window.out.innerText = screen;
+      window.out.innerText = str;
       window.out.insertAdjacentHTML(
 	  'beforeEnd',
 	  '<span style="position:absolute"><span class="cursor" style="position:relative;color:lightgreen;height:0.8em;">'+cursor+'</span></span>');
@@ -168,19 +161,10 @@
       window.word.innerText = ''+word + ' ('+word.length+') ==> ' + m;
   }
   
-  // === keyboard reader for asdfg+space
-  // a "key" is returned when all
-  // keys have been released
-  //
-  // returns:
-  // - asdf = fast overlapping sequence
-  // - a-f  = a held down first+last
-  // - a-fg = plus g pressed after f
-  // - a>s  = a roll (down)as(up)AS
-  // - a>s>d ...
-  // - _-s>d = a-shift + roll s->d
-  // - {asd} = chord, all keys down/up
-  
+  let keytimes = '';
+  let firstkeytime = 0;
+  let badhackdel = 0;
+
   // new keyboard handling
   let knew = '';
   let ktm = 0;
@@ -217,7 +201,7 @@
       let tm = now-ktm;
       ktm = now;
       ks = k + tm + ks;
-      window.ks.innerText = ks;
+//      window.ks.innerText = ks;
 
       // time of press
       if (tm >= 3000) knew += ' 4 ' + k;
@@ -233,14 +217,12 @@
 	  let r = knew;
 	  let rprefix = '';
 
-	  // used for debug strings
-	  let s = '';
+	  let s = ''
 
-	  // shift: x ... X => x-...
+	  // shift: a ... A => a-...
 	  if (r.match(/^\w \d /)) {
-	      // one more char
 	      r = r.replace(
-		  /^(\w)(.*[a-z].*)(\1)$/i,
+		  /^(\w)(.*)(\1)$/i,
 		  (_,s,m,e)=>{
 		      // parse rest better
 		      rprefix = s+'-';
@@ -293,8 +275,7 @@
 	  r = r.replace(/Z/g, '^');
 	  s += ' zZ: ' + r + '\n';
 	  
-	  // enable for debug
-	  //kall = s + kall;
+	  kall = s + kall;
 	  
 	  // display
 	  kall = r + ' -- ' + knew +
@@ -306,7 +287,7 @@
 	  // display
 	  window.knew.innerText = kall;
 
-	  //window.ks.innerText = ks;
+	  window.ks.innerText = ks;
 	  ks = '';
 
 	  // all keys up so can decide
@@ -323,42 +304,410 @@
 
   function up(e) {
       e.preventDefault();
+      if (e.repeat) return;
 
       let k = e.key.toUpperCase();
       if (k==='B') k = 'G';
       if (k===' ') k = 'Z';
-
-      if (e.repeat) return; // not working?
       if (!'ASDFGZ'.includes(k)) return;
 
-      try {
-	  putc(processKey(k, 1));;
-      } catch (e) {
-	  alert(''+e);
+      processKey(k, 1);
+      return;
+
+      // special hack for repeat BACKSPACE
+      // TODO: generalize
+      // TODO: make for s-_ = HARDSPACE
+      if (k==='A' && keys==='_a') {
+	  putc('BACKSPACE');
+	  keys = '_'; // make it continuable
+	  firstkeytime = Date.now();
+	  keytimes += (Date.now()-firstkeytime) + k + ' ';
+	  keysdown = 1;
+	  badhackdel = 1;
+	  return;
+      } else if (badhackdel) {
+	  badhackdel = 0;
+	  keysdown = 0
+	  firstkeytime = 0;
+	  keytimes = '';
+	  keys = '';
+	  return;
+      }
+
+      keysdown--;
+      keys += k;
+      keytimes += (Date.now()-firstkeytime) + k + ' ';
+      firstkeytime = Date.now();
+      //window.dbg.append(k);
+
+      if (!keysdown) {
+	  try {
+	      let key = seven(keys);
+	      window.dbg.prepend('\n');
+	      // TODO:add timing
+	      window.dbg.prepend(' -- '+keytimes);
+	      window.dbg.prepend('==>  ' + key + ' (' + key.charCodeAt(0) + ')');
+	      putc(key);
+	      keys = '';
+	      keytimes = '';
+	      firstkeytime = -1;
+	      //window.dbg.append('\n');
+	  } catch (err) {
+	      alert(''+err);
+	  }
       }
   }
 
   function down(e) {
       e.preventDefault();
+      if (e.repeat) return;
 
       let k = e.key.toLowerCase();
       if (k==='b') k = 'g';
       if (k===' ') k = 'z';
-
-      if (e.repeat) return; // not working?
       if (!'asdfgz'.includes(k)) return;
 
-      try {
-	  putc(processKey(k, 0));;
-      } catch (e) {
-	  alert(''+e);
+      processKey(k, 0);
+      return;
+
+      keysdown++;
+      keys += k;
+      if (keytimes==='')
+	  firstkeytime = Date.now();
+
+      keytimes += (Date.now()-firstkeytime) + k + ' ';
+      firstkeytime = Date.now();
+      
+      //window.dbg.append(k);
+  }
+  
+  let mirrorKeys = {
+      'q':'p', 'w':'o', 'e':'i', 'r':'u', 't':'y',
+      //'a':';', 's':'l', 'd':'k', 'f':'j', 'g':'h',
+      'a':'BACKSPACE', 's':'l', 'd':'k', 'f':'j', 'g':'h',
+      'z':'/', 'x':'.', 'c':',', 'v':'m', 'b':'n',
+      '.':':', ',':';', '!':'=', '?':'~',
+  };
+
+  function seven(keys) {
+      let r = sevenk(keys);
+      // TODO: make distinction between typed and interpreation
+      switch(r) {
+      case 's-a': return 'ALT-';
+      case 's-d': return 'CTRL-';
+      case 's-f': return 'FUNCTION-';
+      case 's-g': return 'NUMLOCK';
       }
+      return r;
+  }
+  
+  function sevenk(keys) {
+      let have = {};
+      have.a = 0;
+      have.s = 0;
+      have.d = 0;
+      have.f = 0;
+      have.g = 0;
+      have.space = 0;
+      keys.split('').forEach(
+	  function(k) {
+	      have[k]=1;
+	      if (k=='_') have.space=1;
+	  });
+
+      let shift = '';
+      let mirror = false;
+      
+      function unmirrored() {
+	  // 0123456789 binary
+	  // TODO: hex
+	  if (shift==='g-' && !keys.match(/g/)) {
+	      if (have.space) return '0';
+	      // order doesn't matter!
+	      return String.fromCharCode(
+		  '0'.charCodeAt(0) +
+		      8*have.a + 4*have.s +
+		      2*have.d + have.f);
+	  }
+
+	  if (keys==='' && have.space) return 'SPC';
+
+	  // 4 keys
+	  if (have.a && have.s && have.d &&have.f) {
+	      // not number
+	      if (!have.g) {
+		  if (mirror)
+		      return 'DEL';
+		  
+		  switch(keys[0]) {
+		  case 'a': // asdf
+		      return '>>>>';
+		  case 'f': // fdas
+		      return '<<<<';
+		  }
+	      }
+	      
+	      // 5 keys
+	      if (keys.length===10) {
+		  // 5 different keys
+		  // ... and not number
+		  if (have.g &&
+		      !keys.startsWith('g')) {
+		      // not care order
+		      return 'MENU';
+		  }
+	      }
+	  
+	  }
+
+	  // shift-dots
+	  if (shift==='d-') {
+	      switch(keys) {
+	      case 'a': return '.';
+	      case 's': return ',';
+	      case 'f': return '!';
+	      case 'g': return '?';
+	      }
+	  }
+
+	  if (shift==='a-') {
+	      // CTRL-ASDF
+	      switch(keys) {
+	      case 's': return 'CTRL-A';
+	      case 'd': return 'CTRL-S';
+	      case 'f': return 'CTRL-D';
+	      case 'g': return 'CTRL-F';
+	      }
+	  }
+	  
+	  // 4 keys (don't block numbers)
+	  if (keys.length===8) {
+	  }
+	  
+	  // asdfg
+	  // TODO: hjkl;'
+	  if (keys.length===2) { // updn
+	      return keys[0];
+	  }
+
+	  // qwert
+	  // TODO: yuiop
+	  if (keys.length===4) {
+	      // upperrow: roll right 2 keys
+	      switch(keys) {
+	      case '_a^A':
+	      case 'aAsS':
+	      case 'asAS': return 'q';
+	      case '_s^S':
+	      case 'sSdD':
+	      case 'sdSD': return 'w';
+	      case '_d^D':
+	      case 'dDfF':
+	      case 'dfDF': return 'e';
+	      case '_f^F':
+	      case 'fFgG':
+	      case 'fgFG': return 'r';
+	      case '_g^G':
+	      case 'gGaA':
+	      case 'gaGA': return 't';
+	      case 'gGaA':
+		  // bug in some keyboard
+		  if (mirror) return 't';
+		  break;
+	      case 'fFgG':
+		  // bug in some keyboard
+		  if (mirror) return 'r';
+		  break;
+	      }
+	      // lowerrow: roll left 2 keys
+	      switch(keys) {
+	      case 'a_A^':
+	      case 'aAgG':
+	      case 'agAG': return 'z';
+	      case 's_S^':
+	      case 'sSaA':
+	      case 'saSA': return 'x';
+	      case 'd_D^':
+	      case 'dDsS':
+	      case 'dsDS': return 'c';
+	      case 'f_F^':
+	      case 'fFdD':
+	      case 'fdFD': return 'v';
+	      case 'g_G^':
+	      case 'gfGF': return 'b';
+	      case 'aAgG':
+		  // bug in some keyboard
+		  if (mirror) return 'z';
+		  break
+	      case 'gGfF':
+		  // bug in some keyboard
+		  if (mirror) return 'b';
+		  break;
+	      }
+
+	      // curly rolls parens
+	      switch(keys) {
+	      case 'adAD': return '(';
+	      case 'daDA': return ')';
+
+	      case 'sfSF': return '[';
+	      case 'fsFS': return ']';
+
+	      case 'dgDG': return '{';
+	      case 'gdGD': return '}';
+
+	      case 'sgSG': return '<';
+	      case 'gsGS': return '>';
+
+	      case 'afAF': return '"';
+	      case 'faFA': return "'";
+	      }
+	  }
+
+	  // ?? quirky CTRL-ER
+	  if (keys.startsWith('adf'))
+	      return 'CTRL-E';
+	  if (keys.startsWith('afg'))
+	      return 'CTRL-R';
+
+	  /// roll 3 keys: asd sdf dfg
+	  if (keys.length===6) {
+	      // roll, not care rest
+	      if (keys.startsWith('adg'))
+		  return 'HAMBURGER';
+	      if (keys.startsWith('gda'))
+		  return 'SYSTEM';
+	      
+	      switch(keys[0]) {
+	      case 'a': // asd
+		  if (have.s && have.d)
+		      return 'UNDO';
+
+		  // ctrl-a + 2 keys?
+		  break;
+
+		  // === CURSOR ===
+	      case 's': // sdf forward
+		  if (have.d && have.f)
+		      return 'RIGTH';
+		  // sfg
+		  // sdg
+		  break;
+	      case 'f': // fds backward
+		  if (have.d && have.s)
+		      return 'LEFT';
+		  // fda
+		  // fsa
+		  break;
+
+	      case 'd':
+		  // dsa <--
+		  if (have.s && have.a)
+		      return 'BACKSPACE';
+
+		  // dfg ==>
+		  if (have.f && have.g)
+		      return 'DOWN';
+
+		  break;
+	      case 'g':
+		  // gfd <==
+		  if (have.f && have.g)
+		      return 'UP';
+		  break;
+	      }
+	  }
+
+	  // right side X>Y>X (roll)
+	  if (keys.length===4) {
+	      if (mirror) {
+		  // lower
+		  switch(keys) {
+		  case 'a^_A': return 'p';
+		  case 's^_S': return 'o';
+		  case 'd^_D': return 'i';
+		  case 'f^_F': return 'u';
+		  case 'g^_G': return 'y';
+		  }
+	      } else {
+		  // a(_Aa^)A
+		  switch(keys) {
+		  case '_Aa^': return '/';
+		  case '_Ss^': return '.';
+		  case '_Dd^': return ',';
+		  case '_Ff^': return 'm';
+		  case '_Gg^': return 'n';
+		  }
+	      }
+	      
+	  }
+	  
+	  // cleanup
+
+	  // xX => x
+	  keys = keys.replace(
+	      /([a-z])([A-Z])/g,
+	      (_,x,y)=>{
+		  if (x === y.toLowerCase())
+		      return x;
+		  else
+		      return x+y;
+	      });
+			
+	  // not mapped/recognized
+	  return keys;
+      }
+      
+      // mirror?
+      let first = keys[0];
+      let last = keys[keys.length-1];
+      if (keys.length > 2) {
+	  if (first == '_' && last == '^') {
+	      have.space = 0;
+	      keys = keys.substr(1, keys.length-2);
+	      mirror = true;
+	  } else if (first == last.toLowerCase()){
+	      shift = first + '-';
+	      keys = keys.substr(1, keys.length-2);
+	      //return shift + '-' + keys;
+	  }
+      }
+
+      let k = unmirrored();
+      // numbers are special
+      if (shift==='g-') return k;
+
+      // "hard" space
+      if (shift==='s-' && k==='_')
+	  return 'HARDSPACE';
+      
+      // uppercase
+      if (mirror && k==='gg') {
+	  return 'UPPERCASE';
+      }
+
+      // fix left side
+      if (shift==='g-' && k==='n')
+	  return 'n';
+      if (shift==='f-' && k==='m')
+	  return 'm';
+      if (shift==='d-' && k===',')
+	  return ',';
+      if (shift==='s-' && k==='.')
+	  return '.';
+      if (shift==='a-' && k==='/')
+	  return '/';
+      
+      // left side
+      if (mirror) {
+	  return shift + (mirrorKeys[k] || '_-' + k);
+      }
+      
+      return shift + k;
   }
 
   // https://stackoverflow.com/questions/879152/how-do-i-make-javascript-beep
   // if you have another AudioContext class use that one, as some browsers have a limit
-  // interactive:
-  // http://jsbin.com/tupoyi/4/edit?output
   var audioCtx = new (window.AudioContext || window.webkitAudioContext || window.audioContext);
 
   // All arguments are optional:
