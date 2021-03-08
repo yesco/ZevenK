@@ -11,10 +11,13 @@ C-D	DELETE
 C-S	SEARCH
 C-F	FILE
 
-#a-ss	REVERSE-SEARCH FREE
-##a-dd	FREE
-##a-ff	FREE
-##a-gg	FREE
+# dictionary searches
+# (this is thge priority of dictionary
+#  searches, first pref/try show 10)
+a-ss	BEGIN-MATCHES
+a-dd	END-MATCHES
+a-ff	MIDDLE-MATCHES
+a-gg	ANY-MATCHES (.*a.*b.*c.*)
 
 
 ## Shift prefix keys

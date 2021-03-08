@@ -24,7 +24,7 @@ while(<>) {
     
     if (/\((\w+)\).*?--(.*)/) {
 	my ($t,$rest) = ($1, $2);
-	my @words = ($rest =~ m/(?<![\(a-z])([a-z]+)/g);
+	my @words = ($rest =~ m/(?<![\(a-z])([a-z]+)/ig);
 	#print "$t\t@words -- $_";
 	if ($have{$t}) {
 	    print STDERR "%% conflict for '%t} in $ARGV: $_";
