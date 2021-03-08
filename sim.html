@@ -235,12 +235,12 @@
 	      
 	  // roll: abcABC => a>b>c
 	  // TOOD: correct but too strict!
-	  if (r.match(/^[a-z0-9 ]+[A-Z0-9 ]+$/)) {
-	      r = r.replace(/[0-9 ]+/g, '')
-		  .replace(
-		      /^(\w\w+)(\1)$/i,
-		      (_,s,e)=>s.replace(
-			  /\B/g, '>'));
+	  let rr = r.replace(/[0-9 ]+/g, '');
+	  if (rr.match(/^[a-z0-9 ]+[A-Z0-9 ]+$/)) {
+	      r = rr.replace(
+		  /^((\w)(\w*)(\w))\2\w*\4$/i,
+		  (_,s,f,r,l)=>s.replace(
+		      /\B/g, '>'));
 	  }
 	      
 	  // chords: fds => {sdf}
