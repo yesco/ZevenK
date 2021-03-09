@@ -54,9 +54,9 @@ nine	9
 ten	10 # lol
 
 ## special characters
-exclaim	!
-bang	!
-at	@
+exclaim	:DELSPC!_:NEXTCAP
+bang	:DELSPC!_:NEXTCAP
+at	:DELSPC@
 hash	#
 dollar	$
 percent	%
@@ -71,12 +71,14 @@ asterix	*
 paren	(:CURSOR)
 parenr	(
 parenl	)
-under	_
-underscore	_
+under	:DELSPC__ # TODO: how to type _
+underscore	:DELSPC__ # hehe
 plus	+
 minus	-
+emdash	:DELSPC—
+em	:DELSPC—
 equal	=
-curly	{:CUROSOR}
+curly	{:CURSOR}
 curlyl	{
 curlyr	}
 bar	|
@@ -105,9 +107,15 @@ gt	>
 questionmark	?
 question	?
 que	?
-comma	,
-period	.
-dot	.
+comma	:DELSPC,_
+period	:DELSPC._:NEXTCAP
+dot	:DELSPC._:NEXTCAP
 slash	/
 backtick	`
 tilde	~
+
+## more special
+copy	©
+copyright ©
+trademark	™
+tm	™

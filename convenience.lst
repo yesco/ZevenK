@@ -67,64 +67,63 @@ $7d	Sunday_
 
 # 6:morning, fornoon, noon, afternoon, evening, night
 
-# fs=FirSt... order!
-## numbers st,nd etc
-0fs	0th_
-1fs	1st_
-2fs	2nd_
-3fs	3rd_
-4fs	4th_
-5fs	5th_
-6fs	6th_
-7fs	7th_
-8fs	8th_
-9fs	9th_
+## g=Number, s=Order numbers st,nd etc
+0gs	0th_
+1gs	1st_
+2gs	2nd_
+3gs	3rd_
+4gs	4th_
+5gs	5th_
+6gs	6th_
+7gs	7th_
+8gs	8th_
+9gs	9th_
 
-0fa	zeroth_
-1fa	first_
-2fa	second_
-3fa	third_
-4fa	fourth_
-5fa	fifth_
-6fa	sixth_
-7fa	seventh_
-8fa	eighth_
-9fa	ninth_
-10fa	tenth_
-11fa	eleventh_
-Afa	eleventh_
-12fa	twelfth_
-Bfa	twelfth_
-13fa	thirteenth_
-Cfa	thirteenth_
-14fa	thirteenth_
-Dfa	fourteenth_
+0ga	zeroth_
+1ga	first_
+2ga	second_
+3ga	third_
+4ga	fourth_
+5ga	fifth_
+6ga	sixth_
+7ga	seventh_
+8ga	eighth_
+9ga	ninth_
+10ga	tenth_
+11ga	eleventh_
+Aga	eleventh_
+12ga	twelfth_
+Bga	twelfth_
+13ga	thirteenth_
+Cga	thirteenth_
+14ga	thirteenth_
+Dga	fourteenth_
 15fa	fourteenth_
-Efa	fourteenth_
-15fa	fiftteenth_
-Efa	fiftteenth_
+Ega	fourteenth_
+15ga	fiftteenth_
+Ega	fiftteenth_
 
 # hundredth, thousnt... etc? write out?
 
-## g=m => months
-%0g	month_
-%1g	January_
-%2g	February_
-%3g	March_
-%4g	April_
-%5g	May_
-%6g	June_
-%7g	July_
-%8g	August_
-%9g	September_
-%10g	October_
-%Ag	October_
-%11g	November_
-%Bg	November_
-%12g	December_
-%Cg	December_
+## f=Months
+%0f	month_
+%1f	January_
+%2f	February_
+%3f	March_
+%4f	April_
+%5f	May_
+%6f	June_
+%7f	July_
+%8f	August_
+%9f	September_
+%10f	October_
+%Af	October_
+%11f	November_
+%Bf	November_
+%12f	December_
+%Cf	December_
 
-%Dg	Decennium_
-%Eg	Century_
-%Fg	Millenia_
+%Df	Decennium_
+%Ef	Century_
+%Ff	Millenia_
 

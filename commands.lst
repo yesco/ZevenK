@@ -92,10 +92,11 @@ _-SG	:YANK # (g=y) paste
 _-DA   :DELETE-EXTRACT- # followed by choice
 _-DG   :DELETE-NUMS # (g=num) split on on character in last word abc3def5foo => abc def foo
 
-# space-format-
-_-FF	:JOIN-WORD # f=j
+# space-Format-  
+_-FF	:JOIN # f=j join last two words
 _-FA	:CAMELIFY # (cameli fy => CameliFy)
 _-FS	:UNDERSCORE # underScore a b -> a_b
+_-FD	:DASHIFY # a b => a-b
 
 # space-go-
 _-GG	:CAPITALIZE # (gogo) Capitalize

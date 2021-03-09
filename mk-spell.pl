@@ -12,8 +12,6 @@
 my $prefix = '_-';
 
 while(<STDIN>) {
-    chop();
-
     if (/^#/) {
 	print;
 	next;
@@ -23,6 +21,8 @@ while(<STDIN>) {
 	print;
 	next;
     }    
+
+    chop();
 
     if (s/^(\w+)[\s\t](\S+)//) {
         my ($t, $w)  = ($1, $2);

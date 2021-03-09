@@ -36,6 +36,9 @@
 
 <script>
 
+  // actually a counter
+  // (decr at each uppecase, capslock=1
+  //  will do next character!)
   let capslock = 0;
 
   // A simple simulated terminal screen
@@ -75,25 +78,23 @@
       // interpretation of SPACE
       // (=>' ', paragraph, newline)
       if (c==='_') {
+	  c = ' ';
           if (screen.endsWith('\n  ')) {
               // paragraph to newline
 	      screen = screen.replace(/\n  $/, '');
 	      c = '\n';
-	  } else if (screen.match(/(?![\.\?\:\;\! ]) $/)) {
+	  } else if (screen.match(/\w $/)) {
 	      // add dot if no special mark
 	      screen = screen.replace(
 		  / $/, '. ');
 	      // TODO: set forward Capitaliz?
-	  } else if (screen.endsWith(' ')) {
+	  } else if (screen.match(/\W $/)) {
 	      // new paragraph
 	      screen = screen.replace(/ $/, '');
 	      c = '\n  ';
 	  } else if (screen.endsWith('\n')) {
 	      // add newline
 	      c = '\n';
-	  } else {
-	      // yeah, just a space!
-	      c = ' ';
 	  }
       }
   
@@ -108,11 +109,17 @@
 	  // TODO: no have buffer forward
       } else if (c && c != '') {
 	  // second add characters
-	  if (c===':SPC') c = ' ';
-	  else if (c===':RETURN') c = '\n';
+	  if (c===':SPC')
+              c = ' ';
+	  else if (c===':RETURN')
+              c = '\n';
 
-	  if (capslock)
+ 	  if (capslock) {
+ 	      if (!' \t\n'.contains(c))
+                  capslock--;
 	      c = c.toUpperCase();
+          }
+
 	  screen += c;
       }
 
@@ -140,15 +147,34 @@
       screen = screen.replace(
 	  /(\S)(\S+\s*):CAPITALIZE ?$/,
 	  (_,x,y)=>x.toUpperCase()+y);
+
       screen = screen.replace(
 	  /(\S+)\s+(\S+\s*):JOIN ?$/,
 	  (_,x,y)=>x+y);
       screen = screen.replace(
-	  /(\S+)\s+(\S+\s*):CAPSLOCK ?$/,
-	  ()=>capslock=!capslock);
+	  /(\S+)\s+(\S+\s*):CAMELIFY ?$/,
+	  (_,x,y)=>(x+'_'+y).replace(
+	      /\b(\w)/g,
+              (_,z)=>z.toUpperCase()));
+      screen = screen.replace(
+	  /(\S+)\s+(\S+\s*):UNDERSCORE ?$/,
+	  (_,x,y)=>x+'_'+y);
+      screen = screen.replace(
+	  /(\S+)\s+(\S+\s*):DASHIFY ?$/,
+	  (_,x,y)=>x+'_'+y);
 
       screen = screen.replace(
-	  /.?:BACKSPACE ?$/, '');
+	  /:CAPSLOCK ?$/,
+	  ()=>(capslock=capslock?0:65530,''));
+      screen = screen.replace(
+	  /:NEXTCAP/,
+	  ()=>(capslock++,''))
+      screen = screen.replace(
+	  /[\s\t\n]*:DELSPC/, '');
+      screen = screen.replace(
+	  /[\s\S]?:BACKSPACE/, '');
+      screen = screen.replace(
+	  /(\w+|\S+)?\s*:DELETE-WORD ?$/, '');
       
 
       // dangerous!

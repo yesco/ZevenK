@@ -38,24 +38,26 @@ _-r	u
 _-tg	y
 
 _-z	/
-_-x	.
-_-c	,
+_-x	:DELSPC._
+_-c	:DELSPC,_
 _-v	m
 _-b	n
 
-# qwert - roll up
-_-A>S	q
-_-S>D	w
-_-D>F	e
-_-F>G	r
-_-G>A	t
+# poiuy - roll up
+_-A>S	p
+_-S>D	o
+_-D>F	i
+_-F>G	u
+_-FG	u # oker can't handle it w spc!
+_-G>A	y
 
 # zxcvb = roll down
-_-G>F	b
-_-F>D	v
-_-D>S	c
-_-S>A	x
-_-A>G	z
+_-G>F	n
+_-GF	n # oker can't handle it w spc!
+_-F>D	m
+_-D>S	,
+_-S>A	.
+_-A>G	/
 
 ## alternative roll-up-down
 # maybe easier?
@@ -229,22 +231,22 @@ S>G	<
 G>S	>
 
 ## Dots-
-D-A	. # and with space => :
-D-S	, #                   ;
-D-F	! #                   /
-D-G	? #                   \
+D-A	:DELSPC._:NEXTCAP # and with space => :
+D-S	:DELSPC,_:NEXTCAP #                   ;
+D-F	:DELSPC!_:NEXTCAP #                   /
+D-G	:DELSPC?_:NEXTCAP #                   \
 
 # w space
-D-A_	:
-D-S_	;
-D-F_	/ hmmm, or under (
-D-G_	\                ) pairing?
+D-A_	:DELSPC:_
+D-S_	:DELSPC;_
+D-F_	/ # hmmm, or under (
+D-G_	\ #                ) pairing?
 
 ## Symbol-
-S-A_	@
-S-D_	$
-S-F_	# 
-S-G_	TM
+S-A_	:DELSPC@ # At-sign
+S-D_	$ # Dollar-sign
+S-F_	© # f...
+S-G_	# # g=Hash
 
 ## Fuglies-
 F-A_	& # Ampersand
