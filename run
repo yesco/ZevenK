@@ -1,10 +1,13 @@
 # make keymap from .lst files and open browser (on termux)
 
-perl Words/mk-asdfg.pl Words/alpha-strokes.lst.edited  | sort > asdfg.lst
+echo | perl Words/mk-asdfg.pl Words/alpha-strokes.lst.edited  | sort | perl Words/mk-opt.pl > asdfg.lst
 
 cat spell.map | perl mk-spell.pl | sort > spell.generated.lst
 
-perl mk-json.pl *.lst > asdfg.json.js
+# make sure there is one
+touch -a user.lst
+
+perl mk-json.pl user.lst braille.lst *.lst > asdfg.json.js
 
 (echo "<script>" ; \
  cat asdfg.json.js; \

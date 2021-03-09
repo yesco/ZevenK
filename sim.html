@@ -26,10 +26,9 @@
     <b>Only use keys: A S D F G   and    SPACE</b><br/>
     Output: <button onclick="window.out.innerHTML='';">clear</button><br/>
     <pre id=out style='white-space:pre-wrap;word-wrap:break-word;background-color:black;color:#4af626;'></pre>
-    <b>Word:</b> <tt id=word></tt><br/>
-    <p id=hlp>HELP</p>
+    <b>Words:</b> <tt id=hlp></tt><br/>
+    (<tt id=ks></tt>)<br/>
     <pre id=pc></pre>
-    <pre id=ks></pre>
     <pre id=knew></pre>
     <pre id=dbg></pre>
 
@@ -121,8 +120,10 @@
       // all functions called need to
       // return a string ('' or whatever)
       screen = screen.replace(
-	  /(\S+:PICK-([\w\d])) ?$/,
+	  /(\S+:PICK-([\w\d\s]))$/,
 	  (_,s,p)=>{
+	      let pi = ' asdfg'.indexOf(p);
+ 	      if (pi >= 0) p = pi;
 	      //alert('picked >'+p+'<');
 	      return (s.match(
 		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+':BEEP'])[1]+' ';
@@ -157,10 +158,13 @@
       // list matches
       screen.replace(/(\w+\s*)$/, help);
 
-      // --- matching dictionary
-      // - try :FOO - command [\w->{}]
+
+
+      // ---------------------------------
+      // SUBSTITUTION
       let oldScreen = screen;
 
+      // - try :FOO - command [\w->{}]
       screen = screen.replace(
 	  /:([^\s\n\t\:]+?)\s*$/,
 	  (_,w)=>subst(_, w));
@@ -190,30 +194,34 @@
 	  let w = (prefix || '') + word;
 	  let m = keybm[w];
 	      
+	  if (!m) return all;
  	  window.pc.innerText = word+'=>'+m+'<\n' + window.pc.innerText;
 	  
-	  if (!m) return all;
-	  
 	  // have match(es)
-	  if (Array.isArray(m) && m.length>1) {
-	      // TODO: find shortcuts
-	      m = word+'='+m.map((x,i)=>{
-		  return ''+i+'-'+x;
-	      }, m).join('/') +
-		  '/:PICK-'+':BEEP';
+	  if (Array.isArray(m)) {
+	      if (m.length>1) {
+		  // TODO: find shortcuts
+		  word = word.replace(/[ _]/g, '');
+		  m = word+'='+m.map((x,i)=>{
+		      return ''+i+'-'+x;
+		  }, m).join('/') +
+		      '/:PICK-'+':BEEP';
+	      } else {
+		  // array of one word
+		  m = m[0];
+	      }
 	  } else {
-	      // simgle entry/dict
-	      if (c==='_' || c===' ')
+	      // a string
+	  }
+
+	  // replace _ with space
+	  m = m.replace(/_/g, ' ');
+	  
+          // typed spc make sure have one
+          if (c==='_' || c===' ')
+	      if (!m.endsWith(' '))
 		  m += ' ';
 
-	      // replace _ with space
-	      m = m[0];
-	      m = m.replace(/_/g, ' ');
-	  }
-	  
-	  // display mapping found
-	  window.word.innerText = ''+word + ' ('+word.length+') ==> ' + m;
-	  
 	  return m;
       }
 

@@ -65,14 +65,23 @@ sub qt {
     return $s;
 }
 
+my %filedone;
 my $lastfile;
 while(<>) {
+    # skip duplicate file
+    # (this allows "foo.lst *.lst")
+    while($filedone{$ARGV} && <>) {
+	#print STDERR "%% $. skipping $ARGV\n";
+    }
+    
     # print file name as delimiter
     if (!($lastfile eq $ARGV)) {
 	print "\n  // File: $ARGV\n";
+	$filedone{$lastfile} = 1;
 	$lastfile = $ARGV;
     }
 
+	
     # comments
     if (s/^#+ ?// || s://::) {
 	print "  // $_";
