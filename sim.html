@@ -105,6 +105,11 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
       // we have a unique,
       // return word + ask for attention
       let res = rwords[0] || r[1];
+      // if complete no need beep
+      // user will complete
+      if (exact)
+	  return s;
+      // otherwise: beep +  wait for space
       return res+':BEEP:WAITSPACE-';
   }
   
