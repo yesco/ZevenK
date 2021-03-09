@@ -91,11 +91,23 @@ _>D>_	i
 _>F>_	u
 _>G>_	y
 
-A>_>A	'
-S>_>S	;
+A>_>A	' # no formatting
+S>_>S	: # no formatting
 D>_>D	k
 F>_>F	j
 G>_>G	h
+
+_-A_	p
+_-S_	o
+_-D_	i
+_-F_	u
+_-G_	y
+
+A-_A	/
+S-_S	. # no formatting
+D-_D	, # no formatting
+F-_F	m
+G-_G	n
 
 ## numbers
 # (using g as numshift key)
