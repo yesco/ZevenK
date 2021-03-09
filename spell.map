@@ -1,0 +1,113 @@
+# this file contains spelled out characters
+
+## letters
+# https://grammarist.com/spelling/letter-names/
+#aee	a # asdfg
+bee	b
+cee	c
+#dee	d # asdfg
+ee	e
+#eff	f # asdfg
+#gee	g # asdfg
+eih	h
+aitch	h
+ai	i
+jay	j
+kay	k
+ell	l
+emm	m
+enn	n
+ou	o
+oo	o
+pee	p
+cue	q
+qiu	q
+aar	r
+#ess	s # asdfg
+tee	t
+you	u
+vee	v
+dub	w
+doubleyou	w
+double	w
+dbl	w
+exx	x
+why	y
+wai	y
+#zee	z # conflict pee
+#zed	z # conflict pee
+sed	z # ok...
+aaa	z # ok, right
+
+
+## numbers
+zero	0
+one	1
+two	2
+three	3
+four	4
+five	5
+six	6
+seven	7
+eight	8
+nine	9
+ten	10 # lol
+
+## special characters
+exclaim	!
+bang	!
+at	@
+hash	#
+dollar	$
+percent	%
+amp	&
+ampersand	&
+up	^
+circumflex	^
+hat	^
+times	*
+star	*
+asterix	*
+paren	(:CURSOR)
+parenr	(
+parenl	)
+under	_
+underscore	_
+plus	+
+minus	-
+equal	=
+curly	{:CUROSOR}
+curlyl	{
+curlyr	}
+bar	|
+square	[:CURSOR]
+squarer	[
+squarel	]
+backslash	\
+back	\
+colon	:
+semicolon	;
+colon	;
+quote	"
+double	"
+doublequote	"
+singlequote	'
+single	'
+diamond	<>
+lessthan	<
+less	<
+lt	<
+morethan	>
+greaterthan	>
+more	>
+greater	>
+gt	>
+questionmark	?
+question	?
+que	?
+comma	,
+period	.
+dot	.
+slash	/
+backtick	`
+tilde	~

@@ -1,5 +1,7 @@
 # make keymap from .lst files and open browser (on termux)
 
+cat spell.map | perl mk-spell.pl | sort > spell.generated.lst
+
 perl mk-json.pl *.lst Words/asdfg.lst > asdfg.json.js
 
 (echo "<script>" ; \
