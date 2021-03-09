@@ -25,6 +25,12 @@ while(<>) {
     if (/\((\w+)\).*?--(.*)/) {
 	my ($t,$rest) = ($1, $2);
 	my @words = ($rest =~ m/(?<![\(a-z])([a-z]+)/ig);
+	# make it match only full words
+	# and only when typing space
+	# TODO: for unique prefixes
+	# can expand directly without _!
+	$t = "%".$t."_";
+
 	#print "$t\t@words -- $_";
 	if ($have{$t}) {
 	    print STDERR "%% conflict for '%t} in $ARGV: $_";

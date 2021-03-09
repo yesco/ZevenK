@@ -2,10 +2,10 @@
 # (move hand inwards one step)
 # ^asdf
 
-A-S	C-A	# beginning of line?
-A-D	C-S	# search
-A-F	C-D	# DELETE (char forward)
-A-G	C-F	# file
+A-S	:C-A	# beginning of line?
+A-D	:C-S	# search
+A-F	:C-D	# DELETE (char forward)
+A-G	:C-F	# file
 
 C-D	:DELETE
 C-S	:SEARCH

@@ -1,8 +1,10 @@
 # make keymap from .lst files and open browser (on termux)
 
+perl Words/mk-asdfg.pl Words/alpha-strokes.lst.edited  | sort > asdfg.lst
+
 cat spell.map | perl mk-spell.pl | sort > spell.generated.lst
 
-perl mk-json.pl *.lst Words/asdfg.lst > asdfg.json.js
+perl mk-json.pl *.lst > asdfg.json.js
 
 (echo "<script>" ; \
  cat asdfg.json.js; \
@@ -11,3 +13,4 @@ perl mk-json.pl *.lst Words/asdfg.lst > asdfg.json.js
 ) > run.html
 
 termux-open run.html
+

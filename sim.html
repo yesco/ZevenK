@@ -100,7 +100,7 @@
 	  /(:S+PICK-([\w\d])) ?$/,
 	  (_,s,p)=>{
 	      return (s.match(
-		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+'BEEP'])[1]+' ';
+		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+':BEEP'])[1]+' ';
 	  });
       
       screen = screen.replace(/:BEEP ?$/, beep);
@@ -134,12 +134,12 @@
       let oldScreen = screen;
 
       screen = screen.replace(
-	  /:(\S+?)\s*$/,
+	  /:([^\s\n\t\:]+?)\s*$/,
 	  (_,w)=>subst(_, w));
 
       // - try %foo - full word
       screen = screen.replace(
-	  /\b(\w+)\s*$/,
+	  /\b(\w+\s*)$/,
 	  (_,w)=>subst(_, w, '%'));
 
       // - try foo - partial/end
@@ -149,7 +149,7 @@
 
       // - try .foo - shorts w prefixch
       screen = screen.replace(
-	  /(\W\b\w+)\s*$/,
+	  /(\W\b\w+\s*)$/,
 	  (_,w)=>subst(_, w));
 	  
       // invoke it recursively
@@ -172,11 +172,15 @@
 	      m = word+'='+m.map((x,i)=>{
 		  return ''+i+'-'+x;
 	      }, m).join('/') +
-		  '/PICK-'+'BEEP';
+		  '/:PICK-'+':BEEP';
 	  } else {
 	      // simgle entry/dict
 	      if (c==='_' || c===' ')
 		  m += ' ';
+
+	      // replace _ with space
+	      m = m[0];
+	      m = m.replace(/_/g, ' ');
 	  }
 	  
 	  // display mapping found
