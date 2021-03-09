@@ -21,24 +21,37 @@
   </head>
   <body onkeydown="down(event);" onkeyup="up(event);">
 
-    <h1>ZevenK - a 7% Keyboard</h1>
-    <b>(simulator to train before circuit</b><br/>
-    <pre id=keyboard>
-qwert yuiop []\
-asdfg hjkl; '
-zxcvb nm,./      
+    <h1>ZevenK<sup>7% Keyboard</sup></h1>
+    <b>(simulator for trainging)</b></b><br/>
+
+<style>
+  pre>b { background: black; color: white; fuont-weight: bold; }
+</style>
+     <pre hidden id=keyboard >
+<b>q</b>&gt;&gt;&gt;<b>w</b>&gt;&gt;&gt;<b>e</b>&gt;&gt;&gt;<b>r</b>&gt;&gt;&gt;<b>t</b>    <b>y</b>&lt;&lt;&lt;<b>u</b>&lt;&lt;&lt;<b>i</b>&lt;&lt;&lt;<b>o</b>&lt;&lt;&lt;<b>p</b>
+|   |   |   |   |    |   |   |   |   |
+A   S   D   F   G    h   j   k   l   ;
+|   |   |   |   |    |   |   |   |   |
+z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&gt;,&gt;&gt;&gt;.&gt;&gt;&gt;/    
+|   |   |   |   |    |   |   |   |   |
+|   |   |   |   \____/   |   |   |   |
+|   |   |   \____________/   |   |   |
+|   |   \____________________/   |   |
+|   \____________________________/   |
+\____________________________________/
+            SPACE/MIRROR
     </pre>
 
     <b>Only use keys: A S D F G   and    SPACE</b><br/>
     Output: <button onclick="window.out.innerHTML='';">clear</button><br/>
     <pre id=out style='white-space:pre-wrap;word-wrap:break-word;background-color:black;color:#4af626;'></pre>
     <b>Words:</b> <tt id=hlp></tt><br/>
-    (<tt id=ks></tt>)<br/>
-    <pre id=pc></pre>
-    <pre id=knew></pre>
-    <pre id=dbg></pre>
+    (<tt id=kss></tt>)<br/>
+    <pre hidden id=pc></pre>
+    <pre hidden id=knew></pre>
+    <pre hidden id=dbg></pre>
 
-<script src='asdfg.json.js'></script>
+<script src='asdfg.generated.json.js'></script>
 
 <script>
 
@@ -53,7 +66,13 @@ zxcvb nm,./
 
   let allkeys = Object.keys(keybm).sort();
   
+  // returns non-null if only one future
   function help(s) {
+      let exact = keybm[s] ||
+	  keybm[s + '_'] ||
+	  keybm['%' + s] ||
+	  keybm['%' + s + '_'];
+
       // search 3 more chars
       let suffix = '.{1,3}$';
 
@@ -68,10 +87,25 @@ zxcvb nm,./
           x=>x.match(prefix));
       rwords = rwords.map(x=>keybm[x]);
   
-      window.hlp.innerText = ''
- 	  + s + ' matches: '
+      window.hlp.innerText = '\n'
           + r.join(' ') + ' '
-          + rwords.join(' ');
+          + rwords.join(' ')
+          + '#=' + (rwords.length+r.length)
+      ;
+
+      if (exact)
+	  window.hlp.insertAdjacentHTML(
+	      'afterbegin', 
+              '<b>' + exact + '</b> ');
+
+      // no single match
+      if (rwords.length+r.length !== 1)
+          return s;
+
+      // we have a unique,
+      // return word + ask for attention
+      let res = rwords[0] || r[1];
+      return res+':BEEP:WAITSPACE-';
   }
   
   // can be invoked with no argument,
@@ -121,7 +155,7 @@ zxcvb nm,./
               c = '\n';
 
  	  if (capslock) {
- 	      if (!' \t\n'.contains(c))
+ 	      if (!' \t\n'.includes(c))
                   capslock--;
 	      c = c.toUpperCase();
           }
@@ -139,11 +173,14 @@ zxcvb nm,./
  	      if (pi >= 0) p = pi;
 	      //alert('picked >'+p+'<');
 	      return (s.match(
-		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+':BEEP'])[1]+' ';
+		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+':BEEP'])[1]+(pi?'':':DEFAULT')+' ';
 	  });
       
-      screen = screen.replace(/:BEEP ?$/, beep);
-      screen = screen.replace(/:BEEPF ?$/, beepf);
+      screen = screen.replace(
+	  /:BEEP/g, beep);
+      screen = screen.replace(
+	  /:BEEPF/g, beepf);
+      
       screen = screen.replace(
 	  /(\S+\s*):UPPERCASE ?$/,
 	  (_,x)=>x.toUpperCase());
@@ -151,22 +188,22 @@ zxcvb nm,./
 	  /(\S+\s*):LOWERCASE ?$/,
 	  (_,x)=>x.toUpperCase());
       screen = screen.replace(
-	  /(\S)(\S+\s*):CAPITALIZE ?$/,
+	  /(\S)(\S*\s*):CAPITALIZE/,
 	  (_,x,y)=>x.toUpperCase()+y);
 
       screen = screen.replace(
-	  /(\S+)\s+(\S+\s*):JOIN ?$/,
+	  /(\S+)\s+(\S+\s*):JOIN/,
 	  (_,x,y)=>x+y);
       screen = screen.replace(
-	  /(\S+)\s+(\S+\s*):CAMELIFY ?$/,
+	  /(\S+)\s+(\S+\s*):CAMELIFY/,
 	  (_,x,y)=>(x+'_'+y).replace(
 	      /\b(\w)/g,
               (_,z)=>z.toUpperCase()));
       screen = screen.replace(
-	  /(\S+)\s+(\S+\s*):UNDERSCORE ?$/,
+	  /(\S+)\s+(\S+\s*):UNDERSCORE/,
 	  (_,x,y)=>x+'_'+y);
       screen = screen.replace(
-	  /(\S+)\s+(\S+\s*):DASHIFY ?$/,
+	  /(\S+)\s+(\S+\s*):DASHIFY/,
 	  (_,x,y)=>x+'_'+y);
 
       screen = screen.replace(
@@ -180,21 +217,32 @@ zxcvb nm,./
       screen = screen.replace(
 	  /[\s\S]?:BACKSPACE/, '');
       screen = screen.replace(
-	  /(\w+|\S+)?\s*:DELETE-WORD ?$/, '');
+	  /:HARDSPACE/g, ' ');
+
+      // delete spaced before and either:
+      // - a word
+      // - OR continues gunk (nonwords)
+      screen = screen.replace(
+	  /([a-zA-Z0-9]+|[^a-zA-Z0-9]+)?\s*:DELETE-WORD ?$/, '');
       
+      screen = screen.replace(
+              /(:WAITSPACE-)(.)/,
+	  (_,w,k)=>k===' '?k:w);
 
       // dangerous!
       screen = screen.replace(
 	  /^[\s\S]*:CLEAR ?$/, '');
 
-      // list matches
-      screen.replace(/(\w+\s*)$/, help);
-
-
-
       // ---------------------------------
-      // SUBSTITUTION
+      // SUBSTITUTIONs
+      // (that may give new commands)
+
+      // detect changes, and recurse later
       let oldScreen = screen;
+
+      // list matches
+      screen = screen.replace(
+	  /(\w+\s*)$/, help);
 
       // - try :FOO - command [\w->{}]
       screen = screen.replace(
@@ -203,7 +251,7 @@ zxcvb nm,./
 
       // - try %foo - full word
       screen = screen.replace(
-	  /\b(\w+\s*)$/,
+	  /\b(?<!')(\w+\s*)$/,
 	  (_,w)=>subst(_, w, '%'));
 
       // - try foo - partial/end
@@ -237,22 +285,35 @@ zxcvb nm,./
 		  m = word+'='+m.map((x,i)=>{
 		      return ''+i+'-'+x;
 		  }, m).join('/') +
-		      '/:PICK-'+':BEEP';
+		      '/:PICK-:BEEP';
 	      } else {
 		  // array of one word
 		  m = m[0];
+
+		  // duplicate from below
+		  // replace _ with space
+		  m = m.replace(/_/g, ' ');
+	  
+		  // typed spc make sure have one
+		  if (c==='_' || c===' ')
+		      if (!m.endsWith(' '))
+			  m += ' ';
+
 	      }
 	  } else {
 	      // a string
-	  }
 
-	  // replace _ with space
-	  m = m.replace(/_/g, ' ');
+	      // duplicate from above
+	      // replace _ with space
+	      m = m.replace(/_/g, ' ');
 	  
-          // typed spc make sure have one
-          if (c==='_' || c===' ')
-	      if (!m.endsWith(' '))
-		  m += ' ';
+	      // typed spc make sure have one
+	      if (c==='_' || c===' ')
+		  if (!m.endsWith(' '))
+		      m += ' ';
+
+
+	  }
 
 	  return m;
       }
@@ -305,7 +366,16 @@ zxcvb nm,./
   
   let ks = '';
   let klastkey = '';
+
   function processKey(k, up) {
+      try {
+	  return xprocessKey(k, up);
+      } catch(e) {
+	  alert(''+e);
+      }
+  }
+
+  function xprocessKey(k, up) {
       ks = ' ' + ks;
       
       // ignore repeating keys for now
@@ -318,7 +388,7 @@ zxcvb nm,./
       let tm = now-ktm;
       ktm = now;
       ks = k + tm + ks;
-      window.ks.innerText = ks;
+      window.kss.innerText = ks;
 
       // time of press
       if (tm >= 3000) knew += ' 4 ' + k;
@@ -407,7 +477,7 @@ zxcvb nm,./
 	  // display
 	  window.knew.innerText = kall;
 
-	  //window.ks.innerText = ks;
+//	  //window.kss.innerText = ks;
 	  ks = '';
 
 	  // all commands :UPPER

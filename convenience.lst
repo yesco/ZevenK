@@ -12,11 +12,11 @@
 
 ## number followed by
 # a = anglo (i.e. in English)
-# s - don't use as '5s' is five seconds...
+# (s - don't use as '5s' is five seconds)
 # d = days
-# fa = first(ify)... second....
-# fs = 1st, 2nd...
-# g = months, A-D:seasons
+# gs = number/sequence 1st, 2nd...
+# ga = number/order anglo
+# f = months, A-D:seasons
 
 ## a = anglo-fy (English)
 %0a	zero_
@@ -68,6 +68,7 @@ $7d	Sunday_
 # 6:morning, fornoon, noon, afternoon, evening, night
 
 ## g=Number, s=Order numbers st,nd etc
+# TODO: somehow doesn't seem to work
 0gs	0th_
 1gs	1st_
 2gs	2nd_
@@ -79,6 +80,7 @@ $7d	Sunday_
 8gs	8th_
 9gs	9th_
 
+# TODO: somehow doesn't seem to work
 0ga	zeroth_
 1ga	first_
 2ga	second_
@@ -104,6 +106,24 @@ Ega	fourteenth_
 Ega	fiftteenth_
 
 # hundredth, thousnt... etc? write out?
+
+# g=num d=Colors
+# Thailand weekday colors!
+# (I want to learn...)
+# TODO: somehow doesn't seem to work
+0gd	black	# (jsk: just added)
+
+1gd	yellow	# Monday Yellow
+2gd	pink	# Tuesday Pink
+3gd	green	# Wednesday – Green & Grey
+4gd	orange	# Thursday – Orange
+5gd	blue	# Friday – Blue
+6gd	purple	# Saturday – Purple
+7gd	red	# Sunday – Red
+
+8gd	white	# (jsk: just added)
+9gd	green	# (jsk: just added)
+
 
 ## f=Months
 %0f	month_

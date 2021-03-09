@@ -62,7 +62,7 @@
 # 3 (ddd)   232    did (ddd) did -- did dec, die ice,, kid,,, ide
  3 (ddd)  2322    did (ddd) did -- did die ice kid
 # 3 (ddf)  1821  L dev (ddf) dev --, dev,, def, dir,, ddr div, dem, dim ?
- 3 (ddf)  1821  L dev (ddf) dev -- dev def dir dim
+# 3 (ddf)  1821  L dev (ddf) dev -- dev def dir dim
 # 3 (ddg)   569    key (ddg) key -- key, kit cet diy dig
  3 (ddg)   569    key (ddg) key -- key kit diy dig
 # 3 (dds)  2117    del (dds) del -- del ceo eco ?
@@ -489,7 +489,8 @@
  4 (gsdg)   570    body (gsdg) body -- body,,, twin,,, glen,,,,
  4 (gsds)  1741    goes (gsds) goes --, goes,,,,,, Gods,,,
  4 (gsfa)  4746    nova (gsfa) nova --,,,, nova,,,,,,
- 4 (gsfd)    33    home (gsfd) home -- home york blue gore
+# 4 (gsfd)    33    home (gsfd) home -- home york blue gore
+ 4 (gsfd)    33    home (gsfd) home -- home blue
  4 (gsff)    24    your (gsff) your -- your tour hour norm,
  4 (gsfg)  1576    born (gsfg) born -- bornbomb horn
  4 (gsga)  4648    yoga (gsga) yoga --,,,, yoga,,,,,,
@@ -519,7 +520,7 @@
  4 (sass)  1374    wall (sass) wall -- wall laws
  4 (sdad)   337    size (sdad) size -- sizelead weak
  4 (sdaf)  2664  L wear (sdaf) wear -- wear leaf
- 4 (sdag)  2740  L seat (sdag) seat -- seat scan Okay lean
+ 4 (sdag)  2740  L seat (sdag) seat -- Okay seat scan lean
  4 (sdas)  4290    seal (sdas) seal -- seal lips seas
  4 (sdda)  1838    skip (sdda) skip --, skip,,,,,,,,,
 # 4 (sddd)    96    like (sddd) like -- like week side wide,,, seek, seed sick wiki,,,, weed oecd
@@ -2124,10 +2125,10 @@
  6 (fffagg)  6148    murphy (fffagg) murphy --,,,,,, murphy,,,,
  6 (fffddf)  4553    murder (fffddf) murder --,,,, murder,,,,,,
  6 (fffdgs)  7330    fruits (fffdgs) fruits --,,,,,,, fruits,,,
- 6 (ffffag)  5533    murray (ffffag) murray --,,,,, murray,,,,,
- 6 (fffgad)  9061    mumbai (fffgad) mumbai --,,,,,,,,, mumbai,
+# 6 (ffffag)  5533    murray (ffffag) murray --,,,,, murray,,,,,
+ 6 (fffgad)  9061    mumbai (fffgad) mumbai --,,,,,,,,, Mumbai,
  6 (ffgddd)  4529    funded (ffgddd) funded --,,,, funded,,,,,,
- 6 (ffgddg)  8650    munich (ffgddg) munich --,,,,,,,, munich,,
+ 6 (ffgddg)  8650    munich (ffgddg) munich --,,,,,,,, Munich,,
  6 (ffgdgg)  8279    urgent (ffgdgg) urgent --,,,,,,,, urgent,,
  6 (ffgdsf)  2758    junior (ffgdsf) junior --,, junior,,,,,,,,
  6 (ffgfas)  4384    mutual (ffgfas) mutual --,,,, mutual,,,,,,
@@ -2135,15 +2136,15 @@
  6 (ffggdf)  4036    rubber (ffggdf) rubber --,,,, rubber,,, runner,,,
  6 (ffggsd)  7902    jungle (ffggsd) jungle --,,,,,,, jungle,,,
  6 (ffsadg)  6604    frozen (ffsadg) frozen --,,,,,, frozen,,,,
- 6 (ffsdag)  9368    julian (ffsdag) julian --,,,,,,,,, julian,
+ 6 (ffsdag)  9368    julian (ffsdag) julian --,,,,,,,,, Julian,
  6 (ffsdff)  1744    museum (ffsdff) museum --, museum,,,,,,,,,
  6 (ffsdgg)  7180    ruling (ffsdgg) ruling --,,,,,,, ruling,,,
  6 (ffsdsd)  3591    muscle (ffsdsd) muscle --,,, muscle,,,,,,,
  6 (ffsdsg)  5810    fusion (ffsdsg) fusion --,,,,, fusion,,,,,
- 6 (ffsgdg)  6157    justin (ffsgdg) justin --,,,,,, justin,,,,
- 6 (ffssda)  2331    russia (ffssda) russia --,, russia,,,,,,,,
+ 6 (ffsgdg)  6157    justin (ffsgdg) justin --,,,,,, Justin,,,,
+ 6 (ffssda)  2331    russia (ffssda) russia --,, Russia,,,,,,,,
  6 (ffssdf)  5577    muslim (ffssdf) muslim --,,,,, muslim,,,,,
- 6 (fgagda)  7285    uganda (fgagda) uganda --,,,,,,, uganda,,,
+ 6 (fgagda)  7285    uganda (fgagda) uganda --,,,,,,, Uganda,,,
  6 (fgagsd)  3646    unable (fgagsd) unable --,,, unable,,,,,,,
  6 (fgdafd)  1287    unique (fgdafd) unique --, unique,,,,,,,,,
  6 (fgdgdd)   210    united (fgdgdd) united -- united,,,,,,,,,,
@@ -3602,7 +3603,8 @@
  7 (fsfgddf)  5672    founder (fsfgddf) founder --,,,,, founder,,,,,
  7 (fsfgdfs)  6919    routers (fsfgdfs) routers --,,,,,, routers,,,,
  7 (fsfgdgd)  5269    routine (fsfgdgd) routine --,,,,, routine,,,,,
- 7 (fsfgdgg)  1544    morning (fsfgdgg) morning --, morning,,,,, routing,,,,
+# 7 (fsfgdgg)  1544    morning (fsfgdgg) morning --, morning,,,,, routing,,,,
+ 7 (fsfgdgg)  1544    morning (fsfgdgg) morning --, morning
  7 (fsfgfgd)  5816    fortune (fsfgfgd) fortune --,,,,, fortune,,,,,
  7 (fsfggdd)  5280    mounted (fsfggdd) mounted --,,,,, mounted,,,,,
  7 (fsfggsg)  8322    roughly (fsfggsg) roughly --,,,,,,,, roughly,,
