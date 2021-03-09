@@ -27,6 +27,7 @@
     Output: <button onclick="window.out.innerHTML='';">clear</button><br/>
     <pre id=out style='white-space:pre-wrap;word-wrap:break-word;background-color:black;color:#4af626;'></pre>
     <b>Word:</b> <tt id=word></tt><br/>
+    <p id=hlp>HELP</p>
     <pre id=pc></pre>
     <pre id=ks></pre>
     <pre id=knew></pre>
@@ -42,6 +43,29 @@
   // (cheat: update on each call!)
   let screen = '';
 
+  let allkeys = Object.keys(keybm).sort();
+  
+  function help(s) {
+      // search 3 more chars
+      let suffix = '.{1,3}$';
+
+      let prefix = '^' + s + suffix;
+      
+      let r = allkeys.filter(
+          x=>x.match(prefix));
+      r = r.map(x=>keybm[x]);
+
+      prefix = '^%' + s + suffix;
+      let rwords = allkeys.filter(
+          x=>x.match(prefix));
+      rwords = rwords.map(x=>keybm[x]);
+  
+      window.hlp.innerText = ''
+ 	  + s + ' matches: '
+          + r.join(' ') + ' '
+          + rwords.join(' ');
+  }
+  
   // can be invoked with no argument,
   // in which case it's
   function putc(c) {
@@ -97,8 +121,9 @@
       // all functions called need to
       // return a string ('' or whatever)
       screen = screen.replace(
-	  /(:S+PICK-([\w\d])) ?$/,
+	  /(\S+:PICK-([\w\d])) ?$/,
 	  (_,s,p)=>{
+	      //alert('picked >'+p+'<');
 	      return (s.match(
 		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+':BEEP'])[1]+' ';
 	  });
@@ -128,6 +153,9 @@
       // dangerous!
       screen = screen.replace(
 	  /^[\s\S]*:CLEAR ?$/, '');
+
+      // list matches
+      screen.replace(/(\w+\s*)$/, help);
 
       // --- matching dictionary
       // - try :FOO - command [\w->{}]
