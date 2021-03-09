@@ -9,7 +9,7 @@
 
 # Linker output
 *.ilk
-*.map
+#*.map
 *.exp
 
 # Precompiled Headers
@@ -51,6 +51,33 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+### jsk
+
 # emacs
 *~
+\#*\#
 
+# specific
+Words/alpha-strokes-not.lst
+Words/alpha-strokes-not.lst.edited
+Words/alpha-strokes.lst
+Words/alpha-strokes.lst.edited.rejects
+Words/alpha-strokes.lst.edited.rejects.edited
+Words/asetniop.html
+Words/asetniop.words.lst.match
+Words/civilization.txt
+Words/count_1w.txt
+Words/count_1w.txt.1000
+Words/count_1w.txt.10000.dict
+Words/count_1w.txt.2000
+Words/count_1w.txt.3000
+Words/count_1w.txt.5000
+Words/count_1w.txt.7500
+Words/linuxwords
+Words/selfmatch.edited
+Words/selfmatch.lst
+Words/shorts-self.lst
+junk*
+run.html
+spell.generated.lst
+test.js
