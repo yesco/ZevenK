@@ -7,7 +7,11 @@ cat spell.map | perl mk-spell.pl | sort > spell.generated.lst
 # make sure there is one
 touch -a user.lst
 
-perl mk-json.pl user.lst chords.lst commands.lst main.lst braille.lst convenience.lst spell.generated.lst asdfg-words.generated.lst > asdfg.generated.json.js
+LIST="user.lst chords.lst commands.lst main.lst braille.lst convenience.lst spell.generated.lst asdfg-words.generated.lst"
+
+cat $LIST > asdfg.generated.lst
+
+perl mk-json.pl $LIST > asdfg.generated.json.js
 
 (echo "<script>" ; \
  cat asdfg.generated.json.js; \

@@ -17,6 +17,7 @@ if ($word) {
     my $wn = 0;
     while ($word = <>) {
 	chop($word);
+	$word =~ s/\W+/ /g; # remove other
 	foreach $w (split(/\s+/, $word)) {
 	    if ($wn % 30 == 0 && !$verbose) {
 		print STDERR "** $wn $word\n";
@@ -30,6 +31,9 @@ if ($word) {
 
 sub one {
     my ($word) = @_;
+
+    # sanitize
+    $word =~ s/[\(\)\,]//g;
 
     if ($verbose) {
 	print "------------------------------$word\n";
@@ -62,6 +66,7 @@ sub one {
 	$v = '[' if $w eq '[';
 	$v = ']' if $w eq ']';
 	
+	next if $v =~ /[\(\)]/;
 	#print "==>$v\n";
 	$wre .= $v;
 	$type .= $c || $v;

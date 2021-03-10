@@ -87,8 +87,14 @@ _-SS	:DELETE-WORD # back 'CTRL-BACKSPACE'
 _-SF	:REPEAT
 _-SG	:YANK # (g=y) paste
 
-# space- (delete?)
-#_-DD	DELETE-LINE # forw 'CTRL-K'
+# space-Caps
+_-GG	:CAPITALIZE # (gogo) Capitalize
+_-GGG	:CAPSLOCK
+_-GS	:LOWERCASE # "(S=l)ower case"
+_-GD	:UPPERCASE # omg GooD
+
+#_-DD	DEL
+ETE-LINE # forw 'CTRL-K'
 _-DA   :DELETE-EXTRACT- # followed by choice
 _-DG   :DELETE-NUMS # (g=num) split on on character in last word abc3def5foo => abc def foo
 
@@ -98,8 +104,10 @@ _-FA	:CAMELIFY # (cameli fy => CameliFy)
 _-FS	:UNDERSCORE # underScore a b -> a_b
 _-FD	:DASHIFY # a b => a-b
 
-# space-go-
-_-GG	:CAPITALIZE # (gogo) Capitalize
-_-GGG	:CAPSLOCK
-_-GS	:LOWERCASE # "(S=l)ower case"
-_-GD	:UPPERCASE # omg GooD
+# space-Go- (navigation?)
+_-GG	:GOTO-LINE # like emacs ALT-GG
+#_-GA	:APROPOS?
+#_-GS	:SEARCH :SHOW-MATCHING-LINES #?
+#_-GD	:DELETE-LINES/MATCHES/REPLACE
+#_-GF	:REGEXP-SEARCH :RE-BACK-SEARCH :REPLACE
+
