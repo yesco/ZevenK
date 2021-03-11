@@ -133,3 +133,40 @@ The commands are (grouped by function):
   :GOTO        # go to (local) bookmark
   :LOCATE      # locate document+go bookmark
 
+# ZevenZ - 7 Systems
+
+(ok, bad name but I once had a Swedish "cult"-legacy CP/M Z80 computer from the 1980s that was named "Seven S" (for systems))
+
+The goal of ZevenZ is to be my personal, portable information system, very much as outlined in MOAD (The Mother of All Demos) by Dough Engelbart in 1968--the year I was born.
+
+What are the Zeven Zystems then:
+1. file system
+2. wiki
+3. editor
+4. 5-key single-handedkeyboard
+5. offline/online/sync
+6. webserver
+7. programming environment
+
+It had the follwing features:
+- (see file MOAD.txt)
+- ...
+
+# Wiki
+
+All textfields can contain wiki text and hyper link in ZevenZ. This allows the description of a calendar event be inlining text from a wiki.
+
+The Wiki is actually just an text-formatting markup together with an built-in edit function with versioning.
+
+# Panda Macro Language
+
+(TODO)
+
+To facilitate scripting and automatization we need a tiny language, text oriented. JML is such a small language, written in C to run in embedded systems. Panda is another language to which more works and looks like Unix pipes. Panda Micro Language is a syntax that allows both.
+
+[=tag $h @txt | <$h>@txt</$h>]
+[=tripple  $s | $s$s$s]
+[=number-list $from $to |
+  [tag ul [ $from to $to | tag li ]]]
+[=word-list @words |
+  [tag ul [ for @words | tag li ]]]

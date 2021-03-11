@@ -1,0 +1,298 @@
+Notes from watching MOAD (Mother Of All Demos, https://youtu.be/B6rKUf9DWRI )
+
+- computer display
+- alive
+- instant responsive
+- augumented research center
+- edit: copy-word repeat, mark, 
+- file it: name
+- beeps when doing
+- name of file, date, time, who created, last written, last accessed
+- copy statement, paragraph
+- first line of each paragraph
+- view control (first line/truncated)
+- overview
+- beep at each command
+- numbered list
+- open all
+- word, statement, paragraph, block, file
+- undo (select version?)
+- move line from place to other place (in shopping list)
+- subcategory by indent
+- view limit levels seen
+- limited view (window)
+- named location
+- location by relative (word forward, p forward, letter forward, sentence forward)
+- put link in document active name
+- show/hide names
+- graph: text, lines, text can be hyper link
+- bip: each key
+- beep: when thinking/doing command
+- boop: error mode
+- timesharing system
+- 6 consoles
+- 4th computer skillful
+- how put it to work, organize
+- jump on a link
+- link have view specification
+- view: small font, normal, big/presentation
+- chain of view (A:sdfsdview)
+- hyper-link click
+- freeze statement (view)
+- (show view under frozen/inline?)
+- stack view following links!
+- inline graph with labels
+- (jsk: keep tree viewed when go up!)
+- back
+- cycle through views?
+- where to focus to get the most return on next effort
+- get the tools, make them, study them, by using it ourself (dogfood)
+- NLS - oNLineSystem
+- underline
+- reveal part of graph by open part
+- save the current view and make a link
+- maximize current view
+- go back to previous view/stack
+- moved a marker ---- from one line to another (pick and place) to see where we are!
+- control devices
+- control dialogue
+- control meta-language,
+
+- control devices
+- mouse (3 buttons), standard keyboard, keyset
+- tracking spot (mouse cursor)
+- move mouse for comfort can leave
+- special keyboard keys
+- 5 keys chording
+- function to give last 6 characters typed from buffer
+- single stroke change view parameters
+- abbreviations to change view
+- careful special langauge extreem precision of control functions and view
+- outline graph (left to right)
+     / x -  - y
+     / z \
+  a -| b \      /a
+     \ c |- f -|/ b
+                \ c
+- update 15/s without using cpu (exernal box)
+- round CRT! lol watched by camera
+  (875 scanning line) 
+- standard video microwave system
+- 12 units
+- wanted storage tube display
+- 5500USD/unit
+- cathod  camera, can shortterm storage (memory effect=avoid flickering!)
+- use 3-4 more displays than otherwise
+
+- control dialogue
+
+- control meta-language,
+
+- system guide file
+- overlays each a block
+- graph points to pages
+- use file/graph like this to move around in code
+- area where we leave notes for each other
+- finite state machine
+- following each key user typed to find code/function!
+- text edit overlay
+- two types of code
+- special languages
+- QMD language routine: move word
+- content analyses language of string
+- finds definition of word
+- finds pointers to describe word
+- another special lang built
+- delimeter routine and reconstruct statement after edit has been done
+- other portion of file is MOL
+- machine oriented language
+- high level, structure, if/while, but close to 940, registers
+- helped to write kind of fast code we have to have, but also lots of flexibility
+- phrase structureis matching using NLS itself
+- navigating source code zoom in/out
+- program organisational
+- special purpose language
+- special syntax
+- linking structure
+- one way we implemented these langagues
+- 3meta = compiler compiler lanage
+- all compilers written in 3meta
+- system developement corporations
+- all compilers in high level lang
+- quickly modify in high level of
+syntax and compilers and hardware
+- system guide file: graph, unretrievable?, more notes about bugs
+- view: blank lines off
+- keeping track of who you are and what you doing all the time, on every statement keeps around this info, automated, who/when/what, can search w pattern
+- you should see yourself with a 15 foot face
+- anxious to talk aboiut languages, meta compilers and other games programmers like to play
+- hierchical langauge (functions/command)
+- whats a word,whats delete, special language define a word, sentence, 
+- right concept level
+
+- (59:14)
+- move down mark
+- how have we used it
+- programming is an excellent
+- structure your database
+- tool getting around
+- special lanauges
+- name/labels/ used by compiler and navigation
+- (edit a database)
+- user documentation/user's guid
+- one screen drawn in like 1s
+- glossary
+- freeze statement, move to top, what's a bug (displayed below), back
+- what's a level
+- frozen glossary stays
+- nice to have documentation like this
+- procedures for commands
+- study modified papers
+- printer design/printout format langauge (include data from named item?)
+- double spaceing ect
+- paper writing
+- joint file usage
+- message technique
+- leave messges to eachother, can unfold
+- pound sign between (@ lol!)
+- wke@dce statement marked like that is message from him to me
+- search all files for 'xyz' sort date
+- look for message from '@dce' compilers
+- compile it (view) only show those places (grep)
+- turn off that filter
+- about timesharing computers
+- content analyser
+- sometimes (hits the keys) ...
+- have to use the keyboard, used to work with one hand...
+- go back to file
+- roles file, roes they are going to play
+- (struggling with keyboard)
+- different sessions
+- duty roster
+- code terms under it
+- open house, etc, etc, (dates)
+- content analyser
+- what's the special pappern
+- what's the people who are open house on tuesday evening
+- compile it, list people
+- view only only what category I was going to filter out
+
+- markers
+- put the tracker on any character enter that name (3 chars) instead of taking the char it takes the name, these markers, "OTE"
+- execute compiler from here (markup!)
+- put in any place in a file
+- pattern matchers
+- great power jumping around and study
+- other things to show here
+- (haha freeze here)
+- same in design of hardware
+- file specify wiring list for each and underlying is the equations
+- can compile it
+- collaborate (using joint file)
+ 
+- go to an important sequence here
+- combine mode between me and another terminal
+- executive mode set to special level
+- continue with NLS
+- special command
+- bill will you connect to me, what's terminal are you, (13)
+- switch his display show my screen and he can point to it
+- reserve right for me to edit
+- "my bug is more powerful than yours"
+- audio coupling and shared display
+- I like to see you
+- bring in camera from console, show in corner, resizable
+- let's talk about information retrieval
+- NLS complex data structures
+- file classifying retrieval stuff
+- two cursors
+- retrieval is the main thing you do
+- change view is doing retrieval
+- categories: know dest, unknown
+- two different problems
+- direct: explicit, able to point at it, move it into view (jump to identity, name, link)
+- indirect: implicit, using information that been stored in system where to go, memory of what you've been doing
+- jump to the view I previously had
+- jump, return
+- jump ahead, move back down again
+- jump refers to structure of file, successor of sentence, head of file
+- other retrieval:
+- indirect: able to describe it
+- make file describe how you want to do a hard copy
+- maybe you want roman page namers
+- page formatting
+- page numbering
+- roman numerals
+- here's the directive
+- easy way to find exactly what you looking for
+- direct: 
+- best way to show is draw a picture
+- keywords selected from list
+- put list over there
+- put it here and drags labelto place on screen
+- select things from catalogue
+- my own Dewie system #1.2.3
+- draws line to keywords
+- select keyword draw to it?
+- select several keywords, special item put at head of list
+- use other forms of retrieval
+- file handling overview
+- (keyword) description
+- select keyword
+- writes the word up here
+- another command to accept it
+- accept file control, file referencing
+- I'm able to
+- (somebody hung up on us)
+- (Dough can I hear out)
+- give some keywords greater weight
+- describes what I'm after
+- 1
+- 2 will occour earlier in selection
+- keyword execute, will reorder them
+- I can use these to jump there to the utility file
+- look at the next item
+- continue to look at documentation, next item
+- keyword is very powerful, should be a paper by itself, using weight to order
+- results takes you off to actual source codes; name of places in files, and views you should use
+- our commands fits with the structure we used
+- we have a open house and you can come up and visit us
+- push this button I get that response
+- organization of hardware and software
+- conventions for leaving messages, how to use the links, keywords, etc.
+- new elements in system research
+- concept
+- procedures
+- skills
+- tools
+- management system work
+- we're taking some money
+- to manage our 17 people
+- arpa: computer network coming in about a year
+- with 20 experiem
+- hope to transmit across the countr
+- 20kb/s
+- <10ms
+- I could be running a system in cambridge and get response on a CRT
+- network information
+- what protocols etc
+- where can I find the paper that defines that system
+- try to use our tools
+- what's the product we're providing in our reasearch
+- sample augmention system
+- augument computer systems development
+- to close:
+- video control, systems
+- worked very hard to make this work technically
+- present at open house
+- SRI supporting us
+- Stewart Grant volunteered time
+- projector for the large screen borrowed
+- telephone company has done a great deal
+- phone curcuits
+- furniture company, we're interesting in walls, desks, they helped us designing a control console that I can control
+- backed up by a tremendous team
+- I owe them a lot
+- and my wife and daughters because of what they put up with over this years
+- dedicated to you
+- thanks very much to come to the dedication cermonies
