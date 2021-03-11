@@ -149,11 +149,11 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
       if (c===':HARDSPACE') c = ' ';
 
       // first, edits
-      if (c===':BS' || c===':BACKSPACE') {
+      if (c===':BS') {
           screen = screen.substring(
 	      0, screen.length-1);
           // TODO: cursor position?
-      } else if (c===':DEL' || c===':DELETE') {
+      } else if (c===':DEL') {
 	  // TODO: no have buffer forward
       } else if (c && c != '') {
 	  // second add characters
@@ -223,7 +223,7 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
       screen = screen.replace(
 	  /[\s\t\n]*:DELSPC/, '');
       screen = screen.replace(
-	  /[\s\S]?:BACKSPACE/, '');
+	  /[\s\S]?:BS/, '');
       screen = screen.replace(
 	  /:HARDSPACE/g, ' ');
 
