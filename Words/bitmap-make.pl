@@ -1,5 +1,10 @@
 # builds a 3-letter "bitmap"
 
+# Usage:
+#   perl bitmap-make.pl -d foo.lst bar.dict file.txt
+#
+# will read two dictionaries and then analyze and try to match every word in the text file
+
 # this was an experiment to see if
 # we could train a bitmap to guess
 # the words that written, and it does

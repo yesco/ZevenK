@@ -10,3 +10,4 @@ mentioned on https://github.com/first20hours/google-10000-english
 
 wget http://asetniop.com/combinations/
 wget http://www.cs.duke.edu/~ola/ap/linuxwords
+https://github.com/titoBouzout/Dictionaries
