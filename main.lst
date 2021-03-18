@@ -23,7 +23,7 @@ A>G	z
 
 # mirror to other half
 # (hold space tap key, release space)
-_-A	:BACKSPACE # stolen!
+_-A	:BS # stolen!
 _-S	l
 _-D	k
 _-F	j

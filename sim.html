@@ -66,7 +66,10 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
 
   let allkeys = Object.keys(keybm).sort();
   
-  // returns non-null if only one future
+  // help(wordpart)
+  // returns non-null if only one future word match
+  // seaches for /^word.{1,3}$/
+  // and      /wordpart.{1,3}$/
   function help(s) {
       let exact = keybm[s] ||
 	  keybm[s + '_'] ||
@@ -76,19 +79,22 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
       // search 3 more chars
       let suffix = '.{1,3}$';
 
+      // find partial words
+      // TODO: how to make fast?
       let prefix = '^' + s + suffix;
-      
-      let r = allkeys.filter(
+      let rk = allkeys.filter(
           x=>x.match(prefix));
-      r = r.map(x=>keybm[x]);
+      let r = rk.map(x=>keybm[x]).flat();
 
+      // find full-word words
+      // TODO: binary search
       prefix = '^%' + s + suffix;
-      let rwords = allkeys.filter(
+      let rkwords = allkeys.filter(
           x=>x.match(prefix));
-      rwords = rwords.map(x=>keybm[x]);
+      let rwords = rkwords.map(x=>keybm[x]).flat();
   
       window.hlp.innerText = '\n'
-          + r.join(' ') + ' '
+          + r.join(' ') + ' = '
           + rwords.join(' ')
           + '#=' + (rwords.length+r.length)
       ;
@@ -181,7 +187,7 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
  	      if (pi >= 0) p = pi;
 	      //alert('picked >'+p+'<');
 	      return (s.match(
-		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+':BEEP'])[1]+(pi?'':':DEFAULT')+' ';
+		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+':BEEP'])[1]+(pi?'':'/:0')+' ';
 	  });
       
       screen = screen.replace(

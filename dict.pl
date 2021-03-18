@@ -33,6 +33,18 @@ sub readdict {
 		$dict{$v} = $t;
 	    }
 
+	} elsif (/^(\S+)$/) {
+	    # simple dictionary
+	    my $w = lc($1); # TODO:?
+	    my $t = asdfg($w);
+	    
+	    # already have, no override
+	    next if $dict{$w};
+	    
+	    $tdict{$t} .= " $w";
+	    $udict{$w} = 1;
+	    $fdict{$w} = 1;
+	    $dict{$w} = $t;
 	} else {
             print STDERR "%% dict: unparsed: $_\n";
 	}
@@ -43,3 +55,17 @@ sub readdict {
     # convenience
     @dictwords = sort keys %dict;
 }
+
+sub asdfg {
+    my ($t) = @_;
+
+    $t =~ s/[qazp]/a/g;
+    $t =~ s/[wsxol]/s/g;
+    $t =~ s/[edcik]/d/g;
+    $t =~ s/[rfvujm]/f/g;
+    $t =~ s/[tgbyhn]/g/g;
+
+    return $t;
+}
+
+

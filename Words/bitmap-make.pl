@@ -92,6 +92,8 @@ sub readdict {
 	my $f = 1;
 	$f = +$1 if $txt =~ s/[\t\s]+(\d+)//;
 	$dict{$txt} = $f;
+	#print "SET FISHING: $f\n" if $txt=~/fishing/;
+
 	
 	$txt = "  $txt  "; # $CHARLEN?
 	#print $txt, "\n";
@@ -210,6 +212,7 @@ sub test {
 	$w = $1 if $l =~ /([a-z]+)/i;
 	$f = +$1 if $l =~ /(\d+)/;
 	my $df = $dict{$w};
+	#print "FISHING: $df\n" if $w=~/fishing/;
 	return $df if $df;
 	return $f/10000;
     }

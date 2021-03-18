@@ -78,12 +78,12 @@ a>s>d>f	:MODE-CURSOR
 #(ADFG} # awkward FREE
 
 ### editing
-_-A	:BACKSPACE # can steal from ';"
+_-A	:BS # can steal from ';"
 
 ## the combos below are choosen not to
 # conflict with normal keys, thus they
 # have no adjecent keys
-_-SS	:DELETE-WORD # back 'CTRL-BACKSPACE'
+_-SS	:DELETE-WORD # back 'CTRL-BS'
 _-SF	:REPEAT
 _-SG	:YANK # (g=y) paste
 
