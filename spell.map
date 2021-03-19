@@ -1,44 +1,4 @@
-# this file contains spelled out characters
-
-## letters
-# https://grammarist.com/spelling/letter-names/
-#aee	a # asdfg
-bee	b
-cee	c
-#dee	d # asdfg
-ee	e
-#eff	f # asdfg
-#gee	g # asdfg
-eih	h
-aitch	h
-ai	i
-jay	j
-kay	k
-ell	l
-emm	m
-enn	n
-ou	o
-oo	o
-pee	p
-cue	q
-qiu	q
-aar	r
-#ess	s # asdfg
-tee	t
-you	u
-vee	v
-dub	w
-doubleyou	w
-double	w
-dbl	w
-exx	x
-why	y
-wai	y
-#zee	z # conflict pee
-#zed	z # conflict pee
-sed	z # ok...
-aaa	z # ok, right
-
+# this file contains spelled out special characters
 
 ## numbers
 zero	0
@@ -67,7 +27,7 @@ circumflex	^
 hat	^
 times	*
 star	*
-asterix	*
+asterisk	*
 paren	(:CURSOR)
 rparen	(
 lparen	)
@@ -100,6 +60,7 @@ doublequote	"
 singlequote	'
 single	'
 diamond	<>
+ltgt	<>
 lessthan	<
 less	<
 lt	<
@@ -128,3 +89,33 @@ copy	©
 copyright ©
 trademark	™
 tm	™
+
+## calculcate
+add	:ADD
+sub	:SUB
+mul	:MUL
+div	:DIV
+
+sum	:SUM
+prod	:PROD
+
+fac	:FAC
+over	:OVER
+
+round	:ROUND
+floor	:FLOOR
+ceil	:CEIL
+
+pow	:POW
+
+calc	:ADD :SUB :MUL :DIV :SUM :PROD :FAC :OVER :ROUND :FLOOR :CEIL :POW
+
+## calendar
+day	06:00_\n07:00_\n08:00_\n09:00_\n10:00_\n11:00_\n12:00_\n13:00_\n14:00_\n15:00_\n16:00_\n17:00_\n18:00_\n19:00_\n20:00_\n21:00_\n22:00_\n23:00_\n
+week	Monday:_\nTuesday:_\nWednesday:_\nThursdy:_\nFriday:_\nSaturday:_\nSunday:_
+year	January:_\nFebruary:_\nMarch:_\nApril:_\nMay:_\nJune:_\nJuly:_\nAugust:_\nSeptember:_\nOctober:_\nNovember:_\nDecemeber:_
+
+## dub dub dub
+sss	www.
+com	.com
+#org	.org # conflict :SUB
