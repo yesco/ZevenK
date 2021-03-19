@@ -216,10 +216,11 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
 	  'MUL': (a,b)=>a*b,
 	  'DIV': (a,b)=>a/b,
 	  'POW': Math.pow,
+	  'IOTA': (a,b)=>[...Array(b-a+1).keys()].map(x=>a+x).join(' '),
       }
 
       screen = screen.replace(
-	  /([\d\.]+)[^\d\.]+([\d\.]+)\s*:(ADD|SUB|MUL|DIV|POW)/g,
+	  /([\d\.]+)[^\d\.]+([\d\.]+)\s*:(ADD|SUB|MUL|DIV|POW|IOTA)/g,
 	  (_,a,b,f)=>OP2[f](+a, +b));
 
 	  // :SUM
@@ -242,11 +243,13 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
 	  'HEX': (x)=>x.toString(16),
 	  'OCT': (x)=>x.toString(8),
 
+	  'IOTA': (x)=>[...Array(x).keys()].join(' '),
+
 	  //:FAC
 	  //:FIB
       };
       screen = screen.replace(
-	  /([\d\.]+)\s*:(EXP|LOGN|LOG|ALOG|BLOG|SQRT|SQR\b|TRUNC|ROUND|FLOOR|CEIL|BITS|HEX|OCT)/g,
+	  /([\d\.]+)\s*:(EXP|LOGN|LOG|ALOG|BLOG|SQRT|SQR\b|TRUNC|ROUND|FLOOR|CEIL|BITS|HEX|OCT|IOTA)/g,
 	  (_,a,f)=>OP1[f](+a));
 
       // others

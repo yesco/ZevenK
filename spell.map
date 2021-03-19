@@ -129,6 +129,8 @@ bit	:BITS
 hex	:HEX
 oct	:OCT
 
+iota	:IOTA
+
 #calc	:ADD :SUB :MUL :DIV :SUM :PROD :FAC :OVER :ROUND :FLOOR :CEIL :POW # give menu?
 
 ## calendar
