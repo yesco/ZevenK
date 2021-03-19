@@ -3,6 +3,44 @@
 #%dd_	Okay_ # nah, dd=I is more important
 %gsffd_	you're_
 %dddgg_	didn't_
+%gsfss	you'll
+%yl_	you'll_
 %yr_	your_
 %yrf_	yourself_
 %dff_	immediate_
+
+# writing
+_-A>F	,"_he_said._
+_-F>A	,"_she_said._
+
+# 24 "chords" (32-1-5
+:{AS}
+:{ASD}
+:{ASDF}
+#:{ASDFG}	# difficult
+:{ASF}
+:{ASFG}
+:{AD}
+:{ADF}
+:{ADFG}
+:{ADG}
+:{AF}
+:{AFG}
+:{AG}
+:{SD}	_she_
+:{SDF}	,"_she_said._
+:{SDFG}
+:{SDG}
+:{SF}
+:{SFG}
+:{SG}
+:{DF}	_he_
+:{DFG}	,"_he_said._
+:{DG}
+:{FG}
+
+# just some words
+%asfdggg	alright
+
+# end
+

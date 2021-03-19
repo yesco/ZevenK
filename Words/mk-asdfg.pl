@@ -12,10 +12,18 @@
 # type: is inside parenthesis \(\w+\)
 # 
 # Example:
+#
 #   3 (aag)   599    pay (aag) pay -- pay,,, pan, pat,,,, apt,,
+#
 # ==> word: pay, type: aag
-
+#
+# or
+#
+#   foo
+#
 my %have;
+
+require './dict.pl';
 
 # <> will read stdin and files given
 while(<>) {
@@ -33,13 +41,24 @@ while(<>) {
 
 	#print "$t\t@words -- $_";
 	if ($have{$t}) {
-	    print STDERR "%% conflict for '%t} in $ARGV: $_";
+	    print STDERR "%% conflict for '$t' in $ARGV: $_";
 	    next;
 	}
-
 	$have{$t} = 1;
+
 	# TODO: find and list alternatives
 	print "$t\t@words\n";
+    } elsif (/^(\w+)$/) {
+	my $w = $1;
+	my $t = asdfg($w);
+
+	if ($have{$t}) {
+	    print STDERR "%% conflict for '$t' in $ARGV: $_";
+	    next;
+	}
+	$have{$t} = 1;
+
+      	print "$t\t$w\n";
     } else {
 	print STDERR "%% not parsed: $_\n";
     }

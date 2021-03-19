@@ -244,11 +244,11 @@ G>S	>
 
 ## Dots-
 D-A	:DELSPC._:NEXTCAP # and with space => :
-D-S	:DELSPC,_:NEXTCAP #                   ;
+D-S	:DELSPC,_
 D-F	:DELSPC!_:NEXTCAP #                   /
 D-G	:DELSPC?_:NEXTCAP #                   \
 
-# w space
+## Colons- with w space
 D-A_	:DELSPC:_
 D-S_	:DELSPC;_
 D-F_	/ # hmmm, or under (

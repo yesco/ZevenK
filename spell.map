@@ -69,8 +69,8 @@ times	*
 star	*
 asterix	*
 paren	(:CURSOR)
-parenr	(
-parenl	)
+rparen	(
+lparen	)
 under	:DELSPC__ # TODO: how to type _
 underscore	:DELSPC__ # hehe
 plus	+
@@ -79,17 +79,21 @@ emdash	:DELSPC—
 em	:DELSPC—
 equal	=
 curly	{:CURSOR}
-curlyl	{
-curlyr	}
+lcurly	{
+rcurly	}
+lcur	{
+rcur	}
 bar	|
 square	[:CURSOR]
-squarer	[
-squarel	]
+rsquare	[
+lsquare	]
+sq	[:CURSOR]
+rsq	[
+lsq	]
 backslash	\
 back	\
 colon	:
 semicolon	;
-colon	;
 quote	"
 double	"
 doublequote	"
@@ -104,6 +108,11 @@ greaterthan	>
 more	>
 greater	>
 gt	>
+lte	<=
+gte	>=
+ne	!=
+ee	==
+eee	===
 questionmark	?
 question	?
 que	?

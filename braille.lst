@@ -26,7 +26,8 @@
 %t_	that_
 %u_	us_
 #%v_	# FREE
-%w_	will_ # jsk: I'd prefer with!
+#%w_	will_ # jsk: I'd prefer with!
+%w_	with_
 %x_	it_
 %y_	you_
 %z_	as_	# jsk:is?
@@ -41,6 +42,8 @@ F-_	for_
 #g-_ taken by numbers: 0
 #	of	# jsk: spell by itself
 #	with	# jsk: I'd prefer for 'w'
+
+
 
 # strong contractions
 # TODO: cannot fit in?
