@@ -100,15 +100,36 @@ sum	:SUM
 prod	:PROD
 
 fac	:FAC
-over	:OVER
+fib	:FIB
+#over	:OVER
 
+trunc	:TRUNC
 round	:ROUND
 floor	:FLOOR
 ceil	:CEIL
 
 pow	:POW
+exp	:EXP
+logn	:LOGN
+log	:LOG
+alog	:ALOG
 
-calc	:ADD :SUB :MUL :DIV :SUM :PROD :FAC :OVER :ROUND :FLOOR :CEIL :POW
+pi	:PI
+:PI	3.141592654
+
+sqr	:SQR
+sqrt	:SQRT
+
+sin	:SIN
+cos	:COS
+tan	:TAN
+
+bits	:BITS
+bit	:BITS
+hex	:HEX
+oct	:OCT
+
+#calc	:ADD :SUB :MUL :DIV :SUM :PROD :FAC :OVER :ROUND :FLOOR :CEIL :POW # give menu?
 
 ## calendar
 day	06:00_\n07:00_\n08:00_\n09:00_\n10:00_\n11:00_\n12:00_\n13:00_\n14:00_\n15:00_\n16:00_\n17:00_\n18:00_\n19:00_\n20:00_\n21:00_\n22:00_\n23:00_\n

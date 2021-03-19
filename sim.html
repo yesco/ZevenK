@@ -209,6 +209,47 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
 		  RegExp(p+'-([^\\d\\s\\t\\/\\-]+)')) || ['', s.substr(0,s.length-1)+':BEEP'])[1]+(pi?'':'/:0')+' ';
 	  });
       
+      // math
+      const OP2 = {
+	  'ADD': (a,b)=>a+b,
+	  'SUB': (a,b)=>a-b,
+	  'MUL': (a,b)=>a*b,
+	  'DIV': (a,b)=>a/b,
+	  'POW': Math.pow,
+      }
+
+      screen = screen.replace(
+	  /([\d\.]+)[^\d\.]+([\d\.]+)\s*:(ADD|SUB|MUL|DIV|POW)/g,
+	  (_,a,b,f)=>OP2[f](+a, +b));
+
+	  // :SUM
+	  // :PROD
+
+      const OP1 = {
+	  'EXP': Math.exp,
+	  'LOGN': Math.log,
+	  'LOG': Math.log10,
+	  'ALOG': (x)=>Math.pow(10, x),
+	  'BLOG': Math.log2,
+	  'SQR': (x)=>x*x,
+	  'SQRT': (x)=>Math.sqrt(x),
+	  'TRUNC': Math.trunc,
+	  'ROUND': Math.round,
+	  'FLOOR': Math.floor,
+	  'CEIL': Math.ceil,
+
+	  'BITS': (x)=>x.toString(2),
+	  'HEX': (x)=>x.toString(16),
+	  'OCT': (x)=>x.toString(8),
+
+	  //:FAC
+	  //:FIB
+      };
+      screen = screen.replace(
+	  /([\d\.]+)\s*:(EXP|LOGN|LOG|ALOG|BLOG|SQRT|SQR\b|TRUNC|ROUND|FLOOR|CEIL|BITS|HEX|OCT)/g,
+	  (_,a,f)=>OP1[f](+a));
+
+      // others
       screen = screen.replace(
 	  /:BEEP/g, beep);
       screen = screen.replace(
