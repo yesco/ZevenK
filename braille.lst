@@ -22,15 +22,19 @@
 %p_	people_
 %q_	quite_
 %r_	rather_	# jsk prefer are?
-%s_	so_
+#%s_	so_
+%s_	some_
 %t_	that_
-%u_	us_
+#%u_	us_	# useless
+%u_	until	# jsk
 #%v_	# FREE
 #%w_	will_ # jsk: I'd prefer with!
 %w_	with_
 %x_	it_
 %y_	you_
-%z_	as_	# jsk:is?
+#%z_	# FREE
+#%z_	as_	# jsk: useless
+
 
 # strong contractions
 # (part and whole word)
