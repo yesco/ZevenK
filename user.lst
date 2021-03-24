@@ -32,13 +32,18 @@ _-F>A	,"_she_said._
 :{SDF}	,"_she_said._
 :{SDFG}
 :{SDG}
-:{SF}
+:{SF}	ou	# ou(t)
 :{SFG}
-:{SG}
+#    'wh': 'which',
+:{SG}	sh	# braille: sh/wh???
 :{DF}	_he_
 :{DFG}	,"_he_said._
-:{DG}
+#    'en': 'enough',
+:{DG}	ch	# braille: ch(ild)
 :{FG}
+
+#    'th': 'this',
+
 
 # just some words
 %asfdggg	alright

@@ -1,0 +1,94 @@
+  a
+  b
+  c
+  d
+  e
+  f
+  g
+  g
+  h
+  i
+  j
+  k
+  l
+  m
+  n
+  o
+  p
+  r
+  s
+  t
+  u
+  v
+  w
+  x
+  y
+  z
+ an
+ ar
+ ca
+ ce
+ ch
+ de
+ et
+ ex
+ fu
+ ia
+ ib
+ ic
+ lo
+ ly
+ mi
+ nc
+ om
+ or
+ pe
+ ph
+ pr
+ qu
+ qu
+ re
+ sa
+ sc
+ sh
+ tr
+ ty
+ ul
+ un
+act
+ali
+ans
+ass
+ate
+cat
+com
+con
+dis
+ent
+era
+ers
+est
+exp
+fic
+for
+ifi
+ine
+ing
+ion
+ity
+men
+nta
+nte
+ons
+ous
+rea
+red
+rep
+res
+sio
+ssi
+sti
+str
+tal
+tat
+tio
