@@ -112,6 +112,8 @@ G-_G	n
 ## numbers
 # (using g as numshift key)
 G-_	0
+G-__	00
+G-___	000
 G-F	1
 G-D	2
 G-S	4
@@ -129,13 +131,13 @@ G-FS	5
 
 G-{SD}	6
 G-SD	6
-G-DSs	6
+G-DS	6
 
 G-{SDF}	7
 G-SDF	7
 G-DSF	7
-G-DFSs	7
-G-FSDd	7
+G-DFS	7
+G-FSD	7
 G-FDS	7
 
 # hex extention
@@ -144,7 +146,7 @@ G-AF	9
 G-FA	9
 
 G-{AD}	A
-G-ADd	A
+G-AD	A
 G-DA	A
 
 G-{ADF}	B
@@ -232,7 +234,7 @@ G-DF_	%
 
 ## parenthesis
 A>D	(
-D<A	)
+D>A	)
 S>F	[
 F>S	]
 D>G	{

@@ -14,33 +14,61 @@
 _-A>F	,"_he_said._
 _-F>A	,"_she_said._
 
-# 24 "chords" (32-1-5
-:{AS}
-:{ASD}
-:{ASDF}
-#:{ASDFG}	# difficult
-:{ASF}
-:{ASFG}
-:{AD}
-:{ADF}
-:{ADFG}
-:{ADG}
-:{AF}
-:{AFG}
-:{AG}
-:{SD}	_she_
-:{SDF}	,"_she_said._
-:{SDFG}
-:{SDG}
-:{SF}	ou	# ou(t)
-:{SFG}
-#    'wh': 'which',
-:{SG}	sh	# braille: sh/wh???
-:{DF}	_he_
-:{DFG}	,"_he_said._
-#    'en': 'enough',
-:{DG}	ch	# braille: ch(ild)
-:{FG}
+# 24 "chords" (32-1-5-?)
+#:AS
+#:ASD
+#:ASDF
+#:{ASDFG} # difficult (many kb cant)
+#:ASF
+#:ASFG
+#:AD
+#:ADF
+#:ADFG
+#:ADG
+#:AF
+#:AFG
+#:AG
+#:SD
+#:SDF
+#:SDFG
+#:SDG
+#:SF
+#:SFG
+:DF	HE	# think as person
+#:DFG	# impossible on my keyb!
+#:DG
+:FG	HERE	# ok it's a hack!
+
+%aaHE	:DELSPC_tshe_	# t'she ts'he it
+%aHE	:DELSPC_anyone_ # AnyPERSON
+%asHE	:DELSPC_anyone_ # as=AnyWon
+%saHE	:DELSPC_someone_ # sa=SomeWon
+%sHE	:DELSPC_she_
+
+%dHE	:DELSPC_him_
+%dsHE	:DELSPC_his_
+
+%fHE	:DELSPC_her_
+%fsHE	:DELSPC_hers_
+
+%gHE	:DELSPC_they_	# g=T=Y
+%gdHE	:DELSPC_their_  # d=E (or ggddf)
+%gsHE	:DELSPC_theirs_ # s=S (or ggddfs)
+%gfHE	:DELSPC_them_   # f=M (or ggdm)
+
+%HE	:DELSPC_he_	# default, hmmm :-(
+
+%aHERE	:DELSPC_what_
+%sHERE	:DELSPC_where_
+%ssHERE	:DELSPC_somewhere_
+%asHERE	:DELSPC_anywhere_
+%dsHERE	:DELSPC_everywhere_
+%gsHERE	:DELSPC_nowhere_
+
+%dHERE	:DELSPC_when_
+%fHERE	:DELSPC_why_
+%gHERE	:DELSPC_there_
+%HERE	:DELSPC_here_
 
 #    'th': 'this',
 
@@ -48,5 +76,15 @@ _-F>A	,"_she_said._
 # just some words
 %asfdggg	alright
 
-# end
+# FREE 2 letters!
+# %af
+# %da	# (CA)	
+# %ad
+# %gf 	# (TV)
+
+
+
+
+
+### end
 

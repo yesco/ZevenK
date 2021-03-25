@@ -46,7 +46,7 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
     Output: <button onclick="window.out.innerHTML='';">clear</button><br/>
     <pre id=out style='white-space:pre-wrap;word-wrap:break-word;background-color:black;color:#4af626;'></pre>
     <b>Words:</b> <tt id=hlp></tt><br/>
-    (<tt id=kss></tt>)<br/>
+    (<b><tt id=kkk></tt></b> = <tt id=kss></tt>)<br/>
     <pre hidden id=pc></pre>
     <pre hidden id=knew></pre>
     <pre hidden id=dbg></pre>
@@ -318,6 +318,7 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
       let oldScreen = screen;
 
       // list matches
+if (0)
       screen = screen.replace(
 	  /(\w+\s*)$/, help);
 
@@ -328,7 +329,7 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
 
       // - try %foo - full word
       screen = screen.replace(
-	  /\b(?<!'")(\w+\s*)$/,
+	  /\b(?<!'")([\w\d]+\s*)$/,
 	  (_,w)=>subst(_, w, '%'));
 
       // - try foo - partial/end
@@ -438,7 +439,8 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
       s.replace(/f/g, x=>{ r+= x; });
       s.replace(/g/g, x=>{ r+= x; });
       s.replace(/z/g, x=>{ r+= x; });
-      return r.length>1 ? '{'+r+'}' : r;
+      //return r.length>1 ? '{'+r+'}' : r;
+      return ':'+r;
   }
   
   let ks = '';
@@ -464,8 +466,8 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
       if (!ktm) ktm = now;
       let tm = now-ktm;
       ktm = now;
-      ks = k + tm + ks;
-      window.kss.innerText = ks;
+      ks = k + ' ' + tm + ks;
+      //window.kss.innerText = ks;
 
       // time of press
       if (tm >= 3000) knew += ' 4 ' + k;
@@ -475,44 +477,47 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
       else if (tm >= 40)   knew += ' 0 '+k;
       else knew += k;
 
-      // new sequence
+      // new sequence, when all up
       kdown += up ? -1 : +1;
       if (!kdown) {
+	  window.kkk.innerText = knew;
 	  let r = knew;
 	  let rprefix = '';
 
 	  // used for debug strings
 	  let s = '';
 
-	  // shift: x ... X => x-...
-	  if (r.match(/^\w \d /)) {
-	      // one more char
+	  // chords: fdsSDF => {sdf}
+	  if (r.match(/^[a-z]+\s*\d?\s*[A-Z]+$/)) {
 	      r = r.replace(
-		  /^(\w)(.*[a-z].*)(\1)$/i,
-		  (_,s,m,e)=>{
-		      // parse rest better
-		      rprefix = s+'-';
-		      return m;
-		  });
-	      s += ' shift: ' + r + '\n';
+		  /^[a-z]{2,}\s*\d?\s*[A-Z]+$/g, ksort)
+	      s += ' chords: ' + r + '\n';
 	  } else {
-	      s += ' noshift: no delay\n';
-	  }
+	      // shift: x ... X => x-...
+	      if (r.match(/^\w \d /)) {
+		  // one more char
+		  r = r.replace(
+		      /^(\w)(.*[a-z].*)(\1)$/i,
+		      (_,s,m,e)=>{
+			  // parse rest better
+			  rprefix = s+'-';
+			  return m;
+		      });
+		  s += ' shift: ' + r + '\n';
+	      } else {
+		  s += ' noshift: no delay\n';
+	      }
 	      
-	  // roll: abcABC => a>b>c
-	  // TOOD: correct but too strict!
-	  let rr = r.replace(/[0-9 ]+/g, '');
-	  if (rr.match(/^[a-z0-9 ]+[A-Z0-9 ]+$/)) {
-	      r = rr.replace(
-		  /^((\w)(\w*)(\w))\2\w*\4$/i,
-		  (_,s,f,r,l)=>s.replace(
-		      /\B/g, '>'));
+	      // roll: abcABC => a>b>c
+	      // TOOD: correct but too strict!
+	      let rr = r.replace(/[0-9 ]+/g, '');
+	      if (rr.match(/^[a-z0-9 ]+[A-Z0-9 ]+$/)) {
+		  r = rr.replace(
+		      /^((\w)(\w*)(\w))\2\w*\4$/i,
+		      (_,s,f,r,l)=>s.replace(
+			  /\B/g, '>'));
+	      }
 	  }
-	      
-	  // chords: fds => {sdf}
-	  r = r.replace(
-	      /^[a-z]{2,}[A-Z]+$/g, ksort)
-	  s += ' chords: ' + r + '\n';
 	  
 	  // remove timing
 	  r = r.replace(/\s*\d\s*/g, '');
@@ -554,12 +559,13 @@ z&lt;&lt;&lt;x&lt;&lt;&lt;c&lt;&lt;&lt;v&lt;&lt;&lt;b    n&gt;&gt;&gt;m&gt;&gt;&
 	  // display
 	  window.knew.innerText = kall;
 
-//	  //window.kss.innerText = ks;
+	  window.kss.innerText = ks;
 	  ks = '';
 
 	  // all commands :UPPER
-	  if (r.match(/[\-\{\}\>]/))
+	  if (r.match(/[:\-\{\}\>]/))
 	      r = ':' + r.toUpperCase();
+	  r = r.replace('::', ':');
 	  
 	  // all keys up so can decide
 	  return r;

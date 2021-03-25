@@ -69,3 +69,35 @@ most common letters by position:
 -1: esndtr
 
 
+https://linguistics.stackexchange.com/questions/36906/how-languages-compare-with-the-number-of-different-syllables-from-all-words
+
+How many syllables in English?
+
+Yoon Mi Oh's 2015 thesis (pages 44-45) provides estimates of the number of syllables for various languages, gathered by taking the 20,000 most frequent words in a corpus of each language and counting the different syllables that show up. Ordering them by increasing number of syllables:
+
+Japanese: 643
+Korean: 1104
+Mandarin: 1274
+Cantonese: 1298
+Basque: 2082
+Thai: 2438
+Italian: 2729
+Spanish: 2778
+French: 2949
+Turkish: 3260
+Catalan: 3600
+Serbian: 3831
+Finnish: 3844
+Hungarian: 4325
+German: 5100
+Vietnamese: 5156
+English: 6949
+
+For example, her count for English is 6,949 syllables—significantly less than the 15,000 you cited, because English has a lot of possible syllables, but most of them aren't actually used. ("Wug" and "strall" follow the rules of English syllable structure, but don't actually appear in any commonly-used words.)
+
+Page 58 of the same thesis also gives the Shannon entropy of the syllable distribution in each language, which is an alternate way of measuring it; this takes into account the fact that English has a lot of syllables, but some of them are very rare (like the syllable "strengths", it only appears in a single word), while e.g. Japanese has fewer syllables, but they're more evenly distributed. By this measure, an English syllable in isolation conveys 9.51 bits of information on average, and a Mandarin syllable conveys 8.69 bits.
+
+pronouciation dictionary
+
+http://www.speech.cs.cmu.edu/cgi-bin/cmudict
+

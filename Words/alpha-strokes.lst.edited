@@ -1,24 +1,26 @@
 # 1 (a)     5  L a (a) a -- a
 # 1 (d)    14 R  i (d) i -- i ?
- 2 (ad)   507    pc (ad) pc -- ad
+# 2 (ad)   507    pc (ad) pc -- ad
 # 2 (af)    78 R  pm (af) pm -- pm am ?
 # 2 (ag)    22  L at (ag) at -- at an
  2 (ag)    22  L at (ag) at -- at
- 2 (as)    23  L as (as) as -- as
- 2 (da)   595  L ca (da) ca -- CA
+# 2 (as)    23  L as (as) as -- as
+# 2 (da)   595  L ca (da) ca -- CA
  2 (dd)   187  L de (dd) de -- ID
  2 (df)    37    if (df) if -- if
- 2 (dg)     6 R  in (dg) in -- in it eg DB
+# in it
+ 2 (dg)     6 R  in (dg) in -- in
  2 (ds)     8    is (ds) is -- is
  2 (fa)    54 R  up (fa) up -- up
  2 (fd)    89    me (fd) me -- me
- 2 (ff)  1479    mr (ff) mr -- Mr
+# 2 (ff)  1479    mr (ff) mr -- Mr
  2 (fg)    39 R  my (fg) my -- my
  2 (fs)    35    us (fs) us -- us
- 2 (gd)    19  L be (gd) be -- be he, hi ???
+# he hi
+ 2 (gd)    19  L be (gd) be -- be
  2 (gf)   483  L tv (gf) tv -- TV
  2 (gg)    11    by (gg) by -- by
-# 2 (gs)     4    to (gs) to -- to no go
+# 2 (gs)     4    to (gs) to -- to no go ???
  2 (gs)     4    to (gs) to -- to
  2 (sa)   493    la (sa) la -- la
  2 (sd)    31  L we (sd) we -- we
@@ -141,7 +143,7 @@
  3 (gsf)    15 R  you (gsf) you -- you
 # 3 (gsg)    17    not (gsg) not -- not non hot got, boy bob, toy,,,, hon, ton hwy
   3 (gsg)    17    not (gsg) not -- non hot got boy toy hon ton
- 3 (gss)    75    now (gss) now -- now how too box bow
+ 3 (gss)    75    now (gss) now -- now how too box bow two
  3 (saa)  2510    spa (saa) spa --,, spa,,,,, sap, lap,,
  3 (sad)  3619    oak (sad) oak --,,, oak,, sad,,,,,
  3 (saf)   615  L war (saf) war -- war
@@ -155,8 +157,8 @@
  3 (sfd)  2904  L src (sfd) src -- src
  3 (sff)    44    our (sff) our -- our off sum
  3 (sfg)    60    out (sfg) out -- out
- 3 (sfs)  1434    xml (sfs) xml -- xml sms
- 3 (sgd)    45    one (sgd) one -- one she
+ 3 (sfs)  1434    xml (sfs) xml -- XML SMS
+ 3 (sgd)    45    one (sgd) one -- one
 # 3 (sgf)  8116  L str (sgf) str --,,,,,,,, str obj,,
  3 (sgg)   385    why (sgg) why -- why,,,,,,,,,,
  3 (sgs)    72    who (sgs) who -- who,,,, lbs,, sys, ons
@@ -475,10 +477,11 @@
  4 (ggag)    10    that (ggag) that -- that than,,,,,,,,,, ? ???
  4 (ggdd)  6944    thee (ggdd) thee --,,,,,, thee,,,,
  4 (ggdf)   133    them (ggdf) them -- them,,,,,,,,,,
- 4 (ggdg)    51    they (ggdg) they -- they then thin ???
+#they then thin ???
+ 4 (ggdg)    51    they (ggdg) they -- then
  4 (ggds)    12    this (ggds) this -- this
  4 (ggff)  5990    thru (ggff) thru --,,,,, thru,,,,,
- 4 (ggfs)   970    html (ggfs) html -- html, thus,,,,,,,,, ???
+ 4 (ggfs)   970    html (ggfs) html -- HTML, thus,,,,,,,,, ???
  4 (ggga)  4663    http (ggga) http -- HTTP
  4 (gggd)  5957    byte (gggd) byte -- byte
  4 (ggsf)  5514    thou (ggsf) thou --,,,,, thou,,,,,
