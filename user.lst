@@ -42,19 +42,23 @@ _-F>A	,"_she_said._
 %aaHE	:DELSPC_tshe_	# t'she ts'he it
 %aHE	:DELSPC_anyone_ # AnyPERSON
 %asHE	:DELSPC_anyone_ # as=AnyWon
-%saHE	:DELSPC_someone_ # sa=SomeWon
+%ssHE	:DELSPC_someone_ # ss=SomeWon
 %sHE	:DELSPC_she_
 
 %dHE	:DELSPC_him_
 %dsHE	:DELSPC_his_
+%dfHE	:DELSPC_himself_
 
 %fHE	:DELSPC_her_
 %fsHE	:DELSPC_hers_
+%ffHE	:DELSPC_herself_
 
 %gHE	:DELSPC_they_	# g=T=Y
 %gdHE	:DELSPC_their_  # d=E (or ggddf)
+%gdfHE	:DELSPC_theirselves_  # d=E (or ggddf)
 %gsHE	:DELSPC_theirs_ # s=S (or ggddfs)
 %gfHE	:DELSPC_them_   # f=M (or ggdm)
+%gffHE	:DELSPC_themselves_
 
 %HE	:DELSPC_he_	# default, hmmm :-(
 

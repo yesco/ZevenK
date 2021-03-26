@@ -105,9 +105,9 @@
 # 3 (ffs)   793    url (ffs) url -- url mrs,,,,, ?
  3 (ffs)   793    url (ffs) url -- Mrs
  3 (fga)  4060    ftp (fga) ftp --,,,, ftp, mhz, mba, rna ?
- 3 (fgd)  3166    utc (fgd) utc --  utc FBI Uni
+ 3 (fgd)  3166    utc (fgd) utc --  UTC FBI Uni
  3 (fgf)  9482    mtv (fgf) mtv -- MTV
- 3 (fgs)  2461    vhs (fgs) vhs --,, vhs,,,,,,,,
+ 3 (fgs)  2461    vhs (fgs) vhs --,, VHS,,,,,,,,
  3 (fsa)   356    usa (fsa) usa -- USA,,,,,,,,,,
 # 3 (fsd)    61    use (fsd) use -- use rod
  3 (fsd)    61    use (fsd) use -- use
@@ -1023,15 +1023,15 @@
  5 (ffsgg)   794    front (ffsgg) front -- front,,,,,,,,,,
  5 (ffssg)  1691    fully (ffssg) fully --, fully,,,,,,, frost,,
  5 (fgddf)   190    under (fgddf) under -- under,,,,,,,,,,
- 5 (fgdfs)  7185    myers (fgdfs) myers --,,,,,,, myers,,,
+ 5 (fgdfs)  7185    myers (fgdfs) myers --,,,,,,, Myers,,,
  5 (fgdgg)  6887    unity (fgdgg) unity --,,,,,, unity,,,,
  5 (fgdgs)  1454    units (fgdgs) units --, units,,,,,,,,,
  5 (fgdsd)  7224    uncle (fgdsd) uncle --,,,,,,, uncle,,,
  5 (fgdsg)  1106 R  union (fgdsg) union --, union,,,,,,,,,
  5 (fgdss)  6450    utils (fgdss) utils --,,,,,, utils,,,,
  5 (fggds)   694    until (fggds) until -- until,,,,,,,,,,
- 5 (fgsas)  3351    mysql (fgsas) mysql --,,, mysql,,,,,,,
- 5 (fgsdd)  4413    rhode (fgsdd) rhode --,,,, rhode,,,,,,
+ 5 (fgsas)  3351    mysql (fgsas) mysql --,,, MySQL,,,,,,,
+ 5 (fgsdd)  4413    rhode (fgsdd) rhode --,,,, Rhode,,,,,,
  5 (fsads)  4533    roads (fsads) roads --,,,, roads,,,,,,
  5 (fsafd)  6971    flame (fsafd) flame --,,,,,, flame,,,,
  5 (fsagd)  3031    usage (fsagd) usage --,,, usage,,,,,,,
@@ -1748,7 +1748,7 @@
  6 (ddfdag)  8135  L defeat (ddfdag) defeat --,,,,,,,, defeat,,
  6 (ddfddd)  1634    device (ddfddd) device --, device,,,,,,, divide,,
  6 (ddfddg)   783    direct (ddfddg) direct -- direct,,,,,,,,,,
- 6 (ddfdfd)  6877 R  kijiji (ddfdfd) kijiji --,,,,,, kijiji,,,,
+# 6 (ddfdfd)  6877 R  kijiji (ddfdfd) kijiji --,,,,,, kijiji,,,,
  6 (ddfdfs)  9600    circus (ddfdfs) circus --,,,,,,,,, circus,
  6 (ddfdgd)  2233    define (ddfdgd) define --,, define,,,, divine, defend,,,
  6 (ddfdgg)  5411    diving (ddfdgg) diving --,,,,, diving,,,, cement,
@@ -1757,8 +1757,8 @@
  6 (ddfgds)  3505    kernel (ddfgds) kernel --,,, kernel,,,,,,,
  6 (ddgads)  1799    detail (ddgads) detail --, detail,,,,,,,,,
  6 (ddgagd)  3284  L debate (ddgagd) debate --,,, debate,,,,,,,
- 6 (ddgasd)  9171    kinase (ddgasd) kinase --,,,,,,,,, kinase,
- 6 (ddgdag)  4266    debian (ddgdag) debian --,,,, debian,,,,,,
+# 6 (ddgasd)  9171    kinase (ddgasd) kinase --,,,,,,,,, kinase,
+ 6 (ddgdag)  4266    debian (ddgdag) debian --,,,, Debian,,,,,,
  6 (ddgdas)  8758    denial (ddgdas) denial --,,,,,,,, denial,,
  6 (ddgddd)  5640    denied (ddgddd) denied --,,,,, denied,,,,,
  6 (ddgddg)  7029  L detect (ddgddg) detect --,,,,,,, detect,,,

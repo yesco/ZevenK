@@ -4,6 +4,7 @@
 #   perl bitmap-make.pl -d foo.lst bar.dict file.txt
 #
 # will read two dictionaries and then analyze and try to match every word in the text file
+# -x will dump a nextchar frequency table
 
 # this was an experiment to see if
 # we could train a bitmap to guess
@@ -26,13 +27,23 @@ my $CHARLEN = 3;
 my %freq;
 my %dict; # word->frequency
 
+my $dump;
 my $nextisdict = 0;
+my $predict;
 for $f (@ARGV) {
     if ($f eq '-d') {
 	$nextisdict = 1;
 	next;
     }
-
+    if ($f eq '-x') {
+	$dump = 'dict';
+	next;
+    }
+    if ($f eq '-p') {
+	$predict = 'char';
+	next;
+    }
+      
     $nextisdict = 1 if $f =~ /dict/;
     
     if ($nextisdict) {
@@ -49,14 +60,18 @@ for $f (@ARGV) {
     #print "DICT not=",$dict{"not"},"\n";
 }
 
-# print bitsummary not using $CHARLEN
-for $a (' ','a'..'z') {
-    for $b (' ', 'a'..'z') {
-	for $c (' ', 'a'..'z') {
-	    for $d (' ', 'a'..'z') {
-		my $n = $freq{"$a$b$c$d"};
-		next if !$n;
-		print "$a$b$c$d $n\n";
+if ($dump) {
+    # print bitsummary not using $CHARLEN
+    for $a (' ','a'..'z') {
+	for $b (' ', 'a'..'z') {
+	    for $c (' ', 'a'..'z') {
+		for $d (' ', 'a'..'z') {
+		    #my $n = $freq{"$a$b$c$d"};
+		    my $n = $freq{"$a$b$c"};
+		    next if !$n;
+		    #print "$a$b$c$d $n\n";
+		    print "$a$b$c $n\n";
+		}
 	    }
 	}
     }
@@ -93,14 +108,30 @@ sub readdict {
 	$f = +$1 if $txt =~ s/[\t\s]+(\d+)//;
 	$dict{$txt} = $f;
 	#print "SET FISHING: $f\n" if $txt=~/fishing/;
-
+	#print "$txt $f\n";
 	
 	$txt = "  $txt  "; # $CHARLEN?
 	#print $txt, "\n";
 	
+	my $spci = 0;
 	for $i (0..length($txt)-$CHARLEN) {
 	    my $seq = substr($txt, $i, $CHARLEN);
 	    #print "$i:$seq ";
+	    $freq{$seq} += $f;
+
+	    if ($seq =~ /^ /) {
+		$spci = $i;
+	    } else {
+		my $l = substr($seq, 0, 1);
+		my $p = $i-$spci;
+		if ($p < 9) {
+		    my $f = $freq{$p . $l}++;
+		}
+	    }
+
+	    # 4 letters
+	    $seq = substr($txt, $i, 4);
+	    next if length($seq) != 4;
 	    $freq{$seq} += $f;
 	}
     }
@@ -180,13 +211,110 @@ sub nextchar {
     return @res;
 }
 
-print 'x' x 35, "\n";
+print STDOUT 'x' x 35, "\n";
 
 #test('sgd');
 
-while(<STDIN>) {
-    chop();
-    test($_, 1);
+if ($predict) {
+    print STDOUT "%% predict mode!\n";
+    use Term::ReadKey;
+    ReadMode('raw');
+    my $t = '';
+    my $k = chr(127); # dummy
+    do {
+	my $o = ord($k);
+	print STDERR "\n", '-' x 35, "\n";
+	print STDERR "% key '$k' == ", $o, "\n";
+	# ^c (break) or ^d (eof)
+	if ($o == 3 || $o == 4) {
+	    print STDERR "\n%% break out!\n";
+	    system("stty sane");
+	    last;
+	}
+	# BS or ^h
+	if ($o == 8 || $o == 127) {
+	    $t = substr($t, 0, length($w)-1);
+	} else {
+	    $t .= $k;
+	}
+
+	my $w = $1 if $t =~ /\b(\w+)$/;
+	my $i = length($w) + 1;
+	
+	#print STDERR "%%%%%%%% >$w<\n";
+
+	# analyze
+	my $p = substr($t, length($t)-2, 2);
+	my @a = ();
+	for $n ('a'..'z', ' ') {
+	    my $nn = '_' if $n eq ' ';
+	    # 2 what's next?
+	    my $f = $freq{$p.$n};
+	    if ($f) {
+		push(@a, "$f - '$p$n' $nn");
+	    }
+	    
+	    # per position
+	    my $k = $i . $n;
+	    $f = $freq{$k};
+	    if ($f) {
+		push(@a, "$f - '$k' $nn");
+	    }
+
+	    # 3 what's next?
+	    my $p = substr($t, length($t)-3, 3);
+	    my $f = $freq{$p.$n};
+	    if ($f) {
+		$f *= 1000; # boost
+		push(@a, "$f - '$p$n' $nn");
+		#print STDERR "$p $n\t$f\n";
+	    }
+	}
+	@a = sort {$a <=> $b} @a;
+	print STDERR join("\n", @a),"\n";;
+
+	# predict per key
+	print STDERR "vvvvvvvvvvvvvvvvv\n";
+	my %pkey = (), %ptot = (), $tot = 0;
+	for $k (reverse @a) {
+	    my $l = $1 if $k =~ /.*([_a-z])/;
+	    my $f = 0+$1 if $k =~ /(\d\d+)/;
+	    my $a = '?';
+	    $a = 'a' if $l =~ /[qazp]/;
+	    $a = 's' if $l =~ /[wsxol]/;
+	    $a = 'd' if $l =~ /[edcik]/;
+	    $a = 'f' if $l =~ /[rfvujm]/;
+	    $a = 'g' if $l =~ /[tgbyhn]/;
+	    $a = '_' if $l eq '_';
+	    $pkey{$a} .= " $l $f";
+	    $ptot{$a} += $f;
+	    $tot += $f;
+	}
+	print STDERR '^' x 30, "\n";
+	for $a ('a','s','d','f','g','_') {
+	    my $s = $pkey{$a};
+	    # convert to %
+	    $s =~ s|(\d+)|sprintf("%2d", 100*$1/$ptot{$a})|ge;
+	    # remove 0 %
+	    $s =~ s|\s\w\s+0\b||g;
+	    # trim 1 %
+	    $s =~ s|\b(\w)\s\s1\b|$1|g;
+	    # duplicates
+	    $s =~ s|([a-z]).*\s\1\s+\d+\b|$1|g;
+	    my $gperc = $tot ? 100*$ptot{$a}/$tot : 100;
+	    print STDERR sprintf("$a:  %2d $s\n", $gperc);
+	}
+
+	# display
+	print STDERR "===$p===\n";
+	print STDERR "$t";
+    } while($k = ReadKey(0));
+    ReadMode('restore');
+} else {
+    while(<STDIN>) {
+	chop();
+	test($_, 1);
+    }
 }
 
 sub test {
@@ -214,6 +342,7 @@ sub test {
 	my $df = $dict{$w};
 	#print "FISHING: $df\n" if $w=~/fishing/;
 	return $df if $df;
+	# todo: make it length dependent?
 	return $f/10000;
     }
 

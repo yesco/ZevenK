@@ -8,6 +8,7 @@ mentioned on https://github.com/first20hours/google-10000-english
 
 # alternative keying keyboard data
 
+
 wget http://asetniop.com/combinations/
 wget http://www.cs.duke.edu/~ola/ap/linuxwords
 https://github.com/titoBouzout/Dictionaries
